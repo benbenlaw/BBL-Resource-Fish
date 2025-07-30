@@ -1,20 +1,47 @@
 package com.benbenlaw.resourcefish.util;
 
-public enum ResourceType {
-    NONE(0, 0xFFFFFF),       // white/no color
-    IRON(1, 0xAAAAAA),       // gray-ish for iron
-    GOLD(2, 0xFFD700),       // gold color
-    DIAMOND(3, 0x00FFFF);    // cyan-ish for diamond
+import com.benbenlaw.resourcefish.ResourceFish;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
-    private final int id;
-    private final int color; // RGB hex color
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-    ResourceType(int id, int color) {
+public class ResourceType {
+    public static final Map<ResourceLocation, ResourceType> REGISTRY = new HashMap<>();
+    private static final Map<ResourceType, ItemStack> DROP_MAP = new HashMap<>();
+
+    public static final ResourceType NONE = new ResourceType(
+            ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "none"),
+            0xFFFFFF,
+            ItemStack.EMPTY,
+            20 * 30 // 20 ticks per second * 30 seconds
+    );
+
+    private final ResourceLocation id;
+    private final int color;
+    private final ItemStack dropItem;
+    private final int dropIntervalTicks;
+
+    public ResourceType(ResourceLocation id, int color, ItemStack dropItem, int dropIntervalTicks) {
         this.id = id;
         this.color = color;
+        this.dropItem = dropItem;
+        this.dropIntervalTicks = dropIntervalTicks;
+
     }
 
-    public int getId() {
+    public static void registerDrop(ResourceType resourceType, ItemStack drop) {
+        DROP_MAP.put(resourceType, drop);
+    }
+
+    public static ItemStack getDropForResourceType(ResourceType resourceType) {
+        return resourceType != null ? resourceType.getDropItem().copy() : ItemStack.EMPTY;
+    }
+
+    public ResourceLocation getId() {
         return id;
     }
 
@@ -22,10 +49,23 @@ public enum ResourceType {
         return color;
     }
 
-    public static ResourceType byId(int id) {
-        for (ResourceType type : values()) {
-            if (type.id == id) return type;
-        }
-        return NONE; // default
+    public ItemStack getDropItem() {
+        return dropItem;
+    }
+
+    public int getDropIntervalTicks() {
+        return dropIntervalTicks;
+    }
+
+    public static void register(ResourceType type) {
+        REGISTRY.put(type.getId(), type);
+    }
+
+    public static ResourceType get(ResourceLocation id) {
+        return REGISTRY.getOrDefault(id, REGISTRY.get(ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "none")));
+    }
+
+    public static Collection<ResourceType> getAll() {
+        return REGISTRY.values();
     }
 }

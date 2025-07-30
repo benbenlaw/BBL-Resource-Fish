@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-public class RedfinRenderer extends  MobRenderer<ResourceFishEntity, EntityModel<ResourceFishEntity>> {
+public class ResourceFishRenderer extends  MobRenderer<ResourceFishEntity, EntityModel<ResourceFishEntity>> {
 
     private static final ResourceLocation SMALL_RESOURCE_FISH = ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "textures/entity/small_resource_fish.png");
     private static final ResourceLocation LARGE_RESOURCE_FISH = ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "textures/entity/large_resource_fish.png");
@@ -22,7 +22,7 @@ public class RedfinRenderer extends  MobRenderer<ResourceFishEntity, EntityModel
     private final TropicalFishModelA<ResourceFishEntity> modelSmall;
     private final TropicalFishModelB<ResourceFishEntity> modelLarge;
 
-    public RedfinRenderer(EntityRendererProvider.Context context) {
+    public ResourceFishRenderer(EntityRendererProvider.Context context) {
         super(context, new TropicalFishModelA<>(context.bakeLayer(ModelLayers.TROPICAL_FISH_SMALL_PATTERN)), 0.3F);
         this.modelSmall = new TropicalFishModelA<>(context.bakeLayer(ModelLayers.TROPICAL_FISH_SMALL_PATTERN));
         this.modelLarge = new TropicalFishModelB<>(context.bakeLayer(ModelLayers.TROPICAL_FISH_LARGE_PATTERN));

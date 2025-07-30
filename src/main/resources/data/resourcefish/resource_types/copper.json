@@ -1,0 +1,8 @@
+{
+  "color": "#FF9359",
+  "drop_item": {
+    "id": "minecraft:copper_ingot",
+    "count": 1
+  },
+  "drop_interval": 10
+}

@@ -8,6 +8,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -27,14 +28,41 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResourceFishEntity extends AbstractSchoolingFish {
     private static final EntityDataAccessor<Integer> DATA_VARIANT = SynchedEntityData.defineId(ResourceFishEntity.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> DATA_RESOURCE_TYPE = SynchedEntityData.defineId(ResourceFishEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<String> DATA_RESOURCE_TYPE = SynchedEntityData.defineId(ResourceFishEntity.class, EntityDataSerializers.STRING);
 
+    private int dropTimer = 0;
+    private final Level level;
 
     public ResourceFishEntity(EntityType<? extends AbstractSchoolingFish> type, Level level) {
         super(type, level);
+        this.level = level;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (!this.level.isClientSide) {
+            dropTimer++;
+
+            ResourceType resourceType = getResourceType();
+            int ticksPerDrop = resourceType.getDropIntervalTicks();
+
+            if (dropTimer >= ticksPerDrop) {
+                dropTimer = 0;
+
+                ItemStack dropStack = ResourceType.getDropForResourceType(resourceType);
+
+                if (!dropStack.isEmpty()) {
+                    this.spawnAtLocation(dropStack);
+                }
+            }
+        }
     }
 
     @Override
@@ -44,7 +72,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish {
 
     @Override
     public @NotNull ItemStack getBucketItemStack() {
-        return  new ItemStack(ResourceFishItems.RESOURCE_FISH_BUCKET.get());
+        return new ItemStack(ResourceFishItems.RESOURCE_FISH_BUCKET.get());
     }
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {
@@ -102,7 +130,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_VARIANT, 0);
-        builder.define(DATA_RESOURCE_TYPE, 0);
+        builder.define(DATA_RESOURCE_TYPE, ResourceType.NONE.toString());
     }
 
     public Variant getVariant() {
@@ -114,11 +142,20 @@ public class ResourceFishEntity extends AbstractSchoolingFish {
     }
 
     public ResourceType getResourceType() {
-        return ResourceType.byId(this.entityData.get(DATA_RESOURCE_TYPE));
+        String idString = this.entityData.get(DATA_RESOURCE_TYPE);
+        if (idString == null || idString.isEmpty()) {
+            idString = ResourceType.NONE.getId().toString();
+        }
+        ResourceLocation id = ResourceLocation.parse(idString);
+        ResourceType resourceType = ResourceType.REGISTRY.get(id);
+        if (resourceType == null) {
+            resourceType = ResourceType.NONE;
+        }
+        return resourceType;
     }
 
     public void setResourceType(ResourceType type) {
-        this.entityData.set(DATA_RESOURCE_TYPE, type.getId());
+        this.entityData.set(DATA_RESOURCE_TYPE, type.getId().toString());
     }
 
     public int getResourceColor() {
@@ -129,14 +166,19 @@ public class ResourceFishEntity extends AbstractSchoolingFish {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.entityData.get(DATA_VARIANT));
-        tag.putInt("ResourceType", this.entityData.get(DATA_RESOURCE_TYPE));
+        tag.putString("ResourceType", this.entityData.get(DATA_RESOURCE_TYPE));
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.entityData.set(DATA_VARIANT, tag.getInt("Variant"));
-        this.entityData.set(DATA_RESOURCE_TYPE, tag.getInt("ResourceType"));
+        if (tag.contains("ResourceType", Tag.TAG_STRING)) {
+            this.entityData.set(DATA_RESOURCE_TYPE, tag.getString("ResourceType"));
+        } else {
+            // fallback if old int is still used or missing
+            this.entityData.set(DATA_RESOURCE_TYPE, ResourceType.NONE.toString());
+        }
     }
 
     @Override
@@ -147,16 +189,19 @@ public class ResourceFishEntity extends AbstractSchoolingFish {
         return data;
     }
 
-    private ResourceType generateRandomResource(RandomSource random) {
-        ResourceType[] values = ResourceType.values();
-        return values[random.nextInt(values.length)];
-    }
-
     private Variant generateRandomVariant(RandomSource random) {
         Pattern pattern = Pattern.values()[random.nextInt(Pattern.values().length)];
         DyeColor base = DyeColor.values()[random.nextInt(DyeColor.values().length)];
         DyeColor overlay = DyeColor.values()[random.nextInt(DyeColor.values().length)];
         return new Variant(pattern, base, overlay);
+    }
+
+    private ResourceType generateRandomResource(RandomSource random) {
+        List<ResourceType> values = new ArrayList<>(ResourceType.REGISTRY.values());
+        if (values.isEmpty()) {
+            return ResourceType.NONE; // fallback default
+        }
+        return values.get(random.nextInt(values.size()));
     }
 
     @Override
@@ -167,8 +212,8 @@ public class ResourceFishEntity extends AbstractSchoolingFish {
             setVariant(ResourceFishEntity.Variant.fromPackedId(tag.getInt("BucketVariant")));
         }
 
-        if (tag.contains("BucketResourceType", Tag.TAG_INT)) {
-            setResourceType(ResourceType.byId(tag.getInt("BucketResourceType")));
+        if (tag.contains("BucketResourceType", Tag.TAG_STRING)) {
+            setResourceType(ResourceType.REGISTRY.getOrDefault(ResourceLocation.parse(tag.getString("BucketResourceType")), ResourceType.NONE));
         }
     }
 
@@ -178,7 +223,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish {
         super.saveToBucketTag(bucket);
         CustomData.update(DataComponents.BUCKET_ENTITY_DATA, bucket, data -> {
             data.putInt("BucketVariant", this.getVariant().getPackedId());
-            data.putInt("BucketResourceType", this.getResourceType().getId());
+            data.putString("BucketResourceType", this.getResourceType().getId().toString());
         });
     }
 }

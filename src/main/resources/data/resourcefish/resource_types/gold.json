@@ -1,0 +1,8 @@
+{
+  "color": "#FF0000",
+  "drop_item": {
+    "id": "minecraft:gold_ingot",
+    "count": 1
+  },
+  "drop_interval": 70
+}

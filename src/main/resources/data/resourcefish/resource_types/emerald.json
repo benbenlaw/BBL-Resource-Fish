@@ -1,0 +1,8 @@
+{
+  "color": "#44FF47",
+  "drop_item": {
+    "id": "minecraft:emerald_block",
+    "count": 1
+  },
+  "drop_interval": 30
+}
