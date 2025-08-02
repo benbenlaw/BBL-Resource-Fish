@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ResourceFishEntity extends AbstractSchoolingFish {
+public class ResourceFishEntity extends AbstractSchoolingFish  {
 
     private static final EntityDataAccessor<String> DATA_RESOURCE_TYPE = SynchedEntityData.defineId(ResourceFishEntity.class, EntityDataSerializers.STRING);
     private static final EntityDataAccessor<Integer> DATA_PATTERN = SynchedEntityData.defineId(ResourceFishEntity.class, EntityDataSerializers.INT);
@@ -102,15 +102,19 @@ public class ResourceFishEntity extends AbstractSchoolingFish {
     }
 
     public static Variant generateVariant(ResourceType type, RandomSource random) {
-        List<ResourceFishEntity.Pattern> patterns = type.getPatterns();
-        ResourceFishEntity.Pattern chosenPattern = patterns.isEmpty()
-                ? Pattern.SMALL_0
-                : patterns.get(random.nextInt(patterns.size()));
 
         List<ResourceFishEntity.Pattern.Base> models = type.getModels();
         ResourceFishEntity.Pattern.Base chosenModel = models.isEmpty()
                 ? ResourceFishEntity.Pattern.Base.SMALL
                 : models.get(random.nextInt(models.size()));
+
+        List<ResourceFishEntity.Pattern> patterns = type.getPatterns().stream()
+                .filter(p -> p.getBase() == chosenModel).toList();
+
+        ResourceFishEntity.Pattern chosenPattern = patterns.isEmpty()
+                ? ResourceFishEntity.Pattern.SMALL_0
+                : patterns.get(random.nextInt(patterns.size()));
+
 
         return new Variant(type, chosenPattern, chosenModel);
     }

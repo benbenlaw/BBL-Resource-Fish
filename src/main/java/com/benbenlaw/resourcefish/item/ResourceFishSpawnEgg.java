@@ -58,6 +58,10 @@ public class ResourceFishSpawnEgg extends DeferredSpawnEggItem {
 
                     fish.setVariant(variant);
 
+                    player.sendSystemMessage(Component.literal(variant.getModelBase() + " + " + variant.pattern()));
+
+
+
                     Direction direction = context.getClickedFace();
                     BlockPos spawnPos = blockPos.relative(direction, 1);
 

@@ -17,6 +17,6 @@
     }
   ],
   "drop_interval": 100,
-  "patterns": ["small_0", "small_5", "large_5", "large_6"],
-  "models": ["small", "large"]
+  "patterns": ["large_1", "large_2", "large_3", "large_4", "large_5", "large_6"],
+  "models": ["large"]
 }

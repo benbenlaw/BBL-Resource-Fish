@@ -1,5 +1,10 @@
 {
   "values": [
-    "minecraft:gravel"
+    "resourcefish:depth_upgrade_1",
+    "resourcefish:depth_upgrade_2",
+    "resourcefish:depth_upgrade_3",
+    "resourcefish:width_upgrade_1",
+    "resourcefish:width_upgrade_2",
+    "resourcefish:width_upgrade_3"
   ]
 }

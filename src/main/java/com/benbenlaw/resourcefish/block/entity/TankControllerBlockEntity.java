@@ -4,6 +4,7 @@ import com.benbenlaw.core.block.entity.SyncableBlockEntity;
 import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
+import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.recipe.ActiveRecipeType;
 import com.benbenlaw.resourcefish.recipe.FishBreedingRecipe;
 import com.benbenlaw.resourcefish.recipe.FishInfusingRecipe;
@@ -19,12 +20,14 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
@@ -124,11 +127,10 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         Direction opposite = facing.getOpposite();
         BlockPos centerPos = this.worldPosition.relative(opposite, 3);
 
-        AABB box = new AABB(centerPos.getX() - 1, centerPos.getY() - 1, centerPos.getZ() - 1,
-                centerPos.getX() + 2, centerPos.getY() + 2, centerPos.getZ() + 2);
+        AABB box = calculateBox(centerPos, opposite);
 
         if (level.isClientSide()) {
-            //spawnBoxOutlineParticles(box);
+            spawnBoxOutlineParticles(box);
             return; // Skip processing on the client side
         }
 
@@ -193,9 +195,51 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
                     fishPool.add(fish.getResourceType().getId());
                 }
             }
-
             //System.out.println("Fish pool: " + fishPool.size());
+
         }
+
+    }
+
+    private AABB calculateBox(BlockPos centerPos, Direction direction) {
+
+        int widthUpgradeAmount = 0;
+        int depthUpgradeAmount = 0;
+
+
+        for (int i = UPGRADE_SLOT_1; i <= UPGRADE_SLOT_4; i++) {
+            ItemStack upgradeStack = itemHandler.getStackInSlot(i);
+            if (upgradeStack.isEmpty()) continue;
+
+            Item item = upgradeStack.getItem();
+
+            if (item == ResourceFishItems.DEPTH_UPGRADE_1.get()) {
+                depthUpgradeAmount+= 1;
+            } else if (item == ResourceFishItems.DEPTH_UPGRADE_2.get()) {
+                depthUpgradeAmount+= 2;
+            } else if (item == ResourceFishItems.DEPTH_UPGRADE_3.get()) {
+                depthUpgradeAmount+= 3;
+            } else if (item == ResourceFishItems.WIDTH_UPGRADE_1.get()) {
+                widthUpgradeAmount+= 1;
+            }  else if (item == ResourceFishItems.WIDTH_UPGRADE_2.get()) {
+                widthUpgradeAmount+= 2;
+            } else if (item == ResourceFishItems.WIDTH_UPGRADE_3.get()) {
+                widthUpgradeAmount+= 3;
+            }
+        }
+
+        BlockPos newCenterPositionWidth = centerPos.relative(direction, widthUpgradeAmount);
+        BlockPos newCenterPositionDepth = centerPos.relative(direction, depthUpgradeAmount);
+
+
+        int minX = newCenterPositionWidth.getX() - 1 - widthUpgradeAmount;
+        int minZ = newCenterPositionWidth.getZ() - 1 - widthUpgradeAmount;
+        int maxX = newCenterPositionWidth.getX() + 2 + widthUpgradeAmount;
+        int maxZ = newCenterPositionWidth.getZ() + 2 + widthUpgradeAmount;
+        int minY = newCenterPositionDepth.getY() - 1 - depthUpgradeAmount;
+        int maxY = newCenterPositionDepth.getY() + 2 + depthUpgradeAmount;
+
+        return new AABB(minX, minY, minZ, maxX, maxY, maxZ);
     }
 
     private static void breedingRecipe(Optional<RecipeHolder<FishBreedingRecipe>> match, BlockPos centerPos, ItemStackHandler itemHandler, Level level) {
