@@ -1,8 +1,22 @@
 {
-  "color": "#FF9359",
-  "drop_item": {
-    "id": "minecraft:copper_ingot",
-    "count": 1
-  },
-  "drop_interval": 10
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "minecraft"
+    }
+  ],
+  "main_color": "#FF9359",
+  "pattern_color": "#FF2B44",
+  "drop_items": [
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "minecraft:copper_ingot"
+      }
+    }
+  ],
+  "drop_interval": 100,
+  "patterns": ["small_0", "small_5", "large_5", "large_6"],
+  "models": ["small", "large"]
 }

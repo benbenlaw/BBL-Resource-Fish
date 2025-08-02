@@ -1,8 +1,21 @@
 {
-  "color": "#44FF47",
-  "drop_item": {
-    "id": "minecraft:emerald_block",
-    "count": 1
-  },
-  "drop_interval": 30
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "minecraft"
+    }
+  ],
+  "main_color": "#23FF65",
+  "pattern_color": "#1EFFB4",
+  "drop_items": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:emerald"
+      }
+    }
+  ],
+  "drop_interval": 100,
+  "patterns": ["small_4", "large_1"],
+  "models": ["small", "large"]
 }

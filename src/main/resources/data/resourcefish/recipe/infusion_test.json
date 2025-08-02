@@ -1,0 +1,18 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "fish_ingredient": {
+    "count": 1,
+    "item": "minecraft:tropical_fish_bucket"
+  },
+  "input_1": {
+    "count": 4,
+    "item": "minecraft:diamond"
+  },
+  "input_2": {
+    "count": 4,
+    "item": "minecraft:emerald"
+  },
+  "duration": 400,
+  "chance": 1.0,
+  "created_fish": "resourcefish:emerald"
+}

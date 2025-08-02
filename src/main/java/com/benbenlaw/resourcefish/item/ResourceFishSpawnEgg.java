@@ -1,5 +1,6 @@
 package com.benbenlaw.resourcefish.item;
 
+import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
 import com.benbenlaw.resourcefish.util.ResourceType;
@@ -9,15 +10,23 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 
 import java.util.Objects;
@@ -37,17 +46,24 @@ public class ResourceFishSpawnEgg extends DeferredSpawnEggItem {
 
         if (!level.isClientSide()) {
 
-
             ResourceFishEntity fish = ResourceFishEntities.RESOURCE_FISH.get().create(level);
             if (fish != null) {
                 ResourceLocation resourceLocation = itemStack.get(ResourceFishDataComponents.FISH_TYPE.get());
                 if (resourceLocation != null) {
                     player.sendSystemMessage(Component.translationArg(resourceLocation));
 
-                    //ResourceLocation test = ResourceLocation.parse("resourcefish:copper");
-
                     fish.setResourceType(ResourceType.get(resourceLocation));
-                    fish.setPos(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5);
+
+                    ResourceFishEntity.Variant variant = ResourceFishEntity.generateVariant(ResourceType.get(resourceLocation), level.getRandom());
+
+                    fish.setVariant(variant);
+
+                    Direction direction = context.getClickedFace();
+                    BlockPos spawnPos = blockPos.relative(direction, 1);
+
+                    // Spawn the fish centered on the adjacent block on the clicked face
+                    fish.setPos(spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5);
+
                     level.addFreshEntity(fish);
                     itemStack.shrink(1);
                     player.awardStat(Stats.ITEM_USED.get(this));
@@ -56,8 +72,69 @@ public class ResourceFishSpawnEgg extends DeferredSpawnEggItem {
                 }
             }
         }
+
         return InteractionResult.FAIL;
     }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        BlockHitResult hitResult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
+
+        if (hitResult.getType() != HitResult.Type.BLOCK) {
+            return InteractionResultHolder.pass(itemStack);
+        }
+
+        BlockPos blockPos = hitResult.getBlockPos();
+        Direction clickedFace = hitResult.getDirection();
+
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return InteractionResultHolder.success(itemStack);
+        }
+
+        // Check if the clicked block is water (or a liquid block)
+        boolean clickedBlockIsLiquid = level.getBlockState(blockPos).getBlock() instanceof LiquidBlock;
+
+        // Position to spawn the fish:
+        // If clicking a liquid block, spawn centered in that block.
+        // Otherwise, spawn centered in the block adjacent to the clicked face.
+        BlockPos spawnPos = clickedBlockIsLiquid ? blockPos : blockPos.relative(clickedFace, 1);
+
+        ResourceFishEntity fish = ResourceFishEntities.RESOURCE_FISH.get().create(level);
+        if (fish == null) {
+            return InteractionResultHolder.pass(itemStack);
+        }
+
+        // Get the resource type from the itemstack (your component system)
+        ResourceLocation resourceLocation = itemStack.get(ResourceFishDataComponents.FISH_TYPE.get());
+        if (resourceLocation == null) {
+            return InteractionResultHolder.pass(itemStack);
+        }
+
+        player.sendSystemMessage(Component.translationArg(resourceLocation));
+
+        // Set fish resource type & variant
+        ResourceType resourceType = ResourceType.get(resourceLocation);
+        fish.setResourceType(resourceType);
+
+        ResourceFishEntity.Variant variant = ResourceFishEntity.generateVariant(resourceType, level.getRandom());
+        fish.setVariant(variant);
+
+        // Position fish centered in the spawn block
+        fish.setPos(spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5);
+
+        // Add entity to world
+        level.addFreshEntity(fish);
+
+        // Shrink item, award stats and emit game event
+        itemStack.shrink(1);
+        player.awardStat(Stats.ITEM_USED.get(this));
+        level.gameEvent(player, GameEvent.ENTITY_PLACE, spawnPos);
+
+        return InteractionResultHolder.consume(itemStack);
+    }
+
+
 
     @Override
     public Component getName(ItemStack stack) {
@@ -65,9 +142,16 @@ public class ResourceFishSpawnEgg extends DeferredSpawnEggItem {
 
         if (resourceType != null) {
             String name = resourceType.getPath();
-            String upperCaseName = name.substring(0, 1).toUpperCase() + name.substring(1);
 
-            return Component.literal(upperCaseName + " Resource Fish Spawn Egg");
+            String[] parts = name.split("_");
+            for (int i = 0; i < parts.length; i++) {
+                if (!parts[i].isEmpty()) {
+                    parts[i] = parts[i].substring(0, 1).toUpperCase() + parts[i].substring(1);
+                }
+            }
+            String formattedName = String.join(" ", parts);
+
+            return Component.literal(formattedName + " Resource Fish Spawn Egg");
         }
         return super.getName(stack);
     }

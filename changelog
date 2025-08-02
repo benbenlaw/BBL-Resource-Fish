@@ -1,5 +1,19 @@
 Resource Fish
 
-Fish Breeding
-Some sort of tank that collects fish drops
 JEI interaction
+Lake controller upgrades, buttons ect
+Maybe a range upgrade that is recipe based
+Conditional fish loading
+recipes
+data gen
+caviar
+
+
+Resource Fish
+
+Fish now have a base and a pattern texture
+Spawn eggs work on fluid sources now
+Drops work on the be now
+Fish now rotate when out of water
+Models for fish small or large
+Patterns for fish "small_1" to "small_6" "small_0" is no pattern, same for large

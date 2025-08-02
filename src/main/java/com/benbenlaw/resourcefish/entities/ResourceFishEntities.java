@@ -18,7 +18,7 @@ public class ResourceFishEntities {
 
     public static final Supplier<EntityType<ResourceFishEntity>> RESOURCE_FISH =
             ENTITIES.register("resource_fish", () -> EntityType.Builder.of(ResourceFishEntity::new, MobCategory.WATER_AMBIENT)
-                    .sized(0.5F, 0.5F)
+                    .sized(0.5F, 0.3F)
                     .clientTrackingRange(8)
                     .updateInterval(3)
                     .build(ResourceFish.MOD_ID + ":resource_fish"));

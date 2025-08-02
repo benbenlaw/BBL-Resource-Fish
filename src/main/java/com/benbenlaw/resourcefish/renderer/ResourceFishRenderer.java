@@ -3,6 +3,7 @@ package com.benbenlaw.resourcefish.renderer;
 import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.minecraft.client.model.ColorableHierarchicalModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.TropicalFishModelA;
@@ -12,9 +13,14 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.animal.TropicalFish;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-public class ResourceFishRenderer extends  MobRenderer<ResourceFishEntity, EntityModel<ResourceFishEntity>> {
+@OnlyIn(Dist.CLIENT)
+public class ResourceFishRenderer extends  MobRenderer<ResourceFishEntity, ColorableHierarchicalModel<ResourceFishEntity>> {
 
     private static final ResourceLocation SMALL_RESOURCE_FISH = ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "textures/entity/small_resource_fish.png");
     private static final ResourceLocation LARGE_RESOURCE_FISH = ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "textures/entity/large_resource_fish.png");
@@ -26,6 +32,7 @@ public class ResourceFishRenderer extends  MobRenderer<ResourceFishEntity, Entit
         super(context, new TropicalFishModelA<>(context.bakeLayer(ModelLayers.TROPICAL_FISH_SMALL_PATTERN)), 0.3F);
         this.modelSmall = new TropicalFishModelA<>(context.bakeLayer(ModelLayers.TROPICAL_FISH_SMALL_PATTERN));
         this.modelLarge = new TropicalFishModelB<>(context.bakeLayer(ModelLayers.TROPICAL_FISH_LARGE_PATTERN));
+        this.addLayer(new ResourceFishPatternLayer(this, context.getModelSet()));
     }
 
     @Override
@@ -51,12 +58,22 @@ public class ResourceFishRenderer extends  MobRenderer<ResourceFishEntity, Entit
         }
     }
 
-
     @Override
     public @NotNull ResourceLocation getTextureLocation(ResourceFishEntity entity) {
         return switch (entity.getVariant().pattern().getBase()) {
             case ResourceFishEntity.Pattern.Base.SMALL -> SMALL_RESOURCE_FISH;
             case ResourceFishEntity.Pattern.Base.LARGE -> LARGE_RESOURCE_FISH;
         };
+    }
+
+    @Override
+    protected void setupRotations(ResourceFishEntity entity, PoseStack poseStack, float ageInTicks, float rotation, float tick, float headRot) {
+        super.setupRotations(entity, poseStack, ageInTicks, rotation, tick, headRot);
+        float f = 4.3F * Mth.sin(0.6F * ageInTicks);
+        poseStack.mulPose(Axis.YP.rotationDegrees(f));
+        if (!entity.isInWater()) {
+            poseStack.translate(0.2F, 0.1F, 0.0F);
+            poseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
+        }
     }
 }

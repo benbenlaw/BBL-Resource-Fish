@@ -1,8 +1,0 @@
-{
-  "color": "#7F3300",
-  "drop_item": {
-    "id": "minecraft:netherite_block",
-    "count": 1
-  },
-  "drop_interval": 1
-}
