@@ -1,6 +1,7 @@
 package com.benbenlaw.resourcefish.recipe;
 
 import com.benbenlaw.resourcefish.block.entity.TankControllerBlockEntity;
+import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -13,9 +14,15 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
-public record FishInfusingRecipe(SizedIngredient fish,
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+public record FishInfusingRecipe(ResourceLocation fish,
                                  SizedIngredient input1,
                                  SizedIngredient input2,
+                                 SizedIngredient input3,
                                  int duration,
                                  double chance,
                                  ResourceLocation createdFish) implements Recipe<RecipeInput> {
@@ -23,11 +30,32 @@ public record FishInfusingRecipe(SizedIngredient fish,
     @Override
     public boolean matches(RecipeInput container, Level level) {
 
-        boolean isFishItem = fish.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_1));
-        boolean isInput1 = input1.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_3));
-        boolean isInput2 = input2.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_2));
 
-        return isFishItem && isInput1 && isInput2;
+        if (TankControllerBlockEntity.fishPool != null) {
+
+            List<ResourceLocation> fishTypes = new ArrayList<>();
+
+            for (ResourceFishEntity fish  : TankControllerBlockEntity.fishPool) {
+                if (fish.getResourceType().getId() != null) {
+                    fishTypes.add(fish.getResourceType().getId());
+                }
+            }
+
+            if (fishTypes.isEmpty()) return false;
+
+            boolean fishType = fishTypes.contains(fish);
+
+            boolean isInput1 = input1.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_1));
+
+            boolean isInput2 = Arrays.stream(input2.getItems()).toList().isEmpty() || input2.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_2));
+            boolean isInput3 = Arrays.stream(input3.getItems()).toList().isEmpty() || input3.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_3));
+
+
+            return fishType && isInput1 && isInput2 && isInput3;
+        }
+
+
+        return false;
     }
 
 
@@ -69,9 +97,10 @@ public record FishInfusingRecipe(SizedIngredient fish,
 
         public final MapCodec<FishInfusingRecipe> CODEC = RecordCodecBuilder.mapCodec((instance) ->
                 instance.group(
-                        SizedIngredient.FLAT_CODEC.fieldOf("fish_ingredient").forGetter(FishInfusingRecipe::fish),
+                        ResourceLocation.CODEC.fieldOf("fish").forGetter(FishInfusingRecipe::fish),
                         SizedIngredient.FLAT_CODEC.fieldOf("input_1").forGetter(FishInfusingRecipe::input1),
-                        SizedIngredient.FLAT_CODEC.fieldOf("input_2").forGetter(FishInfusingRecipe::input2),
+                        SizedIngredient.FLAT_CODEC.optionalFieldOf("input_2", new SizedIngredient(Ingredient.EMPTY, 1)).forGetter(FishInfusingRecipe::input2),
+                        SizedIngredient.FLAT_CODEC.optionalFieldOf("input_3", new SizedIngredient(Ingredient.EMPTY, 1)).forGetter(FishInfusingRecipe::input3),
                         Codec.INT.fieldOf("duration").forGetter(FishInfusingRecipe::duration),
                         Codec.DOUBLE.fieldOf("chance").forGetter(FishInfusingRecipe::chance),
                         ResourceLocation.CODEC.fieldOf("created_fish").forGetter(FishInfusingRecipe::createdFish)
@@ -92,20 +121,22 @@ public record FishInfusingRecipe(SizedIngredient fish,
         }
 
         private static FishInfusingRecipe read(RegistryFriendlyByteBuf buffer) {
-            SizedIngredient fish = SizedIngredient.STREAM_CODEC.decode(buffer);
+            ResourceLocation fish = ResourceLocation.STREAM_CODEC.decode(buffer);
             SizedIngredient input1 = SizedIngredient.STREAM_CODEC.decode(buffer);
             SizedIngredient input2 = SizedIngredient.STREAM_CODEC.decode(buffer);
+            SizedIngredient input3 = SizedIngredient.STREAM_CODEC.decode(buffer);
             int duration = buffer.readInt();
             double chance = buffer.readDouble();
             ResourceLocation createdFish = ResourceLocation.STREAM_CODEC.decode(buffer);
 
-            return new FishInfusingRecipe(fish, input1, input2, duration, chance, createdFish);
+            return new FishInfusingRecipe(fish, input1, input2, input3, duration, chance, createdFish);
         }
 
         private static FishInfusingRecipe write(RegistryFriendlyByteBuf buffer, FishInfusingRecipe recipe) {
-            SizedIngredient.STREAM_CODEC.encode(buffer, recipe.fish);
+            ResourceLocation.STREAM_CODEC.encode(buffer, recipe.fish);
             SizedIngredient.STREAM_CODEC.encode(buffer, recipe.input1);
             SizedIngredient.STREAM_CODEC.encode(buffer, recipe.input2);
+            SizedIngredient.STREAM_CODEC.encode(buffer, recipe.input3);
             buffer.writeInt(recipe.duration);
             buffer.writeDouble(recipe.chance);
             ResourceLocation.STREAM_CODEC.encode(buffer, recipe.createdFish);

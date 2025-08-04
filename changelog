@@ -7,10 +7,11 @@ Conditional fish loading
 recipes
 data gen
 caviar
-
+custom spawn egg textures
 
 Resource Fish
 
+Lake controller now has upgrades
 Fish now have a base and a pattern texture
 Spawn eggs work on fluid sources now
 Drops work on the be now

@@ -1,6 +1,7 @@
 package com.benbenlaw.resourcefish.recipe;
 
 import com.benbenlaw.resourcefish.block.entity.TankControllerBlockEntity;
+import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
 import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.screen.TankControllerScreen;
 import com.benbenlaw.resourcefish.util.ResourceType;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -35,7 +37,13 @@ public record FishBreedingRecipe(ResourceLocation parentIngredientA,
 
         if (TankControllerBlockEntity.fishPool != null) {
 
-            List<ResourceLocation> fishTypes = TankControllerBlockEntity.fishPool;
+            List<ResourceLocation> fishTypes = new ArrayList<>();
+
+            for (ResourceFishEntity fish  : TankControllerBlockEntity.fishPool) {
+                if (fish.getResourceType().getId() != null) {
+                    fishTypes.add(fish.getResourceType().getId());
+                }
+            }
 
             if (fishTypes.isEmpty()) return false;
 

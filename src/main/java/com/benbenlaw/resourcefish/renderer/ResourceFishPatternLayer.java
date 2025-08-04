@@ -32,7 +32,7 @@ public class ResourceFishPatternLayer extends RenderLayer<ResourceFishEntity, Co
     }
 
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int light, ResourceFishEntity entity,
-                       float p_117616_, float p_117617_, float p_117618_, float p_117619_, float p_117620_, float p_117621_) {
+                       float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float partialTick) {
 
         ResourceFishEntity.Variant variant = entity.getVariant();
         ResourceFishEntity.Pattern.Base base = variant.getModelBase();
@@ -42,18 +42,30 @@ public class ResourceFishPatternLayer extends RenderLayer<ResourceFishEntity, Co
                 ? this.modelA
                 : this.modelB;
 
-        // Use variant pattern texture name
-        String patternTextureName = variant.pattern().name().toLowerCase();  // or variant.getPatternTextureName()
+        // Sync animations:
+        this.getParentModel().copyPropertiesTo(model);
 
+        String patternTextureName = variant.pattern().name().toLowerCase();
         ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID,
                 "textures/entity/patterns/" + patternTextureName + ".png");
 
-        //System.out.println(texture);
-
-
-        coloredCutoutModelCopyLayerRender(this.getParentModel(), model, texture, poseStack, bufferSource, light, entity,
-                p_117616_, p_117617_, p_117618_, p_117619_, p_117620_, p_117621_, patternColor);
+        coloredCutoutModelCopyLayerRender(
+                this.getParentModel(),
+                model,
+                texture,
+                poseStack,
+                bufferSource,
+                light,
+                entity,
+                limbSwing,
+                limbSwingAmount,
+                netHeadYaw,
+                headPitch,
+                partialTick,
+                ageInTicks,
+                patternColor);
     }
+
 
 }
 

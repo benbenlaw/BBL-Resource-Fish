@@ -54,7 +54,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
     public static int progress = 0;
     public static int maxProgress = Integer.MAX_VALUE; //
     private boolean inventoryChanged = true;
-    public static List<ResourceLocation> fishPool = new ArrayList<>();
+    public static List<ResourceFishEntity> fishPool = new ArrayList<>();
 
     private RecipeInput cachedInventory = getRecipeInput();
 
@@ -174,7 +174,9 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
             inputSlots[i] = i;
         }
 
-        fishPool.clear();
+        if (level.getGameTime() % 20 == 0) {
+            fishPool.clear();
+        }
 
 
         for (Entity entity : entityList) {
@@ -192,12 +194,13 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
 
             if (level.getGameTime() % 20 == 0) {
                 if (entity instanceof ResourceFishEntity fish) {
-                    fishPool.add(fish.getResourceType().getId());
+                    fishPool.add(fish);
                 }
             }
-            //System.out.println("Fish pool: " + fishPool.size());
 
         }
+        //System.out.println("Fish pool: " + fishPool.size());
+
 
     }
 
@@ -277,22 +280,27 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
             progress++;
 
             if (progress >= maxProgress) {
-                itemHandler.getStackInSlot(RECIPE_SLOT_3).shrink(match.get().value().input1().count());
-                itemHandler.getStackInSlot(RECIPE_SLOT_2).shrink(match.get().value().input2().count());
 
-                if (itemHandler.getStackInSlot(RECIPE_SLOT_1).getItem() instanceof MobBucketItem) {
-                    itemHandler.setStackInSlot(RECIPE_SLOT_1, new ItemStack(Items.BUCKET));
-                } else {
-                    itemHandler.getStackInSlot(RECIPE_SLOT_1).shrink(match.get().value().fish().count());
-                }
+                itemHandler.getStackInSlot(RECIPE_SLOT_1).shrink(match.get().value().input1().count());
+                itemHandler.getStackInSlot(RECIPE_SLOT_2).shrink(match.get().value().input2().count());
+                itemHandler.getStackInSlot(RECIPE_SLOT_3).shrink(match.get().value().input3().count());
 
                 boolean chanceSuccess = level.random.nextDouble() < match.get().value().chance();
 
                 if (chanceSuccess) {
-                    ResourceFishEntity fish = ResourceFishEntities.RESOURCE_FISH.get().create(level);
-                    fish.setResourceType(ResourceType.get(match.get().value().createdFish()));
-                    fish.setPos(Vec3.atCenterOf(centerPos));
-                    level.addFreshEntity(fish);
+
+                    List<ResourceLocation> fishTypes = new ArrayList<>();
+
+                    for (ResourceFishEntity fish  : TankControllerBlockEntity.fishPool) {
+
+                        System.out.println(fish.getResourceType().getId());
+                        System.out.println(match.get().value().fish());
+
+                        if (fish.getResourceType().getId().equals(match.get().value().fish())) {
+                            fish.setResourceType(ResourceType.get(match.get().value().createdFish()));
+                            break;
+                        }
+                    }
                 } else {
                     ItemEntity bones = new ItemEntity(level, centerPos.getX() + 0.5, centerPos.getY() + 1, centerPos.getZ() + 0.5,
                             new ItemStack(Items.BONE));
