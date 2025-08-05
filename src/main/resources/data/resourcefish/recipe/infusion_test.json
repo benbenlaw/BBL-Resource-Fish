@@ -7,7 +7,7 @@
   },
   "input_2": {
     "count": 4,
-    "item": "minecraft:emerald"
+    "tag": "c:gems"
   },
   "input_3": {
     "count": 4,

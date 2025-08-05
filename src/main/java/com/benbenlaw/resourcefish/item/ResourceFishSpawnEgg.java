@@ -138,8 +138,6 @@ public class ResourceFishSpawnEgg extends DeferredSpawnEggItem {
         return InteractionResultHolder.consume(itemStack);
     }
 
-
-
     @Override
     public Component getName(ItemStack stack) {
         ResourceLocation resourceType = stack.get(ResourceFishDataComponents.FISH_TYPE.get());
@@ -163,6 +161,12 @@ public class ResourceFishSpawnEgg extends DeferredSpawnEggItem {
     @Override
     public boolean spawnsEntity(ItemStack stack, EntityType<?> entityType) {
         return super.spawnsEntity(stack, EntityType.BAT);
+    }
+
+    public static ItemStack createResourceFishSpawnEgg(ResourceType resourceType) {
+        ItemStack stack = new ItemStack(ResourceFishItems.RESOURCE_FISH_SPAWN_EGG.get());
+        stack.set(ResourceFishDataComponents.FISH_TYPE, Objects.requireNonNull(resourceType.getId()));
+        return stack;
     }
 
 }
