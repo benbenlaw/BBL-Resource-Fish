@@ -12,17 +12,11 @@ import org.jetbrains.annotations.Nullable;
 public class ItemSubtypeInterpreter implements ISubtypeInterpreter<ItemStack> {
     @Override
     public @Nullable Object getSubtypeData(ItemStack stack, UidContext uidContext) {
-        if (stack.getItem() instanceof ResourceFishSpawnEgg) {
-            return stack.getOrDefault(ResourceFishDataComponents.FISH_TYPE, ResourceType.NONE);
-        }
-        return null;
+        return stack.getOrDefault(ResourceFishDataComponents.FISH_TYPE, ResourceType.NONE);
     }
 
     @Override
     public String getLegacyStringSubtypeInfo(ItemStack stack, UidContext uidContext) {
-        if (stack.getItem() instanceof ResourceFishSpawnEgg) {
-            return stack.getOrDefault(ResourceFishDataComponents.FISH_TYPE, ResourceType.NONE).toString();
-        }
-        return null;
+        return stack.getOrDefault(ResourceFishDataComponents.FISH_TYPE, ResourceType.NONE).toString();
     }
 }

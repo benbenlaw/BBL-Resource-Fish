@@ -15,6 +15,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -91,7 +92,12 @@ public class FishInfusingRecipeCategory implements IRecipeCategory<FishInfusingR
         addSizedIngredient(builder, RecipeIngredientRole.INPUT, 63, 17, recipe.input2());
         addSizedIngredient(builder, RecipeIngredientRole.INPUT, 81, 17, recipe.input3());
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT,118, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  createdFishIngredient);
+        builder.addSlot(RecipeIngredientRole.OUTPUT,118, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  createdFishIngredient)
+                .addRichTooltipCallback(((iRecipeSlotView, iTooltipBuilder) ->
+                iTooltipBuilder.add(Component.literal("Chance: ")
+                        .append(String.valueOf(100 * recipe.chance()))
+                        .append("%")
+                        .withStyle(ChatFormatting.GOLD))));
     }
 
     @Override

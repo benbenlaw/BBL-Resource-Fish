@@ -24,6 +24,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -37,10 +38,12 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FishBreedingRecipeCategory implements IRecipeCategory<FishBreedingRecipe> {
@@ -100,15 +103,35 @@ public class FishBreedingRecipeCategory implements IRecipeCategory<FishBreedingR
         FishIngredient fishIngredientB = new FishIngredient(recipe.parentIngredientB(), ResourceFishEntities.RESOURCE_FISH.get());
         FishIngredient createdFishIngredient = new FishIngredient(recipe.createdFish(), ResourceFishEntities.RESOURCE_FISH.get());
 
-        builder.addInputSlot(43, 17).addIngredients(recipe.breedingIngredient().ingredient());
+        addSizedIngredient(builder, RecipeIngredientRole.INPUT, 43, 17, recipe.breedingIngredient());
+
         builder.addSlot(RecipeIngredientRole.INPUT, 7, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  fishIngredientA);
         builder.addSlot(RecipeIngredientRole.INPUT,79, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  fishIngredientB);
-        builder.addSlot(RecipeIngredientRole.OUTPUT,118, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  createdFishIngredient);
+        builder.addSlot(RecipeIngredientRole.OUTPUT,118, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  createdFishIngredient)
+                .addRichTooltipCallback(((iRecipeSlotView, iTooltipBuilder) ->
+                        iTooltipBuilder.add(Component.literal("Chance: ")
+                                .append(String.valueOf(100 * recipe.chance()))
+                                .append("%")
+                                .withStyle(ChatFormatting.GOLD))));
     }
 
     @Override
     public void draw(FishBreedingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         Font font = Minecraft.getInstance().font;
         guiGraphics.drawString(font, Component.literal("Fish inside Tank Area"),1 ,1, 1, false);
+    }
+
+    private void addSizedIngredient(IRecipeLayoutBuilder builder, RecipeIngredientRole role, int x, int y, SizedIngredient sizedIngredient) {
+        int count = sizedIngredient.count();
+
+        List<ItemStack> stacks = Arrays.stream(sizedIngredient.ingredient().getItems())
+                .map(stack -> {
+                    ItemStack copy = stack.copy();
+                    copy.setCount(count); // set correct count
+                    return copy;
+                })
+                .toList();
+
+        builder.addSlot(role, x, y).addItemStacks(stacks); // one JEI slot, multiple variants
     }
 }

@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 1.0,
+  "created_fish": "resourcefish:redstone",
+  "duration": 100,
+  "fish": "resourcefish:iron",
+  "input_1": {
+    "count": 12,
+    "item": "minecraft:redstone"
+  },
+  "input_2": {
+    "count": 12,
+    "item": "minecraft:redstone"
+  },
+  "input_3": {
+    "count": 12,
+    "item": "minecraft:redstone"
+  }
+}

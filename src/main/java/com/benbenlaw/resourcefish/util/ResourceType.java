@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 
 public class ResourceType {
     public static final Map<ResourceLocation, ResourceType> REGISTRY = new HashMap<>();
-    private static final Map<ResourceType, ItemStack> DROP_MAP = new HashMap<>();
     private static final List<ChanceResult> EMPTY_DROP_ITEMS = new ArrayList<>();
     private final List<ResourceFishEntity.Pattern> patterns;
     private final List<ResourceFishEntity.Pattern.Base> models;
+    private final List<String> biomes;
 
     public static final ResourceType NONE = new ResourceType(
             ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "none"),
@@ -24,7 +24,9 @@ public class ResourceType {
             EMPTY_DROP_ITEMS,
             20 * 30, // 20 ticks per second * 30 seconds,
             List.of(),
+            List.of(),
             List.of()
+
     );
 
     private final ResourceLocation id;
@@ -34,7 +36,7 @@ public class ResourceType {
     private final int dropIntervalTicks;
 
     public ResourceType(ResourceLocation id, int mainColor, int patternColor, List<ChanceResult> dropItems, int dropIntervalTicks,
-                        List<ResourceFishEntity.Pattern> patterns, List<ResourceFishEntity.Pattern.Base> models) {
+                        List<ResourceFishEntity.Pattern> patterns, List<ResourceFishEntity.Pattern.Base> models, List<String> biomes) {
         this.id = id;
         this.mainColor = mainColor;
         this.patternColor = patternColor;
@@ -42,6 +44,7 @@ public class ResourceType {
         this.dropIntervalTicks = dropIntervalTicks;
         this.patterns = patterns;
         this.models = models;
+        this.biomes = biomes;
 
     }
 
@@ -69,6 +72,10 @@ public class ResourceType {
 
     public List<ResourceFishEntity.Pattern.Base> getModels() {
         return models;
+    }
+
+    public List<String> getBiomes() {
+        return biomes;
     }
 
     public List<ChanceResult> getRollResults() {

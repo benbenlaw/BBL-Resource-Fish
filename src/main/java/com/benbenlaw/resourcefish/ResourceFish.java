@@ -63,7 +63,7 @@ public class ResourceFish{
     }
     @SubscribeEvent
     private static void onAddReloadListener(AddReloadListenerEvent event) {
-        event.addListener(new ResourceTypeLoader(new Gson(), "resource_types"));
+        event.addListener(new ResourceTypeLoader(new Gson(), "fish"));
     }
 
     @SubscribeEvent

@@ -1,0 +1,26 @@
+{
+  "biomes": [
+    "#minecraft:is_ocean"
+  ],
+  "drop_interval": 300,
+  "drop_items": [
+    {
+      "item": {
+        "components": {
+          "resourcefish:fish_type": "resourcefish:lava"
+        },
+        "count": 1,
+        "id": "resourcefish:caviar"
+      }
+    }
+  ],
+  "main_color": "#FF4500",
+  "models": [
+    "small"
+  ],
+  "pattern_color": "#8B0000",
+  "patterns": [
+    "small_3",
+    "small_6"
+  ]
+}

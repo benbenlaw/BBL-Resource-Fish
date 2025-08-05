@@ -1,10 +1,16 @@
 package com.benbenlaw.resourcefish.data;
 
+import com.benbenlaw.core.recipe.ChanceResult;
 import com.benbenlaw.resourcefish.ResourceFish;
+import com.benbenlaw.resourcefish.data.builders.ResourceFishBuilder;
+import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -36,6 +42,10 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), itemTags);
 
         generator.addProvider(event.includeClient(), new ResourceFishItemModelsProvider(packOutput, event.getExistingFileHelper()));
+
+
+        generator.addProvider(event.includeClient(), new ResourceFishFishes(packOutput));
+
 
 
     }

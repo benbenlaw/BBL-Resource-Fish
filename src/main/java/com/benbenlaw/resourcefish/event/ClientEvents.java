@@ -15,6 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+import java.util.List;
 import java.util.Map;
 
 public class ClientEvents {
@@ -37,7 +38,6 @@ public class ClientEvents {
                         }
                     }
 
-
                     // Base
                     if (tintIndex == 0) {
                         //return 0xFF394F89; // Blue-ish color
@@ -52,6 +52,7 @@ public class ClientEvents {
                     return 0xFFFFFFFF; // Default for unexpected indexes
                 },
 
+                ResourceFishItems.CAVIAR.get(),
                 ResourceFishItems.RESOURCE_FISH_SPAWN_EGG.get()
         );
     }

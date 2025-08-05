@@ -4,12 +4,11 @@ import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -48,6 +47,10 @@ public class ResourceFishItems {
                     10064737,
                     10064737,
                     new Item.Properties()));
+
+    public static final DeferredItem<Item> CAVIAR = ITEMS.register("caviar",
+            () -> new CaviarItem(new Item.Properties()
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build())));
 
 
 

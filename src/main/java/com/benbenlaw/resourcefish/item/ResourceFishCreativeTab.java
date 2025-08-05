@@ -30,6 +30,14 @@ public class ResourceFishCreativeTab {
                     output.accept(stack);
                 }
 
+                //Caviar
+                for (ResourceType type : ResourceType.getAll()) {
+                    ItemStack stack = new ItemStack(ResourceFishItems.CAVIAR.get());
+                    stack.set(ResourceFishDataComponents.FISH_TYPE, type.getId());
+
+                    output.accept(stack);
+                }
+
 
             }).build());
 }

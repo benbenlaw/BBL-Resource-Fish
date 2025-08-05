@@ -3,8 +3,10 @@ package com.benbenlaw.resourcefish.entities;
 import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.util.ResourceType;
-import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -13,6 +15,8 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
@@ -22,17 +26,18 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.AbstractSchoolingFish;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.Objects;
 
 public class ResourceFishEntity extends AbstractSchoolingFish  {
 
@@ -239,18 +244,44 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData groupData) {
         SpawnGroupData data = super.finalizeSpawn(level, difficulty, spawnType, groupData);
-        ResourceType type = generateRandomResource(level.getRandom());
+
+        Holder<Biome> biomeHolder = level.getBiome(this.blockPosition());
+        ResourceType type = generateRandomResource(level.getRandom(), biomeHolder);
         this.setResourceType(type);
         this.setVariant(generateVariant(type, level.getRandom()));
         return data;
     }
 
-    private ResourceType generateRandomResource(RandomSource random) {
-        List<ResourceType> values = new ArrayList<>(ResourceType.REGISTRY.values());
+    private boolean matchesBiomeOrTag(Holder<Biome> biomeHolder, String biomeOrTag) {
+        if (biomeOrTag.startsWith("#")) {
+            // It's a tag, strip leading '#' and check
+            String tagLocation = biomeOrTag.substring(1);
+            TagKey<Biome> biomeTagKey = TagKey.create(Registries.BIOME, ResourceLocation.parse(tagLocation));
+            return biomeHolder.is(biomeTagKey);
+        } else {
+            ResourceLocation biomeId = Objects.requireNonNull(biomeHolder.getKey()).location();
+            return biomeId.toString().equals(biomeOrTag);
+        }
+    }
+
+    private ResourceType generateRandomResource(RandomSource random, Holder<Biome> biomeHolder) {
+        List<ResourceType> values = ResourceType.REGISTRY.values().stream()
+                .filter(type -> !type.getBiomes().isEmpty() ||
+                        type.getBiomes().stream().anyMatch(biomeOrTag -> matchesBiomeOrTag(biomeHolder, String.valueOf(biomeOrTag)))
+                )
+                .toList();
+
         if (values.isEmpty()) {
             return ResourceType.NONE; // fallback default
         }
         return values.get(random.nextInt(values.size()));
+    }
+
+
+    @Override
+    public boolean checkSpawnRules(LevelAccessor levelAccessor, MobSpawnType spawnType) {
+        BlockPos pos = this.blockPosition();
+        return level.getFluidState(pos).is(FluidTags.WATER) && super.checkSpawnRules(levelAccessor, spawnType);
     }
 
     @Override

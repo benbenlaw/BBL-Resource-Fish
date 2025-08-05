@@ -113,7 +113,19 @@ public class ResourceTypeLoader extends SimpleJsonResourceReloadListener {
                         }
                     }
 
-                    ResourceType.register(new ResourceType(id, mainColor, patternColor, dropItems, dropIntervalTicks, patterns, models));
+                    List<String> biomes = new ArrayList<>();
+                    if (obj.has("biomes")) {
+                        for (JsonElement biomeElement : obj.getAsJsonArray("biomes")) {
+                            String biomeId = biomeElement.getAsString();
+                            if (biomeId != null) {
+                                biomes.add(biomeId);
+                            } else {
+                                System.out.println("Invalid biome ID '" + biomeElement.getAsString() + "' for ResourceType " + id);
+                            }
+                        }
+                    }
+
+                    ResourceType.register(new ResourceType(id, mainColor, patternColor, dropItems, dropIntervalTicks, patterns, models, biomes));
                     System.out.println("Loaded ResourceType " + id + " with main color " + mainColor + ", pattern color " + patternColor +
                             ", drop interval " + dropIntervalTicks + " ticks, patterns: " + patterns + ", models: " + models);
                } else {

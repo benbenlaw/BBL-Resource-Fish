@@ -1,0 +1,12 @@
+{
+  "type": "resourcefish:fish_breeding",
+  "breeding_ingredient": {
+    "count": 64,
+    "item": "minecraft:charcoal"
+  },
+  "chance": 1.0,
+  "created_fish": "resourcefish:coal",
+  "duration": 100,
+  "parent_a": "resourcefish:stone",
+  "parent_b": "resourcefish:wood"
+}

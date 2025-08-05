@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 1.0,
+  "created_fish": "resourcefish:lapis",
+  "duration": 100,
+  "fish": "resourcefish:copper",
+  "input_1": {
+    "count": 12,
+    "item": "minecraft:lapis_lazuli"
+  },
+  "input_2": {
+    "count": 12,
+    "item": "minecraft:lapis_lazuli"
+  },
+  "input_3": {
+    "count": 12,
+    "item": "minecraft:lapis_lazuli"
+  }
+}

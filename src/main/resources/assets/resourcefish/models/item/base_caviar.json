@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "resourcefish:item/caviar",
+    "layer1": "resourcefish:item/caviar_overlay"
+  }
+}
