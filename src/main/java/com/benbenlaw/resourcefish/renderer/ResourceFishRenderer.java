@@ -10,6 +10,7 @@ import net.minecraft.client.model.TropicalFishModelA;
 import net.minecraft.client.model.TropicalFishModelB;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -18,6 +19,7 @@ import net.minecraft.world.entity.animal.TropicalFish;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class ResourceFishRenderer extends  MobRenderer<ResourceFishEntity, ColorableHierarchicalModel<ResourceFishEntity>> {
@@ -33,6 +35,11 @@ public class ResourceFishRenderer extends  MobRenderer<ResourceFishEntity, Color
         this.modelSmall = new TropicalFishModelA<>(context.bakeLayer(ModelLayers.TROPICAL_FISH_SMALL_PATTERN));
         this.modelLarge = new TropicalFishModelB<>(context.bakeLayer(ModelLayers.TROPICAL_FISH_LARGE_PATTERN));
         this.addLayer(new ResourceFishPatternLayer(this, context.getModelSet()));
+    }
+
+    @Override
+    protected @Nullable RenderType getRenderType(ResourceFishEntity entity, boolean showBody, boolean translucent, boolean showOutline) {
+        return RenderType.entityTranslucent(getTextureLocation(entity));
     }
 
     @Override

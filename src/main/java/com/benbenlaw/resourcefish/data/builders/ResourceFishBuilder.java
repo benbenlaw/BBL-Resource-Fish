@@ -1,14 +1,17 @@
 package com.benbenlaw.resourcefish.data.builders;
 
 import com.benbenlaw.core.recipe.ChanceResult;
+import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.common.conditions.ICondition;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
@@ -39,8 +42,8 @@ public class ResourceFishBuilder implements DataProvider {
         for (FishDefinition fish : fishes) {
             JsonObject json = new JsonObject();
 
-            json.addProperty("main_color", String.format("#%06X", (0xFFFFFF & fish.mainColor)));
-            json.addProperty("pattern_color", String.format("#%06X", (0xFFFFFF & fish.patternColor)));
+            json.addProperty("main_color", String.format("#%08X", fish.mainColor));
+            json.addProperty("pattern_color", String.format("#%08X", fish.patternColor));
 
             JsonArray dropItems = new JsonArray();
             for (ChanceResult result : fish.dropItems) {
@@ -74,6 +77,9 @@ public class ResourceFishBuilder implements DataProvider {
                 json.add("biomes", biomes);
             }
 
+            if (!fish.conditions.isEmpty()) {
+                ICondition.writeConditions(JsonOps.INSTANCE, json, fish.conditions);
+            }
 
             Path path = outputFolder.resolve(fish.id.getNamespace() + "/fish/" + fish.id.getPath() + ".json");
 
@@ -98,11 +104,11 @@ public class ResourceFishBuilder implements DataProvider {
         public final List<ResourceFishEntity.Pattern> patterns;
         public final List<ResourceFishEntity.Pattern.Base> models;
         public final List<String> biomes;
-
+        public final List<ICondition> conditions;
 
         public FishDefinition(ResourceLocation id, int mainColor, int patternColor, List<ChanceResult> dropItems,
                               int dropIntervalTicks, List<ResourceFishEntity.Pattern> patterns,
-                              List<ResourceFishEntity.Pattern.Base> models, List<String> biomes) {
+                              List<ResourceFishEntity.Pattern.Base> models, List<String> biomes, List<ICondition> conditions) {
             this.id = id;
             this.mainColor = mainColor;
             this.patternColor = patternColor;
@@ -111,6 +117,63 @@ public class ResourceFishBuilder implements DataProvider {
             this.patterns = patterns;
             this.models = models;
             this.biomes = biomes;
+            this.conditions = conditions;
+        }
+    }
+
+    public static Builder builder(String id) {
+        return new Builder(ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, id));
+    }
+
+    public static class Builder {
+        private final ResourceLocation id;
+        private int mainColor = 0xFFFFFF;
+        private int patternColor = 0x000000;
+        private List<ChanceResult> dropItems = new ArrayList<>();
+        private int dropIntervalTicks = 600;
+        private List<ResourceFishEntity.Pattern> patterns = new ArrayList<>();
+        private List<ResourceFishEntity.Pattern.Base> models = new ArrayList<>();
+        private List<String> biomes = new ArrayList<>();
+        private List<ICondition> conditions = new ArrayList<>();
+
+        public Builder(ResourceLocation id) {
+            this.id = id;
+        }
+        public Builder mainColor(int color) {
+            this.mainColor = color;
+            return this;
+        }
+        public Builder patternColor(int color) {
+            this.patternColor = color;
+            return this;
+        }
+        public Builder dropItems(List<ChanceResult> items) {
+            this.dropItems = items;
+            return this;
+        }
+        public Builder dropInterval(int ticks) {
+            this.dropIntervalTicks = ticks;
+            return this;
+        }
+        public Builder patterns(List<ResourceFishEntity.Pattern> patterns) {
+            this.patterns = patterns;
+            return this;
+        }
+        public Builder models(List<ResourceFishEntity.Pattern.Base> models) {
+            this.models = models;
+            return this;
+        }
+        public Builder biomes(List<String> biomes) {
+            this.biomes = biomes;
+            return this;
+        }
+        public Builder conditions(List<ICondition> conditions) {
+            this.conditions = conditions;
+            return this;
+        }
+
+        public FishDefinition build() {
+            return new FishDefinition(id, mainColor, patternColor, dropItems, dropIntervalTicks, patterns, models, biomes, conditions);
         }
     }
 }

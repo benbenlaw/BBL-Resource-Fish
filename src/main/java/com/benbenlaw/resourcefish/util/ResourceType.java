@@ -60,6 +60,10 @@ public class ResourceType {
         return patternColor;
     }
 
+    public List<ChanceResult> getDropItems() {
+        return dropItems;
+    }
+
     public List<ItemStack> getResults() {
         return getRollResults().stream()
                 .map(ChanceResult::stack)

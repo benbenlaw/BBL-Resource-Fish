@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 1.0,
+  "created_fish": "resourcefish:granite",
+  "duration": 100,
+  "fish": "resourcefish:stone",
+  "input_1": {
+    "count": 12,
+    "item": "minecraft:granite"
+  },
+  "input_2": {
+    "count": 12,
+    "item": "minecraft:granite"
+  },
+  "input_3": {
+    "count": 12,
+    "item": "minecraft:granite"
+  }
+}

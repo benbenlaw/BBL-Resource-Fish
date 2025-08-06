@@ -1,6 +1,7 @@
 package com.benbenlaw.resourcefish.data;
 
 import com.benbenlaw.resourcefish.ResourceFish;
+import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -17,11 +18,14 @@ public class ResourceFishItemModelsProvider extends ItemModelProvider {
     protected void registerModels() {
 
         //Misc Items
-        //simpleItem(ClocheItems.OVERWORLD_UPGRADE);
-
+        simpleItem(ResourceFishItems.RESOURCE_FISH_BUCKET);
+        simpleItem(ResourceFishItems.DEPTH_UPGRADE_1);
+        simpleItem(ResourceFishItems.DEPTH_UPGRADE_2);
+        simpleItem(ResourceFishItems.DEPTH_UPGRADE_3);
+        simpleItem(ResourceFishItems.WIDTH_UPGRADE_1);
+        simpleItem(ResourceFishItems.WIDTH_UPGRADE_2);
+        simpleItem(ResourceFishItems.WIDTH_UPGRADE_3);
     }
-
-
 
     private void simpleItem(DeferredItem<Item> item) {
         withExistingParent(item.getId().getPath(),

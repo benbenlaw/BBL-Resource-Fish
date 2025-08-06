@@ -20,9 +20,7 @@ public class CaviarItem extends Item {
         ResourceLocation resourceType = stack.get(ResourceFishDataComponents.FISH_TYPE.get());
 
         if (resourceType != null) {
-            String name = resourceType.getPath();
-
-            String[] parts = name.split("_");
+            String[] parts = resourceType.getPath().split("_");
             for (int i = 0; i < parts.length; i++) {
                 if (!parts[i].isEmpty()) {
                     parts[i] = parts[i].substring(0, 1).toUpperCase() + parts[i].substring(1);
@@ -30,8 +28,10 @@ public class CaviarItem extends Item {
             }
             String formattedName = String.join(" ", parts);
 
-            return Component.literal(formattedName + " Caviar");
+            Component baseName = Component.translatable(this.getDescriptionId());
+            return Component.literal(formattedName + " ").append(baseName);
         }
+
         return super.getName(stack);
     }
 

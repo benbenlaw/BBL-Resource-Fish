@@ -14,7 +14,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.Entity;
@@ -23,11 +23,9 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
@@ -36,10 +34,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class TankControllerBlockEntity extends SyncableBlockEntity {
     public final ContainerData data;
@@ -55,6 +50,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
     public static int maxProgress = Integer.MAX_VALUE; //
     private boolean inventoryChanged = true;
     public static List<ResourceFishEntity> fishPool = new ArrayList<>();
+    private final Set<UUID> previouslyAllowedFish = new HashSet<>();
 
     private RecipeInput cachedInventory = getRecipeInput();
 
@@ -176,32 +172,43 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
 
         if (level.getGameTime() % 20 == 0) {
             fishPool.clear();
-        }
 
-
-        for (Entity entity : entityList) {
-            if (entity instanceof ItemEntity itemEntity) {
-                ItemStack stack = itemEntity.getItem().copy();
-
-                int leftoverCount = insertStackIntoSlots(itemHandler, stack, inputSlots);
-
-                if (leftoverCount == 0) {
-                    itemEntity.discard();
-                } else {
-                    itemEntity.setItem(stack.split(leftoverCount));
-                }
-            }
-
-            if (level.getGameTime() % 20 == 0) {
+            Set<UUID> currentAllowedFish = new HashSet<>();
+            for (Entity entity : entityList) {
                 if (entity instanceof ResourceFishEntity fish) {
                     fishPool.add(fish);
+                    fish.setAllowedToDrop(true);
+                    currentAllowedFish.add(fish.getUUID());
+                }
+            }
+
+            for (UUID uuid : previouslyAllowedFish) {
+                if (!currentAllowedFish.contains(uuid)) {
+                    Entity entity = ((ServerLevel) level).getEntity(uuid);
+                    if (entity instanceof ResourceFishEntity fish) {
+                        fish.setAllowedToDrop(false);
+                    }
+                }
+            }
+
+            previouslyAllowedFish.clear();
+            previouslyAllowedFish.addAll(currentAllowedFish);
+
+            for (Entity entity : entityList) {
+                if (entity instanceof ItemEntity itemEntity) {
+                    ItemStack stack = itemEntity.getItem().copy();
+
+                    int leftoverCount = insertStackIntoSlots(itemHandler, stack, inputSlots);
+
+                    if (leftoverCount == 0) {
+                        itemEntity.discard();
+                    } else {
+                        itemEntity.setItem(stack.split(leftoverCount));
+                    }
                 }
             }
 
         }
-        //System.out.println("Fish pool: " + fishPool.size());
-
-
     }
 
     private AABB calculateBox(BlockPos centerPos, Direction direction) {
@@ -289,8 +296,6 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
 
                 if (chanceSuccess) {
 
-                    List<ResourceLocation> fishTypes = new ArrayList<>();
-
                     for (ResourceFishEntity fish  : TankControllerBlockEntity.fishPool) {
 
                         System.out.println(fish.getResourceType().getId());
@@ -355,7 +360,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         // Try to merge into existing stacks first
         for (int slot : slots) {
             ItemStack slotStack = itemHandler.getStackInSlot(slot);
-            if (!slotStack.isEmpty() && ItemStack.isSameItem(slotStack, stack)) {
+            if (!slotStack.isEmpty() && ItemStack.isSameItemSameComponents(slotStack, stack)) {
                 int maxStackSize = slotStack.getMaxStackSize();
                 int spaceLeft = maxStackSize - slotStack.getCount();
                 if (spaceLeft > 0) {

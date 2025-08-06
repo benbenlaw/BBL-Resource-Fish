@@ -1,0 +1,17 @@
+{
+  "block.resourcefish.tank_controller": "Resource Fish Tank",
+  "item.resourcefish.caviar": "Caviar",
+  "item.resourcefish.depth_upgrade_1": "Depth Upgrade 1",
+  "item.resourcefish.depth_upgrade_2": "Depth Upgrade 2",
+  "item.resourcefish.depth_upgrade_3": "Depth Upgrade 3",
+  "item.resourcefish.resource_fish_bucket": "%s Resource Fish Bucket",
+  "item.resourcefish.resource_fish_spawn_egg": "%s Resource Fish Spawn Egg",
+  "item.resourcefish.width_upgrade_1": "Depth Upgrade 1",
+  "item.resourcefish.width_upgrade_2": "Depth Upgrade 2",
+  "item.resourcefish.width_upgrade_3": "Depth Upgrade 3",
+  "itemGroup.resourcefish": "Resource Fish",
+  "jei.resourcefish.chance": "Chance: ",
+  "jei.resourcefish.fish_in_tank_area": "Fish must be in tank area!",
+  "jei.resourcefish.resource_fish": "Resource Fish",
+  "jei.resourcefish.spawn_biome": "Spawn Biome(s):"
+}

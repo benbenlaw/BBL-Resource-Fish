@@ -11,8 +11,11 @@
       }
     }
   ],
-  "main_color": "#A9A9A9",
-  "pattern_color": "#696969",
+  "main_color": "#FFA9A9A9",
+  "models": [
+    "small"
+  ],
+  "pattern_color": "#FF696969",
   "patterns": [
     "small_3",
     "small_6"

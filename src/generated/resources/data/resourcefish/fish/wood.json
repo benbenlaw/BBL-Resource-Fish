@@ -1,6 +1,6 @@
 {
   "biomes": [
-    "#minecraft:is_ocean"
+    "#c:is_ocean"
   ],
   "drop_interval": 300,
   "drop_items": [
@@ -14,11 +14,11 @@
       }
     }
   ],
-  "main_color": "#8B4513",
+  "main_color": "#FF8B4513",
   "models": [
     "small"
   ],
-  "pattern_color": "#5C3A29",
+  "pattern_color": "#FF5C3A29",
   "patterns": [
     "small_4",
     "small_5"

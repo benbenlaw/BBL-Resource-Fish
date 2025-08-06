@@ -1,6 +1,7 @@
 package com.benbenlaw.resourcefish.item;
 
 import com.benbenlaw.resourcefish.ResourceFish;
+import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
 import com.benbenlaw.resourcefish.util.ResourceType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -19,8 +20,25 @@ public class ResourceFishCreativeTab {
     public static final Supplier<CreativeModeTab> RESOURCE_FISH_TAB = CREATIVE_MODE_TABS.register("resource_fish", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> ResourceFishItems.RESOURCE_FISH_BUCKET.get().asItem().getDefaultInstance())
-            .title(Component.translatable("itemGroup.resource_fish"))
+            .title(Component.translatable("itemGroup.resourcefish"))
             .displayItems((parameters, output) -> {
+
+                //Items and Blocks
+                output.accept(ResourceFishBlocks.TANK_CONTROLLER.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.DEPTH_UPGRADE_1.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.DEPTH_UPGRADE_2.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.DEPTH_UPGRADE_3.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.WIDTH_UPGRADE_1.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.WIDTH_UPGRADE_2.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.WIDTH_UPGRADE_3.get().asItem().getDefaultInstance());
+
+                //Fish Bucket
+                for (ResourceType type : ResourceType.getAll()) {
+                    ItemStack stack = new ItemStack(ResourceFishItems.RESOURCE_FISH_BUCKET.get());
+                    stack.set(ResourceFishDataComponents.FISH_TYPE, type.getId());
+
+                    output.accept(stack);
+                }
 
                 //Spawn Eggs
                 for (ResourceType type : ResourceType.getAll()) {

@@ -1,8 +1,10 @@
 package com.benbenlaw.resourcefish.integration;
 
+import com.benbenlaw.core.recipe.ChanceResult;
 import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
+import com.benbenlaw.resourcefish.integration.fish.FishDropsRecipe;
 import com.benbenlaw.resourcefish.integration.fish.FishIngredient;
 import com.benbenlaw.resourcefish.integration.fish.FishIngredientHelper;
 import com.benbenlaw.resourcefish.integration.fish.FishIngredientRenderer;
@@ -20,6 +22,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
@@ -40,9 +43,12 @@ public class JEIResourceFishPlugin implements IModPlugin {
             new RecipeType<>(FishBreedingRecipeCategory.UID, FishBreedingRecipe.class);
     public static RecipeType<FishInfusingRecipe> INFUSING_RECIPE_TYPE =
             new RecipeType<>(FishInfusingRecipeCategory.UID, FishInfusingRecipe.class);
+    public static RecipeType<FishDropsRecipe> DROPS_RECIPE_TYPE =
+            new RecipeType<>(FishDropsRecipeCategory.UID, FishDropsRecipe.class);
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.TANK_CONTROLLER.get()), FishDropsRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.TANK_CONTROLLER.get()), FishBreedingRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.TANK_CONTROLLER.get()), FishInfusingRecipeCategory.RECIPE_TYPE);
     }
@@ -51,6 +57,9 @@ public class JEIResourceFishPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
 
         IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
+
+        registration.addRecipeCategories(new
+                FishDropsRecipeCategory(guiHelper));
 
         registration.addRecipeCategories(new
                 FishBreedingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
@@ -66,6 +75,13 @@ public class JEIResourceFishPlugin implements IModPlugin {
         assert Minecraft.getInstance().level != null;
         final var recipeManager = Minecraft.getInstance().level.getRecipeManager();
 
+        List<FishDropsRecipe> recipes = new ArrayList<>();
+        for (ResourceType type : ResourceType.getAll()) {
+            recipes.add(new FishDropsRecipe(type.getId(), type.getBiomes(), type.getDropIntervalTicks(), type.getDropItems(),
+                    new FishIngredient(type.getId(), ResourceFishEntities.RESOURCE_FISH.get())));
+        }
+        registration.addRecipes(FishDropsRecipeCategory.RECIPE_TYPE, recipes);
+
         registration.addRecipes(FishBreedingRecipeCategory.RECIPE_TYPE,
                 recipeManager.getAllRecipesFor(ResourceFishRecipes.FISH_BREEDING_TYPE.get()).stream().map(RecipeHolder::value).toList());
 
@@ -77,6 +93,8 @@ public class JEIResourceFishPlugin implements IModPlugin {
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registration) {
        registration.registerSubtypeInterpreter(ResourceFishItems.RESOURCE_FISH_SPAWN_EGG.asItem(), new ItemSubtypeInterpreter());
+       registration.registerSubtypeInterpreter(ResourceFishItems.CAVIAR.asItem(), new ItemSubtypeInterpreter());
+       registration.registerSubtypeInterpreter(ResourceFishItems.RESOURCE_FISH_BUCKET.asItem(), new ItemSubtypeInterpreter());
     }
 
     @Override

@@ -50,22 +50,17 @@ public class ResourceFishSpawnEgg extends DeferredSpawnEggItem {
             if (fish != null) {
                 ResourceLocation resourceLocation = itemStack.get(ResourceFishDataComponents.FISH_TYPE.get());
                 if (resourceLocation != null) {
-                    player.sendSystemMessage(Component.translationArg(resourceLocation));
 
                     fish.setResourceType(ResourceType.get(resourceLocation));
-
                     ResourceFishEntity.Variant variant = ResourceFishEntity.generateVariant(ResourceType.get(resourceLocation), level.getRandom());
-
                     fish.setVariant(variant);
 
-                    player.sendSystemMessage(Component.literal(variant.getModelBase() + " + " + variant.pattern()));
-
-
+                    //DEBUG: Log the variant model and pattern
+                    //player.sendSystemMessage(Component.translationArg(resourceLocation));
+                    //player.sendSystemMessage(Component.literal(variant.getModelBase() + " + " + variant.pattern()));
 
                     Direction direction = context.getClickedFace();
                     BlockPos spawnPos = blockPos.relative(direction, 1);
-
-                    // Spawn the fish centered on the adjacent block on the clicked face
                     fish.setPos(spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5);
 
                     level.addFreshEntity(fish);
@@ -153,10 +148,13 @@ public class ResourceFishSpawnEgg extends DeferredSpawnEggItem {
             }
             String formattedName = String.join(" ", parts);
 
-            return Component.literal(formattedName + " Resource Fish Spawn Egg");
+            // Use translatable text with formattedName as parameter
+            return Component.translatable("item.resourcefish.resource_fish_spawn_egg", formattedName);
         }
+
         return super.getName(stack);
     }
+
 
     @Override
     public boolean spawnsEntity(ItemStack stack, EntityType<?> entityType) {

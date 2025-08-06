@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "resourcefish:item/width_upgrade_3"
+  }
+}

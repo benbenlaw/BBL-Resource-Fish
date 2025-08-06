@@ -1,5 +1,21 @@
 Resource Fish
 
+1.0.1
+
+Fixed Tank Controller adding same items together when the components are different
+Added some translation keys, need to do blocks and caviar jei missing
+Added all items to creative tab
+Added data gen for item models, use a base texture at the moment
+Added translations for all items
+Moved to data gen for most data in the mod
+Resource Fish no longer drop items when outside of a Tank Controller working area
+Changed the builder to allow for conditions and made biomes optional in the builder
+Add Caviar should now show in JEI
+Added add resource fish bucket to JEI and creative tab
+Added JEI dummy recipe category for resource fish drops, any item dropped by a resource fish will show a recipe in JEI
+Added Granite, Diorite and Andesite fish
+Color in fish is now argb instead of rgb allowing for transparency
+
 JEI interaction
 Lake controller upgrades, buttons ect
 Maybe a range upgrade that is recipe based
@@ -14,6 +30,8 @@ Resource Fish
 
 Added stone, wood, water, lava and dirt fish these will naturally spawn in the world
 
+// INFORMATION for modpack makers
+Biome optional field to spawn fish in biomes
 Added FIshIngredient JEI
 Added Infusing JEI
 Improved JEI interaction

@@ -1,10 +1,13 @@
-// 1.21.1	2025-08-05T13:52:40.4193922	Recipes
+// 1.21.1	2025-08-06T11:11:46.3863845	Recipes
 02902214a9f43dde1d22b7a828535d2e8d80f819 data/resourcefish/advancement/recipes/breeding/breeding/coal.json
 3e9d85ef635910d34cb66a0d032311de412f7a81 data/resourcefish/advancement/recipes/breeding/breeding/diamond.json
 c5d59f192c7f31c707a64135820b0c6aae5cc837 data/resourcefish/advancement/recipes/breeding/breeding/emerald.json
 333c89bf97d6b21ad3ea28434c25842317607121 data/resourcefish/advancement/recipes/breeding/breeding/stone.json
+7fe6b3150a21629ab10bf7564bdc84e928755243 data/resourcefish/advancement/recipes/infusing/infusing/andesite.json
 de181a600b8118f3241fb9c7ccfd484eff0972d7 data/resourcefish/advancement/recipes/infusing/infusing/copper.json
+3ce19ca99e314157e4b5e9895c5339e2d131caa1 data/resourcefish/advancement/recipes/infusing/infusing/diorite.json
 4ed7e7a818f642624f307983cc5eedbc85527176 data/resourcefish/advancement/recipes/infusing/infusing/gold.json
+80b29a7ac7376aac31c69fe8e96c70e33f9ce78b data/resourcefish/advancement/recipes/infusing/infusing/granite.json
 8b1a0ae2d91101082fbe07c9912f73bb65308fb9 data/resourcefish/advancement/recipes/infusing/infusing/iron.json
 1214b85cc2d62a99a0f2df7f5313e65659d2bdb8 data/resourcefish/advancement/recipes/infusing/infusing/lapis.json
 f42ba110f374db502a9d697449a35bda748fc24d data/resourcefish/advancement/recipes/infusing/infusing/redstone.json
@@ -12,8 +15,11 @@ f42ba110f374db502a9d697449a35bda748fc24d data/resourcefish/advancement/recipes/i
 7025895b4576b020df9763db5028ac0780f6fde7 data/resourcefish/recipe/breeding/diamond.json
 3744d7f0709f61507a809add25d044e678185c33 data/resourcefish/recipe/breeding/emerald.json
 fe8c9aee15a2d05e4d85578ad4632e7ec856f6bd data/resourcefish/recipe/breeding/stone.json
+3c3317a293cfc9d098fe335b8bec4712fa596e4b data/resourcefish/recipe/infusing/andesite.json
 73778e5a44f2cf8c9eec47f103913ae83fd64763 data/resourcefish/recipe/infusing/copper.json
+0e6b09a4b1417977fbd1e09dbec520a1156322ff data/resourcefish/recipe/infusing/diorite.json
 22bdc4da93d44d3575fafbca593a92ed52427762 data/resourcefish/recipe/infusing/gold.json
+aba6a34e3308b685620240dc91b5ee02fb827215 data/resourcefish/recipe/infusing/granite.json
 e47e5e2f36cfe7e00ada387d5a6f390ddbba171a data/resourcefish/recipe/infusing/iron.json
 85d7985e58dbf02dd1dbbf2f98a836a9461d7d69 data/resourcefish/recipe/infusing/lapis.json
 f2dae435edd3a1e45f342f3bba27961a7146b16a data/resourcefish/recipe/infusing/redstone.json

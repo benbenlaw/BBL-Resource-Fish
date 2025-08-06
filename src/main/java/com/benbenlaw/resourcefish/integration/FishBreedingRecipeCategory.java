@@ -109,7 +109,7 @@ public class FishBreedingRecipeCategory implements IRecipeCategory<FishBreedingR
         builder.addSlot(RecipeIngredientRole.INPUT,79, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  fishIngredientB);
         builder.addSlot(RecipeIngredientRole.OUTPUT,118, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  createdFishIngredient)
                 .addRichTooltipCallback(((iRecipeSlotView, iTooltipBuilder) ->
-                        iTooltipBuilder.add(Component.literal("Chance: ")
+                        iTooltipBuilder.add(Component.translatable("jei.resourcefish.chance")
                                 .append(String.valueOf(100 * recipe.chance()))
                                 .append("%")
                                 .withStyle(ChatFormatting.GOLD))));
@@ -118,7 +118,7 @@ public class FishBreedingRecipeCategory implements IRecipeCategory<FishBreedingR
     @Override
     public void draw(FishBreedingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         Font font = Minecraft.getInstance().font;
-        guiGraphics.drawString(font, Component.literal("Fish inside Tank Area"),1 ,1, 1, false);
+        guiGraphics.drawString(font, Component.translatable("jei.resourcefish.fish_in_tank_area"),1 ,1, 1, false);
     }
 
     private void addSizedIngredient(IRecipeLayoutBuilder builder, RecipeIngredientRole role, int x, int y, SizedIngredient sizedIngredient) {

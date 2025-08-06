@@ -82,6 +82,29 @@ public class ResourceFishRecipes extends RecipeProvider {
                 100, 1.0, createFish("gold"))
                 .unlockedBy("has_item", has(Items.GOLD_INGOT)).save(consumer);
 
+        //Infusing Granite Fish
+        FishInfusingRecipeBuilder.createFishInfusingRecipe(createFish("stone"),
+                SizedIngredient.of(Items.GRANITE, 12),
+                SizedIngredient.of(Items.GRANITE, 12),
+                SizedIngredient.of(Items.GRANITE, 12),
+                100, 1.0, createFish("granite"))
+                .unlockedBy("has_item", has(Items.GRANITE)).save(consumer);
+
+        //Infusing Diorite Fish
+        FishInfusingRecipeBuilder.createFishInfusingRecipe(createFish("stone"),
+                SizedIngredient.of(Items.DIORITE, 12),
+                SizedIngredient.of(Items.DIORITE, 12),
+                SizedIngredient.of(Items.DIORITE, 12),
+                100, 1.0, createFish("diorite"))
+                .unlockedBy("has_item", has(Items.DIORITE)).save(consumer);
+
+        //Infusing Andesite Fish
+        FishInfusingRecipeBuilder.createFishInfusingRecipe(createFish("stone"),
+                SizedIngredient.of(Items.ANDESITE, 12),
+                SizedIngredient.of(Items.ANDESITE, 12),
+                SizedIngredient.of(Items.ANDESITE, 12),
+                100, 1.0, createFish("andesite"))
+                .unlockedBy("has_item", has(Items.ANDESITE)).save(consumer);
 
     }
 

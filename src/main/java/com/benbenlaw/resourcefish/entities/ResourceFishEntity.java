@@ -47,6 +47,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
 
     private int dropTimer = 0;
     private int ticksPerDrop = Integer.MAX_VALUE;
+    private boolean allowedToDrop = false;
 
     private final Level level;
 
@@ -59,7 +60,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
     public void tick() {
         super.tick();
 
-        if (!this.level.isClientSide) {
+        if (!this.level.isClientSide && this.allowedToDrop) {
             dropTimer++;
 
             ResourceType resourceType = getResourceType();
@@ -77,6 +78,14 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
                 }
             }
         }
+    }
+
+    public boolean isAllowedToDrop() {
+        return allowedToDrop;
+    }
+
+    public void setAllowedToDrop(boolean allowedToDrop) {
+        this.allowedToDrop = allowedToDrop;
     }
 
     @Override
@@ -223,6 +232,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         tag.putInt("Model", this.entityData.get(DATA_MODEL));
         tag.putInt("dropTimer", dropTimer);
         tag.putInt("ticksPerDrop", ticksPerDrop);
+        tag.putBoolean("allowedToDrop", allowedToDrop);
     }
 
     @Override
@@ -239,6 +249,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         }
         dropTimer = tag.getInt("dropTimer");
         ticksPerDrop = tag.getInt("ticksPerDrop");
+        allowedToDrop = tag.getBoolean("allowedToDrop");
     }
 
     @Override
@@ -249,6 +260,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         ResourceType type = generateRandomResource(level.getRandom(), biomeHolder);
         this.setResourceType(type);
         this.setVariant(generateVariant(type, level.getRandom()));
+        this.allowedToDrop = false;
         return data;
     }
 
@@ -296,6 +308,11 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         if (tag.contains("BucketModel", Tag.TAG_INT)) {
             this.entityData.set(DATA_MODEL, tag.getInt("BucketModel"));
         }
+        if (tag.contains("allowedToDrop", Tag.TAG_BYTE)) {
+            this.allowedToDrop = tag.getBoolean("allowedToDrop");
+        } else {
+            this.allowedToDrop = false; // Default to false if not specified
+        }
     }
 
     @Override
@@ -305,6 +322,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
             data.putString("BucketResourceType", this.getResourceType().getId().toString());
             data.putInt("BucketPattern", this.entityData.get(DATA_PATTERN));
             data.putInt("BucketModel", this.entityData.get(DATA_MODEL));
+            data.putBoolean("allowedToDrop", allowedToDrop);
         });
 
         bucket.set(ResourceFishDataComponents.FISH_TYPE.get(), this.getResourceType().getId());

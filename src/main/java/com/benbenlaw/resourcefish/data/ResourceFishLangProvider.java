@@ -1,0 +1,54 @@
+package com.benbenlaw.resourcefish.data;
+
+import com.benbenlaw.resourcefish.ResourceFish;
+import net.minecraft.data.PackOutput;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.LanguageProvider;
+
+public class ResourceFishLangProvider extends LanguageProvider {
+
+    public ResourceFishLangProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, ResourceFish.MOD_ID, "en_us");
+    }
+
+    @Override
+    protected void addTranslations() {
+
+        //Creative Tab
+        add("itemGroup.resourcefish", "Resource Fish");
+
+        //JEI
+        addJEITranslation("spawn_biome", "Spawn Biome(s):");
+        addJEITranslation("chance", "Chance: ");
+        addJEITranslation("fish_in_tank_area", "Fish must be in tank area!");
+        addJEITranslation("resource_fish", "Resource Fish");
+
+        //Items
+        addItemTranslation("caviar", "Caviar");
+        addItemTranslation("resource_fish_spawn_egg", "%s Resource Fish Spawn Egg");
+        addItemTranslation("resource_fish_bucket", "%s Resource Fish Bucket");
+        addItemTranslation("depth_upgrade_1", "Depth Upgrade 1");
+        addItemTranslation("depth_upgrade_2", "Depth Upgrade 2");
+        addItemTranslation("depth_upgrade_3", "Depth Upgrade 3");
+        addItemTranslation("width_upgrade_1", "Depth Upgrade 1");
+        addItemTranslation("width_upgrade_2", "Depth Upgrade 2");
+        addItemTranslation("width_upgrade_3", "Depth Upgrade 3");
+
+
+        //Blocks
+        addBlockTranslation("tank_controller", "Resource Fish Tank");
+
+    }
+
+    private void addItemTranslation(String name, String translation) {
+        add("item." + ResourceFish.MOD_ID + "." + name, translation);
+    }
+    private void addBlockTranslation(String name, String translation) {
+        add("block." + ResourceFish.MOD_ID + "." + name, translation);
+    }
+    private void addJEITranslation(String name, String translation) {
+        add("jei." + ResourceFish.MOD_ID + "." + name, translation);
+    }
+
+
+}

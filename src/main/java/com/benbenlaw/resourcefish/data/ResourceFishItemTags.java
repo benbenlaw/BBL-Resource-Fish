@@ -1,6 +1,8 @@
 package com.benbenlaw.resourcefish.data;
 
 import com.benbenlaw.resourcefish.ResourceFish;
+import com.benbenlaw.resourcefish.item.ResourceFishItems;
+import com.benbenlaw.resourcefish.util.ResourceFishTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -19,6 +21,13 @@ public class ResourceFishItemTags extends ItemTagsProvider {
     protected void addTags(HolderLookup.@NotNull Provider provider) {
 
         //Upgrades
+        tag(ResourceFishTags.Items.UPGRADES)
+                .add(ResourceFishItems.DEPTH_UPGRADE_1.get())
+                .add(ResourceFishItems.DEPTH_UPGRADE_2.get())
+                .add(ResourceFishItems.DEPTH_UPGRADE_3.get())
+                .add(ResourceFishItems.WIDTH_UPGRADE_1.get())
+                .add(ResourceFishItems.WIDTH_UPGRADE_2.get())
+                .add(ResourceFishItems.WIDTH_UPGRADE_3.get());
 
 
     }

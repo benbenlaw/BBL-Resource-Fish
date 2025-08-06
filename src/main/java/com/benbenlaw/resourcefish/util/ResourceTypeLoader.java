@@ -66,13 +66,13 @@ public class ResourceTypeLoader extends SimpleJsonResourceReloadListener {
                         throw new IllegalArgumentException("Missing 'main_color' field for ResourceType: " + id);
                     }
 
-                    int mainColor = Integer.decode(obj.get("main_color").getAsString());
+                    int mainColor = (int) Long.decode(fixColorHex(obj.get("main_color").getAsString())).longValue();
 
                     if (!obj.has("pattern_color")) {
                         throw new IllegalArgumentException("Missing 'pattern_color' field for ResourceType: " + id);
                     }
 
-                    int patternColor = Integer.decode(obj.get("pattern_color").getAsString());
+                    int patternColor = (int) Long.decode(fixColorHex(obj.get("pattern_color").getAsString())).longValue();
 
                     if (!obj.has("drop_items")) {
                         throw new IllegalArgumentException("Missing 'drop_items' field for ResourceType: " + id);
@@ -139,6 +139,13 @@ public class ResourceTypeLoader extends SimpleJsonResourceReloadListener {
         }
 
         System.out.println("Loaded " + ResourceType.REGISTRY.size() + " ResourceTypes");
+    }
+
+    private String fixColorHex(String hex) {
+        if (!hex.startsWith("#") && !hex.startsWith("0x") && !hex.startsWith("0X")) {
+            return "0x" + hex;
+        }
+        return hex;
     }
 
 }

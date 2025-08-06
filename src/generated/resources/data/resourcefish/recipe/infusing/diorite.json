@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 1.0,
+  "created_fish": "resourcefish:diorite",
+  "duration": 100,
+  "fish": "resourcefish:stone",
+  "input_1": {
+    "count": 12,
+    "item": "minecraft:diorite"
+  },
+  "input_2": {
+    "count": 12,
+    "item": "minecraft:diorite"
+  },
+  "input_3": {
+    "count": 12,
+    "item": "minecraft:diorite"
+  }
+}

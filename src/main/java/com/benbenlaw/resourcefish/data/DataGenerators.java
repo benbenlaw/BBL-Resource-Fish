@@ -43,6 +43,7 @@ public class DataGenerators {
 
         generator.addProvider(event.includeClient(), new ResourceFishItemModelsProvider(packOutput, event.getExistingFileHelper()));
 
+        generator.addProvider(event.includeClient(), new ResourceFishLangProvider(packOutput, event.getExistingFileHelper()));
 
         generator.addProvider(event.includeClient(), new ResourceFishFishes(packOutput));
 
