@@ -2,10 +2,12 @@ package com.benbenlaw.resourcefish.data;
 
 import com.benbenlaw.core.recipe.ChanceResult;
 import com.benbenlaw.resourcefish.ResourceFish;
+import com.benbenlaw.resourcefish.data.builders.CaviarProcessorRecipeBuilder;
 import com.benbenlaw.resourcefish.data.builders.ResourceFishBuilder;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
 import com.benbenlaw.resourcefish.item.CaviarItem;
 import com.benbenlaw.resourcefish.util.ResourceType;
+import net.minecraft.core.NonNullList;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +30,7 @@ public class ResourceFishFishes extends ResourceFishBuilder {
                 .patterns(List.of(ResourceFishEntity.Pattern.SMALL_1, ResourceFishEntity.Pattern.SMALL_2))
                 .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
                 .build());
+
 
         //Diorite Fish
         this.addFish(ResourceFishBuilder.builder("diorite")
@@ -109,7 +112,6 @@ public class ResourceFishFishes extends ResourceFishBuilder {
                 .patterns(List.of(ResourceFishEntity.Pattern.SMALL_2, ResourceFishEntity.Pattern.SMALL_3))
                 .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
                 .build());
-
         //Copper Fish
         this.addFish(ResourceFishBuilder.builder("copper")
                 .mainColor(0xFFB87333)
@@ -133,14 +135,15 @@ public class ResourceFishFishes extends ResourceFishBuilder {
         //Lava Fish
 
         this.addFish(ResourceFishBuilder.builder("lava")
-                .mainColor(0xFFFF4500)
-                .patternColor(0xFF8B0000)
+                .mainColor(0x80FF4500)
+                .patternColor(0x808B0000)
                 .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("lava"), 1.0f)))
                 .dropInterval(300)
                 .patterns(List.of(ResourceFishEntity.Pattern.SMALL_3, ResourceFishEntity.Pattern.SMALL_6))
                 .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
                 .biomes(List.of("#c:is_ocean"))
                 .build());
+
 
         //Wood Fish
         this.addFish(ResourceFishBuilder.builder("wood")
@@ -162,6 +165,9 @@ public class ResourceFishFishes extends ResourceFishBuilder {
                 .patterns(List.of(ResourceFishEntity.Pattern.SMALL_3, ResourceFishEntity.Pattern.SMALL_6))
                 .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
                 .build());
+
+        CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("stone"),
+                NonNullList.of(new ChanceResult(new ItemStack(Items.STONE), 0.2f)));
 
         //Cobblestone Fish
         this.addFish(ResourceFishBuilder.builder("cobblestone")
@@ -194,7 +200,58 @@ public class ResourceFishFishes extends ResourceFishBuilder {
                 .patterns(List.of(ResourceFishEntity.Pattern.SMALL_1, ResourceFishEntity.Pattern.SMALL_2))
                 .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
                 .biomes(List.of("#c:is_ocean"))
-                //.conditions(List.of(new ItemExistsCondition(String.valueOf("minecraft:magic_dirt"))))
                 .build());
+
+        //Skeleton
+        this.addFish(ResourceFishBuilder.builder("skeleton")
+                .mainColor(0x20FFFFFF)
+                .patternColor(0xFF6B6B6B)
+                .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("skeleton"), 1.0f)))
+                .dropInterval(300)
+                .patterns(List.of(ResourceFishEntity.Pattern.SMALL_5))
+                .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
+                .build());
+
+        //Zombie
+        this.addFish(ResourceFishBuilder.builder("zombie")
+                .mainColor(0x20A9A9A9)
+                .patternColor(0xFF6B8E23)
+                .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("zombie"), 1.0f)))
+                .dropInterval(300)
+                .patterns(List.of(ResourceFishEntity.Pattern.SMALL_6))
+                .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
+                .build());
+
+        //Creeper
+        this.addFish(ResourceFishBuilder.builder("creeper")
+                .mainColor(0x20A9A9A9)
+                .patternColor(0xFF228B22)
+                .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("creeper"), 1.0f)))
+                .dropInterval(300)
+                .patterns(List.of(ResourceFishEntity.Pattern.SMALL_4))
+                .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
+                .build());
+
+        //Spider
+        this.addFish(ResourceFishBuilder.builder("spider")
+                .mainColor(0x20A9A9A9)
+                .patternColor(0xFF8B4513)
+                .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("spider"), 1.0f)))
+                .dropInterval(300)
+                .patterns(List.of(ResourceFishEntity.Pattern.SMALL_2))
+                .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
+                .build());
+        //Ender
+        this.addFish(ResourceFishBuilder.builder("ender")
+                .mainColor(0xFF1C685A)
+                .patternColor(0xFF00008B)
+                .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("ender"), 1.0f)))
+                .dropInterval(300)
+                .patterns(List.of(ResourceFishEntity.Pattern.SMALL_3))
+                .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
+                .build());
+
+
+
     }
 }

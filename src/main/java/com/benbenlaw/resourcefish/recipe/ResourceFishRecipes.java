@@ -15,6 +15,14 @@ public class ResourceFishRecipes {
     public static final DeferredRegister<RecipeType<?>> TYPES =
             DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, ResourceFish.MOD_ID);
 
+
+    //Caviar Processor Recipe
+    public static final Supplier<RecipeSerializer<CaviarProcessorRecipe>> CAVIAR_PROCESSOR_SERIALIZER =
+            SERIALIZER.register("caviar_processor", () -> CaviarProcessorRecipe.Serializer.INSTANCE);
+
+    public static final Supplier<RecipeType<CaviarProcessorRecipe>> CAVIAR_PROCESSOR_TYPE =
+            TYPES.register("caviar_processor", () -> CaviarProcessorRecipe.Type.INSTANCE);
+
     //Breeding Recipe
     public static final Supplier<RecipeSerializer<FishBreedingRecipe>> FISH_BREEDING_SERIALIZER =
             SERIALIZER.register("fish_breeding", () -> FishBreedingRecipe.Serializer.INSTANCE);

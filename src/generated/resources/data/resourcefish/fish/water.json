@@ -18,7 +18,7 @@
   "models": [
     "small"
   ],
-  "pattern_color": "0xFFFFFFFF",
+  "pattern_color": "#803E5B77",
   "patterns": [
     "small_3",
     "small_4"

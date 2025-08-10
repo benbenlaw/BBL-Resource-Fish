@@ -13,11 +13,16 @@ public class ResourceFishMenuTypes {
             DeferredRegister.create(BuiltInRegistries.MENU, ResourceFish.MOD_ID);
 
     public static final DeferredHolder<MenuType<?>, MenuType<TankControllerMenu>> TANK_CONTROLLER_MENU;
+    public static final DeferredHolder<MenuType<?>, MenuType<CaviarProcessorMenu>> CAVIAR_PROCESSOR_MENU;
 
 
     static {
 
         TANK_CONTROLLER_MENU = MENUS.register("tank_controller_menu", () ->
                 IMenuTypeExtension.create(TankControllerMenu::new));
+
+        CAVIAR_PROCESSOR_MENU = MENUS.register("caviar_processor_menu", () ->
+                IMenuTypeExtension.create(CaviarProcessorMenu::new));
+
     }
 }

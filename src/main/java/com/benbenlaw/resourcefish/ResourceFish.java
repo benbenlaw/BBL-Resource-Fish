@@ -1,6 +1,7 @@
 package com.benbenlaw.resourcefish;
 
 import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
+import com.benbenlaw.resourcefish.block.entity.CaviarProcessorBlockEntity;
 import com.benbenlaw.resourcefish.block.entity.ResourceFishBlockEntities;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
@@ -10,6 +11,7 @@ import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.recipe.ResourceFishRecipes;
 import com.benbenlaw.resourcefish.renderer.ResourceFishRenderer;
+import com.benbenlaw.resourcefish.screen.CaviarProcessorScreen;
 import com.benbenlaw.resourcefish.screen.ResourceFishMenuTypes;
 import com.benbenlaw.resourcefish.screen.TankControllerScreen;
 import com.benbenlaw.resourcefish.util.ResourceTypeLoader;
@@ -82,6 +84,7 @@ public class ResourceFish{
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ResourceFishMenuTypes.TANK_CONTROLLER_MENU.get(), TankControllerScreen::new);
+            event.register(ResourceFishMenuTypes.CAVIAR_PROCESSOR_MENU.get(), CaviarProcessorScreen::new);
         }
     }
 

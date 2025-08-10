@@ -83,7 +83,7 @@ public class FishBreedingRecipeCategory implements IRecipeCategory<FishBreedingR
 
     @Override
     public Component getTitle() {
-        return Component.translatable("block.resourcefish.tank_controller");
+        return Component.translatable("recipe.resourcefish.fish_breeding");
     }
 
     @Override

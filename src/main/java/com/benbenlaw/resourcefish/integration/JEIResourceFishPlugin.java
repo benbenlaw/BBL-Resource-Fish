@@ -9,6 +9,7 @@ import com.benbenlaw.resourcefish.integration.fish.FishIngredient;
 import com.benbenlaw.resourcefish.integration.fish.FishIngredientHelper;
 import com.benbenlaw.resourcefish.integration.fish.FishIngredientRenderer;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
+import com.benbenlaw.resourcefish.recipe.CaviarProcessorRecipe;
 import com.benbenlaw.resourcefish.recipe.FishBreedingRecipe;
 import com.benbenlaw.resourcefish.recipe.FishInfusingRecipe;
 import com.benbenlaw.resourcefish.recipe.ResourceFishRecipes;
@@ -45,12 +46,16 @@ public class JEIResourceFishPlugin implements IModPlugin {
             new RecipeType<>(FishInfusingRecipeCategory.UID, FishInfusingRecipe.class);
     public static RecipeType<FishDropsRecipe> DROPS_RECIPE_TYPE =
             new RecipeType<>(FishDropsRecipeCategory.UID, FishDropsRecipe.class);
+    public static RecipeType<CaviarProcessorRecipe> PROCESSOR_RECIPE_TYPE =
+            new RecipeType<>(CaviarProcessorRecipeCategory.UID, CaviarProcessorRecipe.class);
+
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.TANK_CONTROLLER.get()), FishDropsRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.TANK_CONTROLLER.get()), FishBreedingRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.TANK_CONTROLLER.get()), FishInfusingRecipeCategory.RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.CAVIAR_PROCESSOR.get()), CaviarProcessorRecipeCategory.RECIPE_TYPE);
     }
 
     @Override
@@ -66,6 +71,9 @@ public class JEIResourceFishPlugin implements IModPlugin {
 
         registration.addRecipeCategories(new
                 FishInfusingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+
+        registration.addRecipeCategories(new
+                CaviarProcessorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
 
         slotDrawable = guiHelper.getSlotDrawable();
     }
@@ -88,6 +96,9 @@ public class JEIResourceFishPlugin implements IModPlugin {
         registration.addRecipes(FishInfusingRecipeCategory.RECIPE_TYPE,
                 recipeManager.getAllRecipesFor(ResourceFishRecipes.FISH_INFUSING_TYPE.get()).stream().map(RecipeHolder::value).toList());
 
+        registration.addRecipes(CaviarProcessorRecipeCategory.RECIPE_TYPE,
+                recipeManager.getAllRecipesFor(ResourceFishRecipes.CAVIAR_PROCESSOR_TYPE.get()).stream().map(RecipeHolder::value).toList());
+
     }
 
     @Override
@@ -95,6 +106,7 @@ public class JEIResourceFishPlugin implements IModPlugin {
        registration.registerSubtypeInterpreter(ResourceFishItems.RESOURCE_FISH_SPAWN_EGG.asItem(), new ItemSubtypeInterpreter());
        registration.registerSubtypeInterpreter(ResourceFishItems.CAVIAR.asItem(), new ItemSubtypeInterpreter());
        registration.registerSubtypeInterpreter(ResourceFishItems.RESOURCE_FISH_BUCKET.asItem(), new ItemSubtypeInterpreter());
+
     }
 
     @Override

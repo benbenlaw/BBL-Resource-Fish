@@ -21,6 +21,10 @@ public class ResourceFishBlocks {
             () -> new TankControllerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE)
                     .noOcclusion()));
 
+    public static final DeferredBlock<Block> CAVIAR_PROCESSOR = registerBlock("caviar_processor",
+            () -> new CaviarProcessorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE)
+                    .noOcclusion()));
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = (DeferredBlock<T>) BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

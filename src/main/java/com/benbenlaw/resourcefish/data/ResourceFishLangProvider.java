@@ -22,6 +22,7 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addJEITranslation("chance", "Chance: ");
         addJEITranslation("fish_in_tank_area", "Fish must be in tank area!");
         addJEITranslation("resource_fish", "Resource Fish");
+        addJEITranslation("duration", "Duration: %s");
 
         //Items
         addItemTranslation("caviar", "Caviar");
@@ -30,13 +31,20 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addItemTranslation("depth_upgrade_1", "Depth Upgrade 1");
         addItemTranslation("depth_upgrade_2", "Depth Upgrade 2");
         addItemTranslation("depth_upgrade_3", "Depth Upgrade 3");
-        addItemTranslation("width_upgrade_1", "Depth Upgrade 1");
-        addItemTranslation("width_upgrade_2", "Depth Upgrade 2");
-        addItemTranslation("width_upgrade_3", "Depth Upgrade 3");
-
+        addItemTranslation("width_upgrade_1", "Width Upgrade 1");
+        addItemTranslation("width_upgrade_2", "Width Upgrade 2");
+        addItemTranslation("width_upgrade_3", "Width Upgrade 3");
 
         //Blocks
         addBlockTranslation("tank_controller", "Resource Fish Tank");
+        addBlockTranslation("caviar_processor", "Caviar Processor");
+
+        //Recipes
+        addRecipeTranslation("caviar_processor", "Caviar Processor");
+        addRecipeTranslation("fish_breeding", "Fish Breeding");
+        addRecipeTranslation("fish_infusing", "Fish Infusing");
+        addRecipeTranslation("fish_drops", "Fish Drops");
+
 
     }
 
@@ -48,6 +56,9 @@ public class ResourceFishLangProvider extends LanguageProvider {
     }
     private void addJEITranslation(String name, String translation) {
         add("jei." + ResourceFish.MOD_ID + "." + name, translation);
+    }
+    private void addRecipeTranslation(String name, String translation) {
+        add("recipe." + ResourceFish.MOD_ID + "." + name, translation);
     }
 
 

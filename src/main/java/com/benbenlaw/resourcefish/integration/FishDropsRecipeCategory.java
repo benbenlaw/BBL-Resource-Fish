@@ -1,6 +1,7 @@
 package com.benbenlaw.resourcefish.integration;
 
 import com.benbenlaw.core.recipe.ChanceResult;
+import com.benbenlaw.core.util.MouseUtil;
 import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
@@ -60,7 +61,7 @@ public class FishDropsRecipeCategory implements IRecipeCategory<FishDropsRecipe>
 
     @Override
     public Component getTitle() {
-        return Component.translatable("block.resourcefish.tank_controller");
+        return Component.translatable("recipe.resourcefish.fish_drops");
     }
 
     @Override
@@ -107,7 +108,17 @@ public class FishDropsRecipeCategory implements IRecipeCategory<FishDropsRecipe>
         }
     }
 
+
+
     @Override
     public void draw(FishDropsRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+
+        Font font = Minecraft.getInstance().font;
+
+        if (MouseUtil.isMouseAboveArea((int) mouseX, (int) mouseY, 0, 0, 32, 12, 14, 14)) {
+            guiGraphics.renderTooltip(font, Component.translatable("jei.resourcefish.duration", recipe.dropInterval()),
+                    2 + (int) mouseX, (((int) mouseY)) - 14);
+        }
+
     }
 }

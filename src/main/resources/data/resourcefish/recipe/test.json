@@ -1,0 +1,25 @@
+{
+  "type": "resourcefish:caviar_processor",
+  "results": [
+    {
+      "item": {
+        "count": 2,
+        "id": "minecraft:dark_oak_log"
+      }
+    },
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "minecraft:dark_oak_sapling"
+      }
+    }
+  ],
+  "caviar": {
+    "components": {
+      "resourcefish:fish_type": "resourcefish:andesite"
+    },
+    "count": 1,
+    "id": "resourcefish:caviar"
+  }
+}

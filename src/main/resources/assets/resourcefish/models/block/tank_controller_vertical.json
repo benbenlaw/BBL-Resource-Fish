@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/orientable_vertical",
+  "textures": {
+    "front": "resourcefish:block/tank_controller_front",
+    "side": "resourcefish:block/machine_side"
+  }
+}

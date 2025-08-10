@@ -1,4 +1,13 @@
 Resource Fish
+grading machine,
+
+1.0.2
+Added creeper, skeleton, zombie, spider and enderman fish
+Fixed width upgrade names
+Added Caviar Processor, used to process caviar into items, uses recipe system ItemStack of caviar and produces a chanceresult list of item stacks
+    same as the fish drops recipe system
+Update Yuki Textures
+Added Caviar Processor JEI category
 
 1.0.1
 
@@ -14,7 +23,9 @@ Add Caviar should now show in JEI
 Added add resource fish bucket to JEI and creative tab
 Added JEI dummy recipe category for resource fish drops, any item dropped by a resource fish will show a recipe in JEI
 Added Granite, Diorite and Andesite fish
-Color in fish is now argb instead of rgb allowing for transparency
+Color in fish is now argb instead of rgb allowing for transparency, only works on main texture but pattern texture
+    should still use argb as this will be added in the future. this probably breaks existing resource fish
+Lava and Water fish now have a transparent body
 
 JEI interaction
 Lake controller upgrades, buttons ect

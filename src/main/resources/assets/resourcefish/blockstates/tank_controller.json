@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "resourcefish:block/tank_controller_vertical",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "resourcefish:block/tank_controller",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "resourcefish:block/tank_controller"
+    },
+    "facing=south": {
+      "model": "resourcefish:block/tank_controller",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "resourcefish:block/tank_controller_vertical"
+    },
+    "facing=west": {
+      "model": "resourcefish:block/tank_controller",
+      "y": 270
+    }
+  }
+}

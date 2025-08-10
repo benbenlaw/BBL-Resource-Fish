@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:caviar_processor",
+  "caviar": {
+    "components": {
+      "resourcefish:fish_type": "resourcefish:dirt"
+    },
+    "count": 1,
+    "id": "resourcefish:caviar"
+  },
+  "results": [
+    {
+      "chance": 0.4,
+      "item": {
+        "count": 1,
+        "id": "minecraft:dirt"
+      }
+    }
+  ]
+}

@@ -1,18 +1,23 @@
-// 1.21.1	2025-08-06T11:33:43.479461	Resource Fish Builder
+// 1.21.1	2025-08-09T18:00:50.2210541	Resource Fish Builder
 942ce0e3f795b7bfcd4b3720f80d562afbd84d6f data/resourcefish/fish/andesite.json
 8bab17ed634ea258ee9015b6deb77d8f41d41761 data/resourcefish/fish/coal.json
 a388c763e805a50f0bbc4b1797123033c9260caa data/resourcefish/fish/cobblestone.json
 f5fe7a141048fd825cf54709351e689292426eae data/resourcefish/fish/copper.json
+c373227215d1b6ddac4ce26e77164a2cba89ccaf data/resourcefish/fish/creeper.json
 a31686452a46495acfef0654438b3cf1ec11162b data/resourcefish/fish/diamond.json
 12b256500a6b1f3428774006f8a2dc2a40523076 data/resourcefish/fish/diorite.json
 f5919d360d7430dbd2a12fd5f0c517a5e528504c data/resourcefish/fish/dirt.json
 535abcc0976bc5b4986163a01dcfefa6f4ecb041 data/resourcefish/fish/emerald.json
+eb31a030b5426dac935a45c4e59ff21e0a7fa48b data/resourcefish/fish/ender.json
 95e71a911ddea152e7cc189d39a41b1b75135524 data/resourcefish/fish/gold.json
 4f3861c0bb206f618770ee034b1857962e945c68 data/resourcefish/fish/granite.json
 862db3009f2fab1d7fc5fd70ed61718ff4dbf2b1 data/resourcefish/fish/iron.json
 62cdd952672d303631f1e6bc0249afa5cd530fc8 data/resourcefish/fish/lapis.json
-432f33f50795ff195279e78d2b9c84178d5b3c55 data/resourcefish/fish/lava.json
+897067b48ebc9d0b51f74bbb91330002373ac0cc data/resourcefish/fish/lava.json
 dd1cf002b84239cf2876d1b6102c09497d486ed3 data/resourcefish/fish/redstone.json
+87cc889fdad991e6b18af1c29ade0a5ee0ba5afc data/resourcefish/fish/skeleton.json
+8a0f5a71529813ca637e112884c7f524eab78c37 data/resourcefish/fish/spider.json
 819f4d27ce6cebfa738a391306798db35cede739 data/resourcefish/fish/stone.json
 caab3af2560d781793530995dae948ce4e7e178f data/resourcefish/fish/water.json
 cc6bf83e573bf30da10d0332faf52c13c3d14882 data/resourcefish/fish/wood.json
+0b30117c60f71182a022706823230f786a6931de data/resourcefish/fish/zombie.json

@@ -1,0 +1,26 @@
+{
+  "type": "resourcefish:caviar_processor",
+  "caviar": {
+    "components": {
+      "resourcefish:fish_type": "resourcefish:spider"
+    },
+    "count": 1,
+    "id": "resourcefish:caviar"
+  },
+  "results": [
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "minecraft:string"
+      }
+    },
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "minecraft:spider_eye"
+      }
+    }
+  ]
+}
