@@ -6,6 +6,7 @@ import com.benbenlaw.resourcefish.screen.CaviarProcessorMenu;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -45,12 +46,15 @@ public class CaviarProcessorBlock extends BaseEntityBlock {
 
             BlockEntity blockEntity = level.getBlockEntity(blockPos);
             if (blockEntity instanceof CaviarProcessorBlockEntity caviarProcessorBlockEntity) {
-                ContainerData data = caviarProcessorBlockEntity.data;
 
-                player.openMenu(new SimpleMenuProvider(
-                        (windowId, playerInventory, playerEntity) -> new CaviarProcessorMenu(windowId, playerInventory, blockPos, data),
-                        Component.translatable("block.resourcefish.caviar_processor")), (buf -> buf.writeBlockPos(blockPos)));
-
+                if (caviarProcessorBlockEntity.onPlayerUse(player, InteractionHand.MAIN_HAND)) {
+                    return InteractionResult.SUCCESS;
+                } else {
+                    ContainerData data = caviarProcessorBlockEntity.data;
+                    player.openMenu(new SimpleMenuProvider(
+                            (windowId, playerInventory, playerEntity) -> new CaviarProcessorMenu(windowId, playerInventory, blockPos, data),
+                            Component.translatable("block.resourcefish.caviar_processor")), (buf -> buf.writeBlockPos(blockPos)));
+                }
             }
             return InteractionResult.SUCCESS;
         }

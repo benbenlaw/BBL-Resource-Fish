@@ -1,6 +1,11 @@
 Resource Fish
 grading machine,
 
+1.0.3
+Added Speed Upgrades 1-5 for the caviar processor
+Added dummy texture for these
+Cavior Processor default speed is 300 ticks
+
 1.0.2
 Added creeper, skeleton, zombie, spider and enderman fish
 Fixed width upgrade names

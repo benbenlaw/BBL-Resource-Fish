@@ -13,7 +13,9 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -158,18 +160,6 @@ public class ResourceFishRecipes extends RecipeProvider {
                 List.of(new ChanceResult(new ItemStack(Items.COAL), 0.2f)))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/coal"));
 
-        CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("coal"),
-                List.of(
-                        new ChanceResult(new ItemStack(Items.OAK_LOG), 0.05f),
-                        new ChanceResult(new ItemStack(Items.SPRUCE_LOG), 0.05f),
-                        new ChanceResult(new ItemStack(Items.BIRCH_LOG), 0.05f),
-                        new ChanceResult(new ItemStack(Items.JUNGLE_LOG), 0.05f),
-                        new ChanceResult(new ItemStack(Items.ACACIA_LOG), 0.05f),
-                        new ChanceResult(new ItemStack(Items.DARK_OAK_LOG), 0.05f),
-                        new ChanceResult(new ItemStack(Items.CHERRY_LOG), 0.05f),
-                        new ChanceResult(new ItemStack(Items.MANGROVE_LOG), 0.05f)
-                ));
-
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("cobblestone"),
                 List.of(new ChanceResult(new ItemStack(Items.COBBLESTONE), 0.4f)))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/cobblestone"));
@@ -211,6 +201,14 @@ public class ResourceFishRecipes extends RecipeProvider {
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("ender"),
                 List.of(new ChanceResult(new ItemStack(Items.ENDER_PEARL), 0.2f)))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/ender"));
+
+        CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("water"),
+                List.of(new ChanceResult(new ItemStack(Items.DIAMOND), 0.0001f))).withFluid(new FluidStack(Fluids.WATER, 10))
+                .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/water"));
+
+        CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("lava"),
+                List.of(new ChanceResult(new ItemStack(Items.DIAMOND), 0.0001f))).withFluid(new FluidStack(Fluids.LAVA, 10))
+                .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/lava"));
 
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("wood"),
                 List.of(

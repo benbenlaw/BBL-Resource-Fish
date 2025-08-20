@@ -25,6 +25,12 @@ public class ResourceFishItemModelsProvider extends ItemModelProvider {
         simpleItem(ResourceFishItems.WIDTH_UPGRADE_1);
         simpleItem(ResourceFishItems.WIDTH_UPGRADE_2);
         simpleItem(ResourceFishItems.WIDTH_UPGRADE_3);
+        simpleItem(ResourceFishItems.SPEED_UPGRADE_1);
+        simpleItem(ResourceFishItems.SPEED_UPGRADE_2);
+        simpleItem(ResourceFishItems.SPEED_UPGRADE_3);
+        simpleItem(ResourceFishItems.SPEED_UPGRADE_4);
+        simpleItem(ResourceFishItems.SPEED_UPGRADE_5);
+        simpleItem(ResourceFishItems.TANK_UPGRADE);
     }
 
     private void simpleItem(DeferredItem<Item> item) {

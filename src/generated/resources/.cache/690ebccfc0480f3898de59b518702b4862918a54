@@ -1,8 +1,14 @@
-// 1.21.1	2025-08-06T09:05:39.7453836	resourcefish Item Models
+// 1.21.1	2025-08-16T10:43:57.7862725	resourcefish Item Models
 1abe65707456d4a71e64548ed9183765d4bf007d assets/resourcefish/models/item/depth_upgrade_1.json
 480132c2a3cfca70dd690f66df72a5e5a327d193 assets/resourcefish/models/item/depth_upgrade_2.json
 14eee662d88c21b5785f42c94f0ed539cb8dcd3e assets/resourcefish/models/item/depth_upgrade_3.json
 55a5a8368c4cbf4bc8844f4aae4842307c3206a4 assets/resourcefish/models/item/resource_fish_bucket.json
+cd0ce6c043c992a31b0e04b3f1dd95c9c85ebb6c assets/resourcefish/models/item/speed_upgrade_1.json
+46477bbfd9f880df45a8ef0d4a040ade6fc5db2d assets/resourcefish/models/item/speed_upgrade_2.json
+6e8986b3361442d12466a9e31e22f0f4fbb7bdd3 assets/resourcefish/models/item/speed_upgrade_3.json
+8444cadf7d6908beb7f4e8516363caea3338b830 assets/resourcefish/models/item/speed_upgrade_4.json
+233a3ce7fca49db7b10c8bfd0165ef1a3343aae3 assets/resourcefish/models/item/speed_upgrade_5.json
+5dbaa55313bf2dea02df5fb5dfaafe43a93e6b32 assets/resourcefish/models/item/tank_upgrade.json
 6fa2f9540cf11311877e536cb3dfc62175a09df1 assets/resourcefish/models/item/width_upgrade_1.json
 4b93fb45622c5ad2aba9c176d0d7cbcef1477043 assets/resourcefish/models/item/width_upgrade_2.json
 daa171e8e780b175dd96f8f90557ee8d48debd0b assets/resourcefish/models/item/width_upgrade_3.json

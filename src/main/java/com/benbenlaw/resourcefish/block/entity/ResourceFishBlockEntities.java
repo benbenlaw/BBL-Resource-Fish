@@ -30,8 +30,11 @@ public class ResourceFishBlockEntities {
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
                 ResourceFishBlockEntities.TANK_CONTROLLER_BLOCK_ENTITY.get(), TankControllerBlockEntity::getTankControllerItemHandlerSide);
+
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
                 ResourceFishBlockEntities.CAVIAR_PROCESSOR_BLOCK_ENTITY.get(), CaviarProcessorBlockEntity::getCaviarProcessorItemHandlerSide);
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK,
+                ResourceFishBlockEntities.CAVIAR_PROCESSOR_BLOCK_ENTITY.get(), CaviarProcessorBlockEntity::getFluidHandlerCapability);
     }
 
 

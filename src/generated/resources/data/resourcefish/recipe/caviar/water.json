@@ -2,18 +2,21 @@
   "type": "resourcefish:caviar_processor",
   "caviar": {
     "components": {
-      "resourcefish:fish_type": "resourcefish:cobblestone"
+      "resourcefish:fish_type": "resourcefish:water"
     },
     "count": 1,
     "id": "resourcefish:caviar"
   },
-  "output_fluid": {},
+  "output_fluid": {
+    "amount": 10,
+    "id": "minecraft:water"
+  },
   "results": [
     {
-      "chance": 0.4,
+      "chance": 1.0E-4,
       "item": {
         "count": 1,
-        "id": "minecraft:cobblestone"
+        "id": "minecraft:diamond"
       }
     }
   ]

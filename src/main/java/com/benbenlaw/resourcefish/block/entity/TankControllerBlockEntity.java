@@ -105,9 +105,10 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         }
     };
 
-    private final IItemHandler tankControllerItemHandlerSide = new InputOutputItemHandler(itemHandler,
-            (slot, stack) -> false,
-            (slot) -> true
+    private final IItemHandler tankControllerItemHandlerSide = new InputOutputItemHandler(
+            itemHandler,
+            (slot, stack) -> slot >= 12 && slot <= 15,
+            (slot) -> slot >= 0 && slot <= 11
     );
 
     public IItemHandler getTankControllerItemHandlerSide(Direction side) {

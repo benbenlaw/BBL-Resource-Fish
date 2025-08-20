@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
+import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,15 +30,22 @@ public class CaviarProcessorRecipeBuilder implements RecipeBuilder {
     protected String group;
     protected ItemStack caviar;
     protected List<ChanceResult> results;
+    protected FluidStack fluidStack;
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
     public CaviarProcessorRecipeBuilder(ItemStack caviar, List<ChanceResult> results) {
         this.caviar = caviar;
         this.results = results;
+        this.fluidStack = FluidStack.EMPTY;
     }
 
     public static CaviarProcessorRecipeBuilder caviarProcessorRecipeBuilder(ItemStack caviar, List<ChanceResult> results) {
         return new CaviarProcessorRecipeBuilder(caviar, results);
+    }
+
+    public CaviarProcessorRecipeBuilder withFluid(FluidStack fluidStack) {
+        this.fluidStack = fluidStack;
+        return this;
     }
 
     @Override
@@ -70,7 +78,7 @@ public class CaviarProcessorRecipeBuilder implements RecipeBuilder {
         this.criteria.forEach(builder::addCriterion);
         NonNullList<ChanceResult> emptyNonNullList = NonNullList.create();
         emptyNonNullList.addAll(results);
-        CaviarProcessorRecipe caviarProcessorRecipe = new CaviarProcessorRecipe(caviar, emptyNonNullList);
+        CaviarProcessorRecipe caviarProcessorRecipe = new CaviarProcessorRecipe(caviar, emptyNonNullList, fluidStack);
         recipeOutput.accept(id, caviarProcessorRecipe, builder.build(id.withPrefix("recipes/processor/")));
 
     }

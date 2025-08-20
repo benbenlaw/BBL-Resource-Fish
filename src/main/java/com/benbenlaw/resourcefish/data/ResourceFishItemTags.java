@@ -27,7 +27,14 @@ public class ResourceFishItemTags extends ItemTagsProvider {
                 .add(ResourceFishItems.DEPTH_UPGRADE_3.get())
                 .add(ResourceFishItems.WIDTH_UPGRADE_1.get())
                 .add(ResourceFishItems.WIDTH_UPGRADE_2.get())
-                .add(ResourceFishItems.WIDTH_UPGRADE_3.get());
+                .add(ResourceFishItems.WIDTH_UPGRADE_3.get())
+                .add(ResourceFishItems.SPEED_UPGRADE_1.get())
+                .add(ResourceFishItems.SPEED_UPGRADE_2.get())
+                .add(ResourceFishItems.SPEED_UPGRADE_3.get())
+                .add(ResourceFishItems.SPEED_UPGRADE_4.get())
+                .add(ResourceFishItems.SPEED_UPGRADE_5.get())
+                .add(ResourceFishItems.TANK_UPGRADE.get())
+                ;
 
 
     }

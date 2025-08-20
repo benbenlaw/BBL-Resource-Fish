@@ -1,9 +1,11 @@
 package com.benbenlaw.resourcefish.recipe;
 
 import com.benbenlaw.core.recipe.ChanceResult;
+import com.benbenlaw.resourcefish.block.CaviarProcessorBlock;
 import com.benbenlaw.resourcefish.block.entity.CaviarProcessorBlockEntity;
 import com.benbenlaw.resourcefish.block.entity.TankControllerBlockEntity;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
+import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
@@ -17,8 +19,10 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -27,21 +31,48 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public record CaviarProcessorRecipe(ItemStack caviar,
-                                    NonNullList<ChanceResult> results) implements Recipe<RecipeInput> {
+                                    NonNullList<ChanceResult> results, FluidStack fluidStack) implements Recipe<RecipeInput> {
 
     @Override
     public boolean matches(RecipeInput container, Level level) {
-
         int[] inputs = CaviarProcessorBlockEntity.INPUT_SLOTS;
+        int[] upgradeSlots = CaviarProcessorBlockEntity.UPGRADE_SLOTS;
+
         for (int input : inputs) {
-            if (!container.getItem(input).isEmpty() && !caviar.isEmpty()) {
-                if (ItemStack.isSameItemSameComponents(caviar, container.getItem(input))) {
-                    return true;
+            ItemStack stack = container.getItem(input);
+            if (stack.isEmpty() || caviar.isEmpty()) continue;
+            if (!ItemStack.isSameItemSameComponents(caviar, stack)) continue;
+
+            if (fluidStack.isEmpty()) {
+                return true;
+            }
+
+            if (container instanceof CaviarProcessorRecipeInput caviarProcessorRecipeInput) {
+                for (int upgradeSlot : upgradeSlots) {
+                    ItemStack upgradeStack = caviarProcessorRecipeInput.getItemHandler().getStackInSlot(upgradeSlot);
+                    if (upgradeStack.isEmpty()) continue;
+                    if (upgradeStack.is(ResourceFishItems.TANK_UPGRADE.get())) {
+
+                        IFluidHandler tank = caviarProcessorRecipeInput.getFluidHandler();
+                        FluidStack current = tank.getFluidInTank(0);
+
+                        // ✅ Only allow if tank is empty OR contains the same fluid
+                        if (current.isEmpty() || current.is(fluidStack.getFluid())) {
+                            int canFill = tank.fill(fluidStack.copy(), IFluidHandler.FluidAction.SIMULATE);
+
+                            // must be able to fit the full recipe output
+                            if (canFill >= fluidStack.getAmount()) {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
         }
+
         return false;
     }
+
 
     @Override
     public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider provider) {
@@ -104,18 +135,11 @@ public record CaviarProcessorRecipe(ItemStack caviar,
                 instance.group(
                         ItemStack.CODEC.fieldOf("caviar").forGetter(CaviarProcessorRecipe::caviar),
                         Codec.list(ChanceResult.CODEC).fieldOf("results").flatXmap(chanceResults -> {
-                                        /*
-                                        if (chanceResults.size() > 12) {
-                                                return DataResult.error(
-                                                        () -> "Too many results for cloche recipe! The maximum quantity of unique results is "
-                                                                + 12);
-                                        }
-
-                                         */
                             NonNullList<ChanceResult> nonNullList = NonNullList.create();
                             nonNullList.addAll(chanceResults);
                             return DataResult.success(nonNullList);
-                        }, DataResult::success).forGetter(CaviarProcessorRecipe::getRollResults)
+                        }, DataResult::success).forGetter(CaviarProcessorRecipe::getRollResults),
+                        FluidStack.OPTIONAL_CODEC.fieldOf("output_fluid").forGetter(CaviarProcessorRecipe::fluidStack)
                 ).apply(instance, CaviarProcessorRecipe::new)
         );
 
@@ -137,8 +161,9 @@ public record CaviarProcessorRecipe(ItemStack caviar,
             int size = buffer.readVarInt();
             NonNullList<ChanceResult> outputs = NonNullList.withSize(size, ChanceResult.EMPTY);
             outputs.replaceAll(ignored -> ChanceResult.read(buffer));
+            FluidStack fluidStack = FluidStack.OPTIONAL_STREAM_CODEC.decode(buffer);
 
-            return new CaviarProcessorRecipe(caviar, outputs);
+            return new CaviarProcessorRecipe(caviar, outputs, fluidStack);
         }
 
         private static CaviarProcessorRecipe write(RegistryFriendlyByteBuf buffer, CaviarProcessorRecipe recipe) {
@@ -147,6 +172,7 @@ public record CaviarProcessorRecipe(ItemStack caviar,
             for (ChanceResult output : recipe.results) {
                 output.write(buffer);
             }
+            FluidStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.fluidStack);
 
             return recipe;
         }

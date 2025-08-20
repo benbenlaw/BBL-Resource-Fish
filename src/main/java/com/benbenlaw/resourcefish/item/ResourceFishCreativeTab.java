@@ -25,12 +25,19 @@ public class ResourceFishCreativeTab {
 
                 //Items and Blocks
                 output.accept(ResourceFishBlocks.TANK_CONTROLLER.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishBlocks.CAVIAR_PROCESSOR.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.DEPTH_UPGRADE_1.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.DEPTH_UPGRADE_2.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.DEPTH_UPGRADE_3.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.WIDTH_UPGRADE_1.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.WIDTH_UPGRADE_2.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.WIDTH_UPGRADE_3.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.SPEED_UPGRADE_1.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.SPEED_UPGRADE_2.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.SPEED_UPGRADE_3.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.SPEED_UPGRADE_4.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.SPEED_UPGRADE_5.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.TANK_UPGRADE.get().asItem().getDefaultInstance());
 
                 //Fish Bucket
                 for (ResourceType type : ResourceType.getAll()) {

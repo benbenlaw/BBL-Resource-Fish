@@ -70,6 +70,10 @@ dependencies {
     compileOnly "curse.maven:bbl-core-1135181:6486837"
     runtimeOnly "curse.maven:bbl-core-1135181:6486837"
 
+    //Mekanism
+    compileOnly "curse.maven:mekanism-268560:6327955"
+    runtimeOnly "curse.maven:mekanism-268560:6327955"
+
     //JEI
     compileOnly "curse.maven:jei-238222:5846880"
     runtimeOnly "curse.maven:jei-238222:5846880"

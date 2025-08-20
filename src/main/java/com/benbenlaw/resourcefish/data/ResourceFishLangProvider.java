@@ -34,6 +34,13 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addItemTranslation("width_upgrade_1", "Width Upgrade 1");
         addItemTranslation("width_upgrade_2", "Width Upgrade 2");
         addItemTranslation("width_upgrade_3", "Width Upgrade 3");
+        addItemTranslation("speed_upgrade_1", "Speed Upgrade 1");
+        addItemTranslation("speed_upgrade_2", "Speed Upgrade 2");
+        addItemTranslation("speed_upgrade_3", "Speed Upgrade 3");
+        addItemTranslation("speed_upgrade_4", "Speed Upgrade 4");
+        addItemTranslation("speed_upgrade_5", "Speed Upgrade 5");
+        addItemTranslation("tank_upgrade", "Tank Upgrade");
+
 
         //Blocks
         addBlockTranslation("tank_controller", "Resource Fish Tank");

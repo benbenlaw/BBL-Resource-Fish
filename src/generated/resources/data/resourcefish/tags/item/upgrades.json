@@ -5,6 +5,12 @@
     "resourcefish:depth_upgrade_3",
     "resourcefish:width_upgrade_1",
     "resourcefish:width_upgrade_2",
-    "resourcefish:width_upgrade_3"
+    "resourcefish:width_upgrade_3",
+    "resourcefish:speed_upgrade_1",
+    "resourcefish:speed_upgrade_2",
+    "resourcefish:speed_upgrade_3",
+    "resourcefish:speed_upgrade_4",
+    "resourcefish:speed_upgrade_5",
+    "resourcefish:tank_upgrade"
   ]
 }

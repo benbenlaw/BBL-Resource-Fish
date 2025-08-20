@@ -33,6 +33,27 @@ public class ResourceFishItems {
     public static final DeferredItem<Item> WIDTH_UPGRADE_3 = ITEMS.register("width_upgrade_3",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> SPEED_UPGRADE_1 = ITEMS.register("speed_upgrade_1",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SPEED_UPGRADE_2 = ITEMS.register("speed_upgrade_2",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SPEED_UPGRADE_3 = ITEMS.register("speed_upgrade_3",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SPEED_UPGRADE_4 = ITEMS.register("speed_upgrade_4",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SPEED_UPGRADE_5 = ITEMS.register("speed_upgrade_5",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TANK_UPGRADE = ITEMS.register("tank_upgrade",
+            () -> new Item(new Item.Properties()));
+
+
+
+
+
     public static final DeferredItem<Item> RESOURCE_FISH_BUCKET = ITEMS.register("resource_fish_bucket",
             () -> new ResourceFishBucketItem(
                     ResourceFishEntities.RESOURCE_FISH.get(),
