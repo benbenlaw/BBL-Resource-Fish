@@ -6,6 +6,8 @@ import com.benbenlaw.resourcefish.screen.TankControllerMenu;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -42,16 +44,22 @@ public class TankControllerBlock extends BaseEntityBlock {
         }
 
         if (!level.isClientSide()) {
-
             BlockEntity blockEntity = level.getBlockEntity(blockPos);
             if (blockEntity instanceof TankControllerBlockEntity tankControllerBlockEntity) {
-                ContainerData data = tankControllerBlockEntity.data;
+                if (!player.isCrouching()) {
 
-                player.openMenu(new SimpleMenuProvider(
-                        (windowId, playerInventory, playerEntity) -> new TankControllerMenu(windowId, playerInventory, blockPos, data),
-                        Component.translatable("block.resourcefish.tank_controller")), (buf -> buf.writeBlockPos(blockPos)));
+                    ContainerData data = tankControllerBlockEntity.data;
+                    player.openMenu(new SimpleMenuProvider(
+                            (windowId, playerInventory, playerEntity) -> new TankControllerMenu(windowId, playerInventory, blockPos, data),
+                            Component.translatable("block.resourcefish.tank_controller")), (buf -> buf.writeBlockPos(blockPos)));
+                    }
+                else {
+                    tankControllerBlockEntity.onRightClick((ServerPlayer) player);
+                }
 
             }
+
+
             return InteractionResult.SUCCESS;
         }
 

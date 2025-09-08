@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "resourcefish:caviar"
+    }
+  },
+  "pattern": [
+    "AAA",
+    " B ",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resourcefish:depth_upgrade_3"
+  }
+}

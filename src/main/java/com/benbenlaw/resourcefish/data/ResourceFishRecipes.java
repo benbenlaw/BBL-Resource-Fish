@@ -2,18 +2,25 @@ package com.benbenlaw.resourcefish.data;
 
 import com.benbenlaw.core.recipe.ChanceResult;
 import com.benbenlaw.resourcefish.ResourceFish;
+import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
 import com.benbenlaw.resourcefish.data.builders.CaviarProcessorRecipeBuilder;
 import com.benbenlaw.resourcefish.data.builders.FishBreedingRecipeBuilder;
 import com.benbenlaw.resourcefish.data.builders.FishInfusingRecipeBuilder;
 import com.benbenlaw.resourcefish.item.CaviarItem;
+import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 
@@ -203,11 +210,11 @@ public class ResourceFishRecipes extends RecipeProvider {
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/ender"));
 
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("water"),
-                List.of(new ChanceResult(new ItemStack(Items.DIAMOND), 0.0001f))).withFluid(new FluidStack(Fluids.WATER, 10))
+                List.of()).withFluid(new FluidStack(Fluids.WATER, 10))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/water"));
 
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("lava"),
-                List.of(new ChanceResult(new ItemStack(Items.DIAMOND), 0.0001f))).withFluid(new FluidStack(Fluids.LAVA, 10))
+                List.of()).withFluid(new FluidStack(Fluids.LAVA, 10))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/lava"));
 
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("wood"),
@@ -221,6 +228,145 @@ public class ResourceFishRecipes extends RecipeProvider {
                         new ChanceResult(new ItemStack(Items.CHERRY_LOG), 0.05f),
                         new ChanceResult(new ItemStack(Items.MANGROVE_LOG), 0.05f)))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/wood"));
+
+
+
+        // ***** Crafting Recipes *****
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishBlocks.TANK_CONTROLLER)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', Items.IRON_INGOT)
+                .define('B', ResourceFishItems.RESOURCE_FISH_BUCKET)
+                .unlockedBy("has_item", has(ResourceFishItems.RESOURCE_FISH_BUCKET))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishBlocks.CAVIAR_PROCESSOR)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', Items.IRON_INGOT)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.DEPTH_UPGRADE_1)
+                .pattern("AAA")
+                .pattern(" B ")
+                .pattern("AAA")
+                .define('A', Items.IRON_INGOT)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.DEPTH_UPGRADE_2)
+                .pattern("AAA")
+                .pattern(" B ")
+                .pattern("AAA")
+                .define('A', Items.GOLD_INGOT)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.DEPTH_UPGRADE_3)
+                .pattern("AAA")
+                .pattern(" B ")
+                .pattern("AAA")
+                .define('A', Items.DIAMOND)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.WIDTH_UPGRADE_1)
+                .pattern("A A")
+                .pattern("ABA")
+                .pattern("A A")
+                .define('A', Items.IRON_INGOT)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.WIDTH_UPGRADE_2)
+                .pattern("A A")
+                .pattern("ABA")
+                .pattern("A A")
+                .define('A', Items.GOLD_INGOT)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.WIDTH_UPGRADE_3)
+                .pattern("A A")
+                .pattern("ABA")
+                .pattern("A A")
+                .define('A', Items.DIAMOND)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.SPEED_UPGRADE_1)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', Items.SUGAR)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.SPEED_UPGRADE_2)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', Items.GLOWSTONE_DUST)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.SPEED_UPGRADE_3)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', Items.END_ROD)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.TANK_UPGRADE)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', Tags.Items.GLASS_BLOCKS)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.RESOURCE_FISH_BUCKET))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.BREEDING_UPGRADE)
+                .pattern("AAA")
+                .pattern("B B")
+                .pattern("AAA")
+                .define('A', Items.IRON_INGOT)
+                .define('B', ResourceFishItems.RESOURCE_FISH_BUCKET)
+                .unlockedBy("has_item", has(ResourceFishItems.RESOURCE_FISH_BUCKET))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.INFUSING_UPGRADE)
+                .pattern("AAA")
+                .pattern("BCB")
+                .pattern("AAA")
+                .define('A', Items.BONE_MEAL)
+                .define('B', ResourceFishItems.RESOURCE_FISH_BUCKET)
+                .define('C', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.INFUSING_UPGRADE))
+                .save(consumer);
+
+
+
+
+
+
+
+
+
 
 
 

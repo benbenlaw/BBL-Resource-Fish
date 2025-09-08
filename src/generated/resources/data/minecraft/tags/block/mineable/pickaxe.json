@@ -1,5 +1,6 @@
 {
   "values": [
-    "resourcefish:tank_controller"
+    "resourcefish:tank_controller",
+    "resourcefish:caviar_processor"
   ]
 }

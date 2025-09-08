@@ -35,9 +35,9 @@ public class ResourceFishCreativeTab {
                 output.accept(ResourceFishItems.SPEED_UPGRADE_1.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.SPEED_UPGRADE_2.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.SPEED_UPGRADE_3.get().asItem().getDefaultInstance());
-                output.accept(ResourceFishItems.SPEED_UPGRADE_4.get().asItem().getDefaultInstance());
-                output.accept(ResourceFishItems.SPEED_UPGRADE_5.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.TANK_UPGRADE.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.INFUSING_UPGRADE.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.BREEDING_UPGRADE.get().asItem().getDefaultInstance());
 
                 //Fish Bucket
                 for (ResourceType type : ResourceType.getAll()) {

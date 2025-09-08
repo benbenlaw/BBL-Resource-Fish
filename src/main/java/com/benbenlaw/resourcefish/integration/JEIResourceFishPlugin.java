@@ -54,7 +54,9 @@ public class JEIResourceFishPlugin implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.TANK_CONTROLLER.get()), FishDropsRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.TANK_CONTROLLER.get()), FishBreedingRecipeCategory.RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ResourceFishItems.BREEDING_UPGRADE.get()), FishBreedingRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.TANK_CONTROLLER.get()), FishInfusingRecipeCategory.RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ResourceFishItems.INFUSING_UPGRADE.get()), FishInfusingRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ResourceFishBlocks.CAVIAR_PROCESSOR.get()), CaviarProcessorRecipeCategory.RECIPE_TYPE);
     }
 

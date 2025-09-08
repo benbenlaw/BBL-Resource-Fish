@@ -16,39 +16,40 @@ public class ResourceFishItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ResourceFish.MOD_ID);
 
     public static final DeferredItem<Item> DEPTH_UPGRADE_1 = ITEMS.register("depth_upgrade_1",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.depth_upgrade_1"));
 
     public static final DeferredItem<Item> DEPTH_UPGRADE_2 = ITEMS.register("depth_upgrade_2",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.depth_upgrade_3"));
 
     public static final DeferredItem<Item> DEPTH_UPGRADE_3 = ITEMS.register("depth_upgrade_3",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.depth_upgrade_4"));
 
     public static final DeferredItem<Item> WIDTH_UPGRADE_1 = ITEMS.register("width_upgrade_1",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.width_upgrade_1"));
 
     public static final DeferredItem<Item> WIDTH_UPGRADE_2 = ITEMS.register("width_upgrade_2",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.width_upgrade_2"));;
 
     public static final DeferredItem<Item> WIDTH_UPGRADE_3 = ITEMS.register("width_upgrade_3",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.width_upgrade_3"));
 
     public static final DeferredItem<Item> SPEED_UPGRADE_1 = ITEMS.register("speed_upgrade_1",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.speed_upgrade_1"));
 
     public static final DeferredItem<Item> SPEED_UPGRADE_2 = ITEMS.register("speed_upgrade_2",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.speed_upgrade_2"));
 
     public static final DeferredItem<Item> SPEED_UPGRADE_3 = ITEMS.register("speed_upgrade_3",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.speed_upgrade_3"));
 
-    public static final DeferredItem<Item> SPEED_UPGRADE_4 = ITEMS.register("speed_upgrade_4",
-            () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<Item> SPEED_UPGRADE_5 = ITEMS.register("speed_upgrade_5",
-            () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TANK_UPGRADE = ITEMS.register("tank_upgrade",
-            () -> new Item(new Item.Properties()));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.tank_upgrade"));
+
+    public static final DeferredItem<Item> BREEDING_UPGRADE = ITEMS.register("breeding_upgrade",
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.breeding_upgrade"));
+
+    public static final DeferredItem<Item> INFUSING_UPGRADE = ITEMS.register("infusing_upgrade",
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.infusing_upgrade"));
 
 
 

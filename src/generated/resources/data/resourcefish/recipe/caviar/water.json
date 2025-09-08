@@ -11,13 +11,5 @@
     "amount": 10,
     "id": "minecraft:water"
   },
-  "results": [
-    {
-      "chance": 1.0E-4,
-      "item": {
-        "count": 1,
-        "id": "minecraft:diamond"
-      }
-    }
-  ]
+  "results": []
 }

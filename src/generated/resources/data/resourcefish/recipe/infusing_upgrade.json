@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:bone_meal"
+    },
+    "B": {
+      "item": "resourcefish:resource_fish_bucket"
+    },
+    "C": {
+      "item": "resourcefish:caviar"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "BCB",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resourcefish:infusing_upgrade"
+  }
+}

@@ -8,13 +8,17 @@ import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.recipe.ActiveRecipeType;
 import com.benbenlaw.resourcefish.recipe.FishBreedingRecipe;
 import com.benbenlaw.resourcefish.recipe.FishInfusingRecipe;
+import com.benbenlaw.resourcefish.recipe.TankRecipeInput;
+import com.benbenlaw.resourcefish.util.ResourceFishTags;
 import com.benbenlaw.resourcefish.util.ResourceType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.Entity;
@@ -46,16 +50,18 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
     public static final int UPGRADE_SLOT_2 = 16;
     public static final int UPGRADE_SLOT_3 = 17;
     public static final int UPGRADE_SLOT_4 = 18;
-    public static int progress = 0;
-    public static int maxProgress = Integer.MAX_VALUE; //
+    public int progress = 0;
+    public int maxProgress = Integer.MAX_VALUE; //
     private boolean inventoryChanged = true;
-    public static List<ResourceFishEntity> fishPool = new ArrayList<>();
+    public List<ResourceFishEntity> fishPool = new ArrayList<>();
     private final Set<UUID> previouslyAllowedFish = new HashSet<>();
+    private int fishCount = 0;
+    private boolean showRange = false;
 
-    private RecipeInput cachedInventory = getRecipeInput();
+    private TankRecipeInput cachedInventory = getRecipeInput();
 
-    private @NotNull RecipeInput getRecipeInput() {
-        return new RecipeInput() {
+    private @NotNull TankRecipeInput getRecipeInput() {
+        return new TankRecipeInput(itemHandler, getBlockPos()) {
             @Override
             public @NotNull ItemStack getItem(int index) {
                 return itemHandler.getStackInSlot(index);
@@ -64,6 +70,11 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
             @Override
             public int size() {
                 return itemHandler.getSlots();
+            }
+
+            @Override
+            public BlockPos getPos() {
+                return getBlockPos();
             }
         };
     }
@@ -101,7 +112,34 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
             setChanged();
             sync();
             inventoryChanged = true;
-            activeRecipe = ActiveRecipeType.NONE;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            if (slot >= 15 && slot <= 18) {
+                return 1;
+            }
+            return 64;
+        }
+
+        @Override
+        protected int getStackLimit(int slot, @NotNull ItemStack stack) {
+            if (slot >= UPGRADE_SLOT_1 && slot <= UPGRADE_SLOT_4) {
+                if (stack.is(ResourceFishTags.Items.UPGRADES)) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+            if (slot >= RECIPE_SLOT_1 && slot <= RECIPE_SLOT_3) {
+                if (stack.is(ResourceFishTags.Items.UPGRADES)) {
+                    return 0;
+                } else {
+                    return stack.getMaxStackSize();
+                }
+            }
+
+            return stack.getMaxStackSize();
         }
     };
 
@@ -127,7 +165,9 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         AABB box = calculateBox(centerPos, opposite);
 
         if (level.isClientSide()) {
-            spawnBoxOutlineParticles(box);
+            if (showRange) {
+                spawnBoxOutlineParticles(box);
+            }
             return; // Skip processing on the client side
         }
 
@@ -150,15 +190,9 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
             }
         }
 
-
         switch (activeRecipe) {
             case BREEDING -> breedingRecipe(breedingMatch, centerPos, itemHandler, level);
             case INFUSING -> infusingRecipe(infusingMatch, centerPos, itemHandler, level);
-            default -> {
-                progress = 0;
-                maxProgress = Integer.MAX_VALUE;
-                activeRecipe = ActiveRecipeType.NONE;
-            }
         }
 
         //Collecting items
@@ -253,13 +287,33 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         return new AABB(minX, minY, minZ, maxX, maxY, maxZ);
     }
 
-    private static void breedingRecipe(Optional<RecipeHolder<FishBreedingRecipe>> match, BlockPos centerPos, ItemStackHandler itemHandler, Level level) {
+    private void breedingRecipe(Optional<RecipeHolder<FishBreedingRecipe>> match, BlockPos centerPos, ItemStackHandler itemHandler, Level level) {
         if (match.isPresent()) {
             maxProgress = match.get().value().duration();
             progress++;
 
             if (progress >= maxProgress) {
-                itemHandler.getStackInSlot(RECIPE_SLOT_1).shrink(match.get().value().breedingIngredient().count());
+                if (match.get().value().breedingIngredient().test(itemHandler.getStackInSlot(RECIPE_SLOT_1))) {
+                    if (itemHandler.getStackInSlot(RECIPE_SLOT_1).getCount() >= match.get().value().breedingIngredient().count()) {
+                        itemHandler.getStackInSlot(RECIPE_SLOT_1).shrink(match.get().value().breedingIngredient().count());
+                    }
+                }
+
+                else if (match.get().value().breedingIngredient().test(itemHandler.getStackInSlot(RECIPE_SLOT_2))) {
+                    if (itemHandler.getStackInSlot(RECIPE_SLOT_2).getCount() >= match.get().value().breedingIngredient().count()) {
+                        itemHandler.getStackInSlot(RECIPE_SLOT_2).shrink(match.get().value().breedingIngredient().count());
+                    }
+                }
+
+                else if (match.get().value().breedingIngredient().test(itemHandler.getStackInSlot(RECIPE_SLOT_3))) {
+                    if (itemHandler.getStackInSlot(RECIPE_SLOT_3).getCount() >= match.get().value().breedingIngredient().count()) {
+                        itemHandler.getStackInSlot(RECIPE_SLOT_3).shrink(match.get().value().breedingIngredient().count());
+                    }
+                }
+
+                else {
+                    return;
+                }
 
                 boolean chanceSuccess = level.random.nextDouble() < match.get().value().chance();
 
@@ -280,9 +334,10 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         } else {
             progress = 0;
             maxProgress = Integer.MAX_VALUE;
+            activeRecipe = ActiveRecipeType.NONE;
         }
     }
-    private static void infusingRecipe(Optional<RecipeHolder<FishInfusingRecipe>> match, BlockPos centerPos, ItemStackHandler itemHandler, Level level) {
+    private void infusingRecipe(Optional<RecipeHolder<FishInfusingRecipe>> match, BlockPos centerPos, ItemStackHandler itemHandler, Level level) {
         if (match.isPresent()) {
             maxProgress = match.get().value().duration();
             progress++;
@@ -297,10 +352,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
 
                 if (chanceSuccess) {
 
-                    for (ResourceFishEntity fish  : TankControllerBlockEntity.fishPool) {
-
-                        System.out.println(fish.getResourceType().getId());
-                        System.out.println(match.get().value().fish());
+                    for (ResourceFishEntity fish  : this.fishPool) {
 
                         if (fish.getResourceType().getId().equals(match.get().value().fish())) {
                             fish.setResourceType(ResourceType.get(match.get().value().createdFish()));
@@ -319,6 +371,8 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         } else {
             progress = 0;
             maxProgress = Integer.MAX_VALUE;
+            activeRecipe = ActiveRecipeType.NONE;
+
         }
     }
 
@@ -328,6 +382,8 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         compoundTag.put("inventory", itemHandler.serializeNBT(provider));
         compoundTag.putInt("progress", progress);
         compoundTag.putInt("maxProgress", maxProgress);
+        compoundTag.putInt("fishCount", fishCount);
+        compoundTag.putBoolean("showRange", showRange);
     }
 
     @Override
@@ -336,6 +392,21 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         super.loadAdditional(compoundTag, provider);
         progress = compoundTag.getInt("progress");
         maxProgress = compoundTag.getInt("maxProgress");
+        fishCount = compoundTag.getInt("fishCount");
+        showRange = compoundTag.getBoolean("showRange");
+    }
+
+    public void onRightClick(ServerPlayer player) {
+
+        if (showRange) {
+            showRange = false;
+        }
+        else {
+            showRange = true;
+            player.sendSystemMessage(Component.translatable("block.resourcefish.tank_controller_range"));
+        }
+
+        sync();
     }
 
     private void spawnBoxOutlineParticles(AABB box) {

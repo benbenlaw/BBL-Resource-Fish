@@ -65,9 +65,9 @@ public class TankControllerMenu extends AbstractContainerMenu {
         }
 
         //Recipes Slots
-        this.addSlot(new SlotItemHandler(blockEntity.getItemStackHandler(), TankControllerBlockEntity.RECIPE_SLOT_1, 8, 17));
-        this.addSlot(new SlotItemHandler(blockEntity.getItemStackHandler(), TankControllerBlockEntity.RECIPE_SLOT_2, 26, 17));
-        this.addSlot(new SlotItemHandler(blockEntity.getItemStackHandler(), TankControllerBlockEntity.RECIPE_SLOT_3, 44, 17));
+        createRecipeSlot(entity, TankControllerBlockEntity.RECIPE_SLOT_1, 8, 17);
+        createRecipeSlot(entity, TankControllerBlockEntity.RECIPE_SLOT_2, 26, 17);
+        createRecipeSlot(entity, TankControllerBlockEntity.RECIPE_SLOT_3, 44, 17);
 
         //Upgrade Slots
         createUpgradeSlot(entity, TankControllerBlockEntity.UPGRADE_SLOT_1, 8, 53);
@@ -87,6 +87,16 @@ public class TankControllerMenu extends AbstractContainerMenu {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(ResourceFishTags.Items.UPGRADES);
+            }
+        });
+    }
+
+    private void createRecipeSlot(TankControllerBlockEntity entity, int slot, int x, int y) {
+        this.addSlot(new SlotItemHandler(entity.getItemStackHandler(), slot, x, y) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                // Reject items that are upgrades
+                return !stack.is(ResourceFishTags.Items.UPGRADES);
             }
         });
     }
@@ -142,7 +152,6 @@ public class TankControllerMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            System.out.println("Invalid slotIndex:" + index);
             return ItemStack.EMPTY;
         }
         // If stack size == 0 (the entire stack was moved) set slot contents to null

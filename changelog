@@ -1,6 +1,22 @@
 Resource Fish
 grading machine,
 
+1.0.4
+Added Tooltips for all upgrades
+Added Breeding and Infusing upgrades, these must be installed in the Tank Controller to allow breeding and infusing recipes
+Removed Speed Upgrade 4 and 5
+Breeding recipes now check all slots not just the first
+Range can now be visually enable and disabled by shift right clicking the Tank Controller
+Added TankRecipeInput to allow for easier recipe matching and more consistent recipe checks
+Tweaked slot to only allow valid items to be added in tank controller
+Shift clicking inside tank controller now places items in the correct slots
+Lava and Water recipe no longer show a diamond as an output
+Caviar Processor now shows fluids in JEI
+Improved JEI for caviar processor to use strainers grid system
+Added missing loot table for caviar processor
+Added Pickaxe tag to caviar processor
+Added Recipes for everything in the mod
+
 1.0.3
 Added Speed Upgrades 1-5 for the caviar processor
 Added dummy texture for these

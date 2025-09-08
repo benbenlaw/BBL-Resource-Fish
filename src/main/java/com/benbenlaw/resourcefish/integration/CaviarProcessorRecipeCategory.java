@@ -11,6 +11,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
+import mezz.jei.api.gui.widgets.IScrollGridWidgetFactory;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
@@ -37,6 +38,7 @@ public class CaviarProcessorRecipeCategory implements IRecipeCategory<CaviarProc
             CaviarProcessorRecipe.class);
     private final IDrawable background;
     private final IDrawable icon;
+    private final IScrollGridWidgetFactory<?> scrollGridWidgetFactory;
 
     private List<ResourceFishEntity> cachedEntity = new ArrayList<>();
 
@@ -47,6 +49,9 @@ public class CaviarProcessorRecipeCategory implements IRecipeCategory<CaviarProc
         for (int i = 0; i < 3; i++) {
             cachedEntity.add(null);
         }
+
+        this.scrollGridWidgetFactory = helper.createScrollGridFactory(4, 2);
+        this.scrollGridWidgetFactory.setPosition(50, 0);
     }
 
     @Override
@@ -82,32 +87,31 @@ public class CaviarProcessorRecipeCategory implements IRecipeCategory<CaviarProc
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, CaviarProcessorRecipe recipe, IFocusGroup iFocusGroup) {
 
-        builder.addSlot(RecipeIngredientRole.INPUT,7, 11).addItemStack(recipe.caviar());
+        builder.addSlot(RecipeIngredientRole.INPUT, 7, 11).addItemStack(recipe.caviar());
 
-        List<ChanceResult> modifiedOutputs = new ArrayList<>(recipe.results());
+        for (var result : recipe.getRollResults()) {
+            builder.addSlotToWidget(RecipeIngredientRole.OUTPUT, this.scrollGridWidgetFactory)
+                    .addItemStack(result.stack())
+                    .addRichTooltipCallback((slotView, tooltip) -> {
+                        double baseChance = result.chance();
+                        int asPercent = Math.round((float) (baseChance * 100));
 
-        int size = modifiedOutputs.size();
-        int centerX = size > 0 ? 1 : 10;
-        int centerY = size > 5 ? 2 : 11;
-        int xOffset = 0;
-        int yOffset = 0;
-        int index = 0;
-
-        for (int i = 0; i < size; i++) {
-            xOffset = centerX + (i % 5) * 18;
-            yOffset = centerY + ((i / 5) * 18);
-            index = i;
-
-            int finalIndex = index;
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 49 + xOffset, yOffset)
-                    .addItemStack(modifiedOutputs.get(i).stack()).addRichTooltipCallback((slotView, tooltip) -> {
-                        ChanceResult output = modifiedOutputs.get(finalIndex);
-                        float chance = output.chance();
                         tooltip.add(Component.translatable("jei.resourcefish.chance")
-                                .append(String.valueOf((int) (chance * 100)))
+                                .append(String.valueOf(asPercent))
                                 .append("%").withStyle(ChatFormatting.GOLD));
-                    }).setBackground(JEIResourceFishPlugin.slotDrawable, -1, -1);
+                    });
         }
+
+        builder.addSlotToWidget(RecipeIngredientRole.OUTPUT, this.scrollGridWidgetFactory)
+                .addFluidStack(recipe.fluidStack().getFluid())
+                .addRichTooltipCallback((slotView, tooltip) -> {
+                    tooltip.add(Component.translatable("jei.resourcefish.fluid_amount")
+                            .append(String.valueOf(recipe.fluidStack().getAmount()))
+                            .append("mB").withStyle(ChatFormatting.GOLD));
+                    tooltip.add(Component.translatable("jei.resourcefish.needs_tank_upgrade")
+                            .withStyle(ChatFormatting.GOLD));
+                });
+
     }
 
     @Override

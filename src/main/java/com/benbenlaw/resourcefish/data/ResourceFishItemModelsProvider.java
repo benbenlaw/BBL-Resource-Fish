@@ -28,8 +28,8 @@ public class ResourceFishItemModelsProvider extends ItemModelProvider {
         simpleItem(ResourceFishItems.SPEED_UPGRADE_1);
         simpleItem(ResourceFishItems.SPEED_UPGRADE_2);
         simpleItem(ResourceFishItems.SPEED_UPGRADE_3);
-        simpleItem(ResourceFishItems.SPEED_UPGRADE_4);
-        simpleItem(ResourceFishItems.SPEED_UPGRADE_5);
+        simpleItem(ResourceFishItems.INFUSING_UPGRADE);
+        simpleItem(ResourceFishItems.BREEDING_UPGRADE);
         simpleItem(ResourceFishItems.TANK_UPGRADE);
     }
 

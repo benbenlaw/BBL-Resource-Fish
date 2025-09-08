@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "resourcefish:item/speed_upgrade_5"
+    "layer0": "resourcefish:item/breeding_upgrade"
   }
 }

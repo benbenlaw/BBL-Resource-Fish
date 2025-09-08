@@ -9,8 +9,8 @@
     "resourcefish:speed_upgrade_1",
     "resourcefish:speed_upgrade_2",
     "resourcefish:speed_upgrade_3",
-    "resourcefish:speed_upgrade_4",
-    "resourcefish:speed_upgrade_5",
-    "resourcefish:tank_upgrade"
+    "resourcefish:tank_upgrade",
+    "resourcefish:breeding_upgrade",
+    "resourcefish:infusing_upgrade"
   ]
 }

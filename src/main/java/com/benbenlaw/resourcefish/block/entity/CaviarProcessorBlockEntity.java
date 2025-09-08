@@ -269,11 +269,9 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
         int totalReduction = 0;
 
         Map<Item, Integer> speedUpgrades = new HashMap<>();
-        speedUpgrades.put(ResourceFishItems.SPEED_UPGRADE_1.get(), 20);
-        speedUpgrades.put(ResourceFishItems.SPEED_UPGRADE_2.get(), 40);
-        speedUpgrades.put(ResourceFishItems.SPEED_UPGRADE_3.get(), 60);
-        speedUpgrades.put(ResourceFishItems.SPEED_UPGRADE_4.get(), 80);
-        speedUpgrades.put(ResourceFishItems.SPEED_UPGRADE_5.get(), 100);
+        speedUpgrades.put(ResourceFishItems.SPEED_UPGRADE_1.get(), 40);
+        speedUpgrades.put(ResourceFishItems.SPEED_UPGRADE_2.get(), 80);
+        speedUpgrades.put(ResourceFishItems.SPEED_UPGRADE_3.get(), 120);
 
         ItemStack upgradeSlot1 = itemHandler.getStackInSlot(8);
         ItemStack upgradeSlot2 = itemHandler.getStackInSlot(9);
@@ -290,7 +288,7 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
             }
         }
 
-        Arrays.fill(maxProgress, Math.max(1, baseMaxProgress - totalReduction));
+        Arrays.fill(maxProgress, Math.max(20, baseMaxProgress - totalReduction));
     }
 
     public void fillOutputSlots(CaviarProcessorRecipe recipe) {

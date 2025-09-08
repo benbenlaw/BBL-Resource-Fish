@@ -2,6 +2,7 @@ package com.benbenlaw.resourcefish.recipe;
 
 import com.benbenlaw.resourcefish.block.entity.TankControllerBlockEntity;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
+import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -30,31 +31,42 @@ public record FishInfusingRecipe(ResourceLocation fish,
     @Override
     public boolean matches(RecipeInput container, Level level) {
 
+        ItemStack upgradeSlot1 = container.getItem(TankControllerBlockEntity.UPGRADE_SLOT_1);
+        ItemStack upgradeSlot2 = container.getItem(TankControllerBlockEntity.UPGRADE_SLOT_2);
+        ItemStack upgradeSlot3 = container.getItem(TankControllerBlockEntity.UPGRADE_SLOT_3);
+        ItemStack upgradeSlot4 = container.getItem(TankControllerBlockEntity.UPGRADE_SLOT_4);
+        boolean hasInfusingRecipe =
+                upgradeSlot1.is(ResourceFishItems.INFUSING_UPGRADE)
+                        || upgradeSlot2.is(ResourceFishItems.INFUSING_UPGRADE)
+                        || upgradeSlot3.is(ResourceFishItems.INFUSING_UPGRADE)
+                        || upgradeSlot4.is(ResourceFishItems.INFUSING_UPGRADE);
 
-        if (TankControllerBlockEntity.fishPool != null) {
+        if (container instanceof TankRecipeInput tankRecipeInput) {
+            TankControllerBlockEntity entity = (TankControllerBlockEntity) level.getBlockEntity(tankRecipeInput.getPos());
 
-            List<ResourceLocation> fishTypes = new ArrayList<>();
+            assert entity != null;
+            if (entity.fishPool != null && hasInfusingRecipe) {
 
-            for (ResourceFishEntity fish  : TankControllerBlockEntity.fishPool) {
-                if (fish.getResourceType().getId() != null) {
-                    fishTypes.add(fish.getResourceType().getId());
+                List<ResourceLocation> fishTypes = new ArrayList<>();
+
+                for (ResourceFishEntity fish  : entity.fishPool) {
+                    if (fish.getResourceType().getId() != null) {
+                        fishTypes.add(fish.getResourceType().getId());
+                    }
                 }
+
+                if (fishTypes.isEmpty()) return false;
+
+                boolean fishType = fishTypes.contains(fish);
+
+                boolean isInput1 = input1.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_1));
+
+                boolean isInput2 = Arrays.stream(input2.getItems()).toList().isEmpty() || input2.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_2));
+                boolean isInput3 = Arrays.stream(input3.getItems()).toList().isEmpty() || input3.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_3));
+
+                return fishType && isInput1 && isInput2 && isInput3;
             }
-
-            if (fishTypes.isEmpty()) return false;
-
-            boolean fishType = fishTypes.contains(fish);
-
-            boolean isInput1 = input1.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_1));
-
-            boolean isInput2 = Arrays.stream(input2.getItems()).toList().isEmpty() || input2.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_2));
-            boolean isInput3 = Arrays.stream(input3.getItems()).toList().isEmpty() || input3.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_3));
-
-
-            return fishType && isInput1 && isInput2 && isInput3;
         }
-
-
         return false;
     }
 
