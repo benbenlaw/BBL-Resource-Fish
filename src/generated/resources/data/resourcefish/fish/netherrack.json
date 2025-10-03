@@ -1,0 +1,23 @@
+{
+  "drop_interval": 300,
+  "drop_items": [
+    {
+      "item": {
+        "components": {
+          "resourcefish:fish_type": "resourcefish:netherrack"
+        },
+        "count": 1,
+        "id": "resourcefish:caviar"
+      }
+    }
+  ],
+  "main_color": "#FF8B0000",
+  "models": [
+    "small"
+  ],
+  "pattern_color": "#FF4B0000",
+  "patterns": [
+    "small_4",
+    "small_5"
+  ]
+}

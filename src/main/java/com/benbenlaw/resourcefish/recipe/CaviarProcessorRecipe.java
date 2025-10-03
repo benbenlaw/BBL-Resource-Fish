@@ -76,7 +76,11 @@ public record CaviarProcessorRecipe(ItemStack caviar,
 
     @Override
     public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider provider) {
-        return results.getFirst().stack();
+        if (!results.isEmpty()) {
+            return results.getFirst().stack();
+        } else {
+            return ItemStack.EMPTY;
+        }
     }
 
     public List<ItemStack> getResults() {
@@ -102,6 +106,9 @@ public record CaviarProcessorRecipe(ItemStack caviar,
 
     @Override
     public ItemStack assemble(RecipeInput container, HolderLookup.Provider provider) {
+        if (results.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
         return results.getFirst().stack().copy();
     }
 

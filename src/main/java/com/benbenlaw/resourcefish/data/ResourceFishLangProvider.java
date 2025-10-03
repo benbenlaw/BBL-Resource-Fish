@@ -69,6 +69,9 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addTooltipTranslation("breeding_upgrade", "Allows the Tank to breed fish");
         addTooltipTranslation("infusing_upgrade", "Allows the Tank to infuse fish");
 
+        //Entity
+        add("entity.resourcefish.resource_fish", "Resource Fish (%s)");
+
     }
 
     private void addItemTranslation(String name, String translation) {

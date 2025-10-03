@@ -9,6 +9,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -37,6 +38,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class ResourceFishEntity extends AbstractSchoolingFish  {
@@ -60,8 +62,9 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
     public void tick() {
         super.tick();
 
-        if (!this.level.isClientSide && this.allowedToDrop) {
+        if (!this.level.isClientSide() && this.allowedToDrop) {
             dropTimer++;
+
 
             ResourceType resourceType = getResourceType();
             ticksPerDrop = resourceType.getDropIntervalTicks();
@@ -326,5 +329,33 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         });
 
         bucket.set(ResourceFishDataComponents.FISH_TYPE.get(), this.getResourceType().getId());
+    }
+
+    @Override
+    public Component getName() {
+        ResourceType resourceType = getResourceType();
+        String baseName = "entity.resourcefish.resource_fish";
+        if (resourceType != null && resourceType != ResourceType.NONE) {
+
+            String path = resourceType.getId().getPath();
+            String capitalizedPath = path.substring(0, 1).toUpperCase(Locale.ROOT) + path.substring(1).toLowerCase(Locale.ROOT);
+
+            return Component.translatable(baseName, capitalizedPath);
+        }
+        return Component.translatable(baseName);
+    }
+
+    @Override
+    public @NotNull Component getDisplayName() {
+        ResourceType resourceType = getResourceType();
+        String baseName = "entity.resourcefish.resource_fish";
+        if (resourceType != null && resourceType != ResourceType.NONE) {
+
+            String path = resourceType.getId().getPath();
+            String capitalizedPath = path.substring(0, 1).toUpperCase(Locale.ROOT) + path.substring(1).toLowerCase(Locale.ROOT);
+
+            return Component.translatable(baseName, capitalizedPath);
+        }
+        return Component.translatable(baseName);
     }
 }

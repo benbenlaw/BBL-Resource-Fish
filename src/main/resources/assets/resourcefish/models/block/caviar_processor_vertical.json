@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/orientable_vertical",
+  "textures": {
+    "front": "resourcefish:block/caviar_processor_front",
+    "side": "resourcefish:block/machine_side"
+  }
+}

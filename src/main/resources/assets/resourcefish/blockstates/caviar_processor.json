@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "resourcefish:block/caviar_processor_vertical",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "resourcefish:block/caviar_processor",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "resourcefish:block/caviar_processor"
+    },
+    "facing=south": {
+      "model": "resourcefish:block/caviar_processor",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "resourcefish:block/caviar_processor_vertical"
+    },
+    "facing=west": {
+      "model": "resourcefish:block/caviar_processor",
+      "y": 270
+    }
+  }
+}

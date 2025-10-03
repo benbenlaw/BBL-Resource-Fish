@@ -121,6 +121,15 @@ public class ResourceFishRecipes extends RecipeProvider {
                 100, 1.0, createFish("andesite"))
                 .unlockedBy("has_item", has(Items.ANDESITE)).save(consumer);
 
+        //Breeding Netherrack Fish
+        FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("lava"), createFish("lava"),
+                        SizedIngredient.of(Items.STONE, 64), 100, 0.15, createFish("netherrack"))
+                .unlockedBy("has_item", has(Items.STONE)).save(consumer);
+
+        //Breeding Soul Sand Fish
+        FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("netherrack"), createFish("netherrack"),
+                        SizedIngredient.of(Items.SAND, 64), 100, 0.15, createFish("soul_sand"))
+                .unlockedBy("has_item", has(Items.SOUL_SAND)).save(consumer);
 
         //Caviar
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("granite"),
@@ -229,7 +238,13 @@ public class ResourceFishRecipes extends RecipeProvider {
                         new ChanceResult(new ItemStack(Items.MANGROVE_LOG), 0.05f)))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/wood"));
 
+        CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("netherrack"),
+                List.of(new ChanceResult(new ItemStack(Items.NETHERRACK), 0.1f)))
+                .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/netherrack"));
 
+        CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("soul_sand"),
+                List.of(new ChanceResult(new ItemStack(Items.SOUL_SAND), 0.1f)))
+                .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/soul_sand"));
 
         // ***** Crafting Recipes *****
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishBlocks.TANK_CONTROLLER)

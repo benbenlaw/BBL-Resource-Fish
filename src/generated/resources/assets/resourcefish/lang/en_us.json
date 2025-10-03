@@ -2,6 +2,7 @@
   "block.resourcefish.caviar_processor": "Caviar Processor",
   "block.resourcefish.tank_controller": "Resource Fish Tank",
   "block.resourcefish.tank_controller_range": "Tank Range",
+  "entity.resourcefish.resource_fish": "Resource Fish (%s)",
   "item.resourcefish.breeding_upgrade": "Breeding Upgrade",
   "item.resourcefish.caviar": "Caviar",
   "item.resourcefish.depth_upgrade_1": "Depth Upgrade 1",

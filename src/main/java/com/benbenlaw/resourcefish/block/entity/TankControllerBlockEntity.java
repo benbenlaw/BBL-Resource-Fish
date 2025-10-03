@@ -4,6 +4,7 @@ import com.benbenlaw.core.block.entity.SyncableBlockEntity;
 import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
+import com.benbenlaw.resourcefish.item.CaviarItem;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.recipe.ActiveRecipeType;
 import com.benbenlaw.resourcefish.recipe.FishBreedingRecipe;
@@ -212,7 +213,9 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
             for (Entity entity : entityList) {
                 if (entity instanceof ResourceFishEntity fish) {
                     fishPool.add(fish);
-                    fish.setAllowedToDrop(true);
+                    ItemStack fishStack = CaviarItem.createCaviarStack(fish.getResourceType().getId().getPath());
+                    int leftoverCount = simulateInsertStack(itemHandler, fishStack, inputSlots);
+                    fish.setAllowedToDrop(leftoverCount <= 0);
                     currentAllowedFish.add(fish.getUUID());
                 }
             }
@@ -225,6 +228,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
                     }
                 }
             }
+
 
             previouslyAllowedFish.clear();
             previouslyAllowedFish.addAll(currentAllowedFish);
@@ -408,6 +412,34 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
 
         sync();
     }
+
+    private int simulateInsertStack(ItemStackHandler itemHandler, ItemStack stack, int[] slots) {
+        ItemStack copy = stack.copy();
+
+        // Check stacking into existing stacks
+        for (int slot : slots) {
+            ItemStack slotStack = itemHandler.getStackInSlot(slot);
+            if (!slotStack.isEmpty() && ItemStack.isSameItemSameComponents(slotStack, copy)) {
+                int spaceLeft = slotStack.getMaxStackSize() - slotStack.getCount();
+                int toAdd = Math.min(spaceLeft, copy.getCount());
+                copy.shrink(toAdd);
+                if (copy.isEmpty()) return 0; // fully fits
+            }
+        }
+
+        // Check empty slots
+        for (int slot : slots) {
+            ItemStack slotStack = itemHandler.getStackInSlot(slot);
+            if (slotStack.isEmpty()) {
+                int toAdd = Math.min(copy.getMaxStackSize(), copy.getCount());
+                copy.shrink(toAdd);
+                if (copy.isEmpty()) return 0; // fully fits
+            }
+        }
+
+        return copy.getCount(); // leftover if it wouldn't fit
+    }
+
 
     private void spawnBoxOutlineParticles(AABB box) {
         if (level.isClientSide) {

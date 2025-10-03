@@ -78,6 +78,10 @@ dependencies {
     compileOnly "curse.maven:jei-238222:5846880"
     runtimeOnly "curse.maven:jei-238222:5846880"
 
+    //One Probe
+    compileOnly "curse.maven:the-one-probe-245211:5836106"
+    runtimeOnly "curse.maven:the-one-probe-245211:5836106"
+
 
 }
 

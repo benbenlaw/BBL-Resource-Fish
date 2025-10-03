@@ -1,0 +1,12 @@
+{
+  "type": "resourcefish:fish_breeding",
+  "breeding_ingredient": {
+    "count": 64,
+    "item": "minecraft:sand"
+  },
+  "chance": 0.15,
+  "created_fish": "resourcefish:soul_sand",
+  "duration": 100,
+  "parent_a": "resourcefish:netherrack",
+  "parent_b": "resourcefish:netherrack"
+}

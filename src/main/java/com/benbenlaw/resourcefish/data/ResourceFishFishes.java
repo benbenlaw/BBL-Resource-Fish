@@ -202,6 +202,26 @@ public class ResourceFishFishes extends ResourceFishBuilder {
                 .biomes(List.of("#c:is_ocean"))
                 .build());
 
+        //Netherrack
+        this.addFish(ResourceFishBuilder.builder("netherrack")
+                .mainColor(0xFF8B0000)
+                .patternColor(0xFF4B0000)
+                .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("netherrack"), 1.0f)))
+                .dropInterval(300)
+                .patterns(List.of(ResourceFishEntity.Pattern.SMALL_4, ResourceFishEntity.Pattern.SMALL_5))
+                .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
+                .build());
+
+        //Soul Sand
+        this.addFish(ResourceFishBuilder.builder("soul_sand")
+                .mainColor(0xFF221A16)
+                .patternColor(0xFF786051)
+                .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("soul_sand"), 1.0f)))
+                .dropInterval(300)
+                .patterns(List.of(ResourceFishEntity.Pattern.SMALL_2, ResourceFishEntity.Pattern.SMALL_3))
+                .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
+                .build());
+
         //Skeleton
         this.addFish(ResourceFishBuilder.builder("skeleton")
                 .mainColor(0x20FFFFFF)

@@ -1,6 +1,16 @@
 Resource Fish
 grading machine,
 
+1.0.6
+- Updated Yuki textures
+- Now overrided the getName and getDisplayName methods in the fish entity to return the correct name including the fish resource type
+
+1.0.5
+Tank now disables drops when its inventory is full
+Added Netherrack Fish
+Added Soul Sand Fish
+Fixed fish producing items every 20 ticks instead of there defined rate
+
 1.0.4
 Added Tooltips for all upgrades
 Added Breeding and Infusing upgrades, these must be installed in the Tank Controller to allow breeding and infusing recipes
