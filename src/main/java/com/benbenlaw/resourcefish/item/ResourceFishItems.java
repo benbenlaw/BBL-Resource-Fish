@@ -51,6 +51,9 @@ public class ResourceFishItems {
     public static final DeferredItem<Item> INFUSING_UPGRADE = ITEMS.register("infusing_upgrade",
             () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.infusing_upgrade"));
 
+    public static final DeferredItem<Item> ROUND_ROBIN_UPGRADE = ITEMS.register("round_robin_upgrade",
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.round_robin_upgrade"));
+
 
 
 

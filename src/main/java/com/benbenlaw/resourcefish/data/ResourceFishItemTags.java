@@ -34,6 +34,7 @@ public class ResourceFishItemTags extends ItemTagsProvider {
                 .add(ResourceFishItems.TANK_UPGRADE.get())
                 .add(ResourceFishItems.BREEDING_UPGRADE.get())
                 .add(ResourceFishItems.INFUSING_UPGRADE.get())
+                .add(ResourceFishItems.ROUND_ROBIN_UPGRADE.get())
                 ;
 
 

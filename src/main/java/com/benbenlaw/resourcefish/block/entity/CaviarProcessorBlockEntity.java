@@ -54,6 +54,8 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
     public static final int[] UPGRADE_SLOTS = {8, 9, 10};
     public static final int[] OUTPUTS_SLOTS = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22};
 
+    private int roundRobinIndex = 0;
+
     private @NotNull RecipeInput getRecipeInput() {
         return new RecipeInput() {
             @Override
@@ -181,6 +183,20 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
                     return;
                 }
             }
+        }
+
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (Arrays.stream(INPUT_SLOTS).anyMatch(s -> s == slot) && !stack.isEmpty() && !simulate) {
+                int remaining = insertStackIntoSlots(this, stack.copy(), INPUT_SLOTS);
+                if (remaining <= 0) {
+                    return ItemStack.EMPTY;
+                } else {
+                    return stack.copyWithCount(remaining);
+                }
+            }
+            // otherwise use normal behavior
+            return super.insertItem(slot, stack, simulate);
         }
     };
 
@@ -342,8 +358,49 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
 
     }
 
-
     private int insertStackIntoSlots(ItemStackHandler itemHandler, ItemStack stack, int[] slots) {
+        boolean hasRoundRobin = hasRoundRobinUpgrade();
+
+        if (hasRoundRobin) {
+            int remaining = stack.getCount();
+
+            // Keep placing until stack is empty
+            while (remaining > 0) {
+                int slot = slots[roundRobinIndex % slots.length];
+                ItemStack slotStack = itemHandler.getStackInSlot(slot);
+
+                if (slotStack.isEmpty()) {
+                    // Place a single item in the empty slot
+                    itemHandler.setStackInSlot(slot, stack.copyWithCount(1));
+                    stack.shrink(1);
+                    remaining--;
+                } else if (ItemStack.isSameItemSameComponents(slotStack, stack) &&
+                        slotStack.getCount() < slotStack.getMaxStackSize()) {
+                    // Merge one item into existing stack
+                    slotStack.grow(1);
+                    stack.shrink(1);
+                    remaining--;
+                } else {
+                    // slot is full or not matching → skip
+                }
+
+                // Move to next slot every item inserted/attempted
+                roundRobinIndex = (roundRobinIndex + 1) % slots.length;
+
+                // Safety: prevent infinite loop if stack can't be placed anywhere
+                if (remaining == stack.getCount()) break;
+            }
+
+            return remaining;
+
+        } else {
+            // Default behavior
+            return insertStackNormal(itemHandler, stack, slots);
+        }
+    }
+
+
+    private int insertStackNormal(ItemStackHandler itemHandler, ItemStack stack, int[] slots) {
         // Try to merge into existing stacks first
         for (int slot : slots) {
             ItemStack slotStack = itemHandler.getStackInSlot(slot);
@@ -358,6 +415,7 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
                 }
             }
         }
+
         // Then try empty slots
         for (int slot : slots) {
             ItemStack slotStack = itemHandler.getStackInSlot(slot);
@@ -368,7 +426,18 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
                 if (stack.isEmpty()) return 0; // fully inserted
             }
         }
-        return stack.getCount(); // return leftover count if any
+
+        return stack.getCount(); // leftover
+    }
+
+    private boolean hasRoundRobinUpgrade() {
+        Item roundRobinUpgrade = ResourceFishItems.ROUND_ROBIN_UPGRADE.get();
+        for (int upgradeSlot : UPGRADE_SLOTS) {
+            if (itemHandler.getStackInSlot(upgradeSlot).is(roundRobinUpgrade)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void drops() {

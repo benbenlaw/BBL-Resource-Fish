@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-08T12:25:56.6644541	Recipes
+// 1.21.1	2025-10-03T10:55:20.9838892	Recipes
 02902214a9f43dde1d22b7a828535d2e8d80f819 data/resourcefish/advancement/recipes/breeding/breeding/coal.json
 3e9d85ef635910d34cb66a0d032311de412f7a81 data/resourcefish/advancement/recipes/breeding/breeding/diamond.json
 c5d59f192c7f31c707a64135820b0c6aae5cc837 data/resourcefish/advancement/recipes/breeding/breeding/emerald.json
@@ -19,6 +19,7 @@ f42ba110f374db502a9d697449a35bda748fc24d data/resourcefish/advancement/recipes/i
 a6a3d4bab321b718a58bb676a974b0e41b75ff53 data/resourcefish/advancement/recipes/misc/depth_upgrade_2.json
 13d3d218cd505cbce92316bdbc8dc0d2aeb1592b data/resourcefish/advancement/recipes/misc/depth_upgrade_3.json
 b0dc839bd11f37ed552b12a51a40a1186ce70833 data/resourcefish/advancement/recipes/misc/infusing_upgrade.json
+31a654607536e987448ab725677e6f21789d3286 data/resourcefish/advancement/recipes/misc/round_robin_upgrade.json
 b0dd3a9fa11832fc3116921bc7bd86c5c453a8c5 data/resourcefish/advancement/recipes/misc/speed_upgrade_1.json
 db41c12ee1fa724b03b5fd55cdc5f8b8564b56fb data/resourcefish/advancement/recipes/misc/speed_upgrade_2.json
 2e26487f16bf215c8d4dbe5eb1dbe6daf6e18e86 data/resourcefish/advancement/recipes/misc/speed_upgrade_3.json
@@ -95,6 +96,7 @@ e47e5e2f36cfe7e00ada387d5a6f390ddbba171a data/resourcefish/recipe/infusing/iron.
 85d7985e58dbf02dd1dbbf2f98a836a9461d7d69 data/resourcefish/recipe/infusing/lapis.json
 f2dae435edd3a1e45f342f3bba27961a7146b16a data/resourcefish/recipe/infusing/redstone.json
 1921d709213e60230824e22766e0572fc0e545b1 data/resourcefish/recipe/infusing_upgrade.json
+025542735711b76cd00534f152d91a95d4539dac data/resourcefish/recipe/round_robin_upgrade.json
 a5d8b10956839848ac995d678e05d4ae6a03ee9d data/resourcefish/recipe/speed_upgrade_1.json
 9cb430bb322a8002cd9edb7bbdf1590d4cc43faa data/resourcefish/recipe/speed_upgrade_2.json
 68d3541dad10b589c5578e3dd05ed24466674127 data/resourcefish/recipe/speed_upgrade_3.json

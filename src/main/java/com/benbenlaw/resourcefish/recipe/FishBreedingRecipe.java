@@ -23,6 +23,7 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -40,36 +41,41 @@ public record FishBreedingRecipe(ResourceLocation parentIngredientA,
         ItemStack upgradeSlot2 = container.getItem(TankControllerBlockEntity.UPGRADE_SLOT_2);
         ItemStack upgradeSlot3 = container.getItem(TankControllerBlockEntity.UPGRADE_SLOT_3);
         ItemStack upgradeSlot4 = container.getItem(TankControllerBlockEntity.UPGRADE_SLOT_4);
+
         boolean hasBreedingUpgrade =
                 upgradeSlot1.is(ResourceFishItems.BREEDING_UPGRADE)
-                || upgradeSlot2.is(ResourceFishItems.BREEDING_UPGRADE)
-                || upgradeSlot3.is(ResourceFishItems.BREEDING_UPGRADE)
-                || upgradeSlot4.is(ResourceFishItems.BREEDING_UPGRADE);
-
+                        || upgradeSlot2.is(ResourceFishItems.BREEDING_UPGRADE)
+                        || upgradeSlot3.is(ResourceFishItems.BREEDING_UPGRADE)
+                        || upgradeSlot4.is(ResourceFishItems.BREEDING_UPGRADE);
 
         if (container instanceof TankRecipeInput tankRecipeInput) {
             TankControllerBlockEntity entity = (TankControllerBlockEntity) level.getBlockEntity(tankRecipeInput.getPos());
 
             if (entity.fishPool != null && hasBreedingUpgrade) {
 
-                List<ResourceLocation> fishTypes = new ArrayList<>();
+                Map<ResourceLocation, Long> fishCounts = entity.fishPool.stream()
+                        .filter(fish -> fish.getResourceType().getId() != null)
+                        .collect(Collectors.groupingBy(
+                                fish -> fish.getResourceType().getId(),
+                                Collectors.counting()
+                        ));
 
-                for (ResourceFishEntity fish : entity.fishPool) {
-                    if (fish.getResourceType().getId() != null) {
-                        fishTypes.add(fish.getResourceType().getId());
-                    }
-                }
+                if (fishCounts.isEmpty()) return false;
 
-                if (fishTypes.isEmpty()) return false;
-
-                boolean fishTypeA = fishTypes.contains(parentIngredientA);
-                boolean fishTypeB = fishTypes.contains(parentIngredientB);
                 boolean hasBreedingItem =
                         breedingIngredient.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_1))
                                 || breedingIngredient.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_2))
                                 || breedingIngredient.test(container.getItem(TankControllerBlockEntity.RECIPE_SLOT_3));
 
-                return fishTypeA && fishTypeB && hasBreedingItem;
+                if (!hasBreedingItem) return false;
+
+                // Handle case where both parents are the same type
+                if (parentIngredientA.equals(parentIngredientB)) {
+                    return fishCounts.getOrDefault(parentIngredientA, 0L) >= 2;
+                } else {
+                    return fishCounts.containsKey(parentIngredientA) &&
+                            fishCounts.containsKey(parentIngredientB);
+                }
             }
         }
 

@@ -1,6 +1,14 @@
 Resource Fish
 grading machine,
 
+1.0.8
+- Improved Syncing and fixed recipe progress
+
+1.0.7
+- Added Round Robin Upgrade
+- Added fish counting to the tank controller gui if number of fish is above the amount the tank can hold then the drops will be stopped and recipes will not run
+- Hovering over the fish count will list all fish in the tank and how many of them there are
+
 1.0.6
 - Updated Yuki textures
 - Now overrided the getName and getDisplayName methods in the fish entity to return the correct name including the fish resource type

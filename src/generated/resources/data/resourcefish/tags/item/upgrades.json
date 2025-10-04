@@ -11,6 +11,7 @@
     "resourcefish:speed_upgrade_3",
     "resourcefish:tank_upgrade",
     "resourcefish:breeding_upgrade",
-    "resourcefish:infusing_upgrade"
+    "resourcefish:infusing_upgrade",
+    "resourcefish:round_robin_upgrade"
   ]
 }

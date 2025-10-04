@@ -4,6 +4,8 @@ package com.benbenlaw.resourcefish.screen;
 import com.benbenlaw.core.util.MouseUtil;
 import com.benbenlaw.resourcefish.ResourceFish;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.WidgetSprites;
@@ -18,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TankControllerScreen extends AbstractContainerScreen<TankControllerMenu> {
     private static final ResourceLocation TEXTURE =
@@ -52,6 +55,36 @@ public class TankControllerScreen extends AbstractContainerScreen<TankController
         renderBackground(guiGraphics, mouseX, mouseY, delta);
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
+        renderFishInformation(guiGraphics, mouseX, mouseY);
+
     }
+
+    public void renderFishInformation(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        guiGraphics.drawString(this.font,
+                Component.literal(this.menu.data.get(2) + " / " + this.menu.data.get(3)),
+                this.leftPos + 9, this.topPos + 39, 0x3F3F3F, false);
+
+        if (MouseUtil.isMouseAboveArea(mouseX, mouseY, this.leftPos + 7, this.topPos + 34, 0, 0, 72, 18)) {
+
+            List<Component> tooltip = new ArrayList<>();
+
+            if (this.menu.data.get(2) > this.menu.data.get(3)) {
+                tooltip.add(Component.translatable("screen.resourcefish.tank_controller.overfilled")
+                        .withStyle(net.minecraft.ChatFormatting.RED));
+            } else {
+                tooltip.add(Component.translatable("screen.resourcefish.tank_controller.fish_types")
+                        .withStyle(ChatFormatting.YELLOW));
+
+                for (String name : this.menu.blockEntity.fishNames) {
+                    tooltip.add(Component.literal("- " + name).withStyle(ChatFormatting.GRAY));
+                }
+            }
+
+            guiGraphics.renderTooltip(Minecraft.getInstance().font, tooltip, Optional.empty(), mouseX, mouseY);
+
+        }
+
+    }
+
 
 }

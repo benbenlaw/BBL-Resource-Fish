@@ -374,6 +374,15 @@ public class ResourceFishRecipes extends RecipeProvider {
                 .unlockedBy("has_item", has(ResourceFishItems.INFUSING_UPGRADE))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.ROUND_ROBIN_UPGRADE)
+                .pattern("BAB")
+                .pattern("ABA")
+                .pattern("BAB")
+                .define('A', Items.REDSTONE)
+                .define('B', ResourceFishItems.CAVIAR)
+                .unlockedBy("has_item", has(ResourceFishItems.CAVIAR))
+                .save(consumer);
+
 
 
 

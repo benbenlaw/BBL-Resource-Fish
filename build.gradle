@@ -140,14 +140,12 @@ idea {
     }
 }
 
-/*
-
 tasks.register('publishCurseForge', TaskPublishCurseForge) {
     group "modpublishing"
 
     apiToken = System.getenv("curseforge_token").toString()
 
-    def projectId = 1153960
+    def projectId = 1346373
     def mainFile = upload(projectId, jar)
 
     mainFile.changelog = changelog
@@ -159,6 +157,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
 
 tasks.getByName("modrinth").setGroup("modpublishing")
 
+/*
 modrinth {
     token = System.getenv("modrinth_token").toString()
     projectId = "4K7cmETW"
@@ -176,7 +175,8 @@ modrinth {
     }
 }
 
-
  */
+
+
 
 

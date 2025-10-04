@@ -38,6 +38,7 @@ public class ResourceFishCreativeTab {
                 output.accept(ResourceFishItems.TANK_UPGRADE.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.INFUSING_UPGRADE.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.BREEDING_UPGRADE.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.ROUND_ROBIN_UPGRADE.get().asItem().getDefaultInstance());
 
                 //Fish Bucket
                 for (ResourceType type : ResourceType.getAll()) {

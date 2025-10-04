@@ -42,6 +42,7 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addItemTranslation("tank_upgrade", "Tank Upgrade");
         addItemTranslation("breeding_upgrade", "Breeding Upgrade");
         addItemTranslation("infusing_upgrade", "Infusing Upgrade");
+        addItemTranslation("round_robin_upgrade", "Round Robin Upgrade");
 
 
         //Blocks
@@ -68,9 +69,14 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addTooltipTranslation("tank_upgrade", "Allows the Caviar Processor to produce fluids");
         addTooltipTranslation("breeding_upgrade", "Allows the Tank to breed fish");
         addTooltipTranslation("infusing_upgrade", "Allows the Tank to infuse fish");
+        addTooltipTranslation("round_robin_upgrade", "Items inserted into the Caviar Processor will be distributed evenly across all input slots");
 
         //Entity
         add("entity.resourcefish.resource_fish", "Resource Fish (%s)");
+
+        //Screen
+        add("screen.resourcefish.tank_controller.overfilled", "Tank is overfilled! Drops Disabled.");
+        add("screen.resourcefish.tank_controller.fish_types", "Fish Types in Tank:");
 
     }
 
