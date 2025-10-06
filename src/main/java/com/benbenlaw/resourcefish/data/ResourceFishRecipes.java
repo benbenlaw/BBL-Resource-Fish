@@ -9,12 +9,14 @@ import com.benbenlaw.resourcefish.data.builders.FishInfusingRecipeBuilder;
 import com.benbenlaw.resourcefish.item.CaviarItem;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -43,8 +45,8 @@ public class ResourceFishRecipes extends RecipeProvider {
 
         //Breeding Stone Coal Fish
         FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("stone"), createFish("wood"),
-                SizedIngredient.of(Items.CHARCOAL, 64), 100, 1.0, createFish("coal"))
-                .unlockedBy("has_item", has(Items.CHARCOAL)).save(consumer);
+                SizedIngredient.of(Items.COAL, 64), 100, 1.0, createFish("coal"))
+                .unlockedBy("has_item", has(Items.COAL)).save(consumer);
 
         //Breeding Diamond Fish
         FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("coal"), createFish("coal"),
@@ -55,6 +57,22 @@ public class ResourceFishRecipes extends RecipeProvider {
         FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("lapis"), createFish("lapis"),
                 SizedIngredient.of(Items.EMERALD, 4), 100, 0.15, createFish("emerald"))
                 .unlockedBy("has_item", has(Items.EMERALD)).save(consumer);
+
+        //Infusing Sand Fish
+        FishInfusingRecipeBuilder.createFishInfusingRecipe(createFish("water"),
+                SizedIngredient.of(Items.SAND, 64),
+                SizedIngredient.of(Items.SAND, 64),
+                SizedIngredient.of(Items.SAND, 64),
+                100, 1.0, createFish("sand"))
+                .unlockedBy("has_item", has(Items.SAND)).save(consumer);
+
+        //Infusing Gravel Fish
+        FishInfusingRecipeBuilder.createFishInfusingRecipe(createFish("stone"),
+                SizedIngredient.of(Items.GRAVEL, 64),
+                SizedIngredient.of(Items.GRAVEL, 64),
+                SizedIngredient.of(Items.GRAVEL, 64),
+                100, 1.0, createFish("gravel"))
+                .unlockedBy("has_item", has(Items.GRAVEL)).save(consumer);
 
         //Infusing Copper Fish
         FishInfusingRecipeBuilder.createFishInfusingRecipe(createFish("coal"),
@@ -123,13 +141,38 @@ public class ResourceFishRecipes extends RecipeProvider {
 
         //Breeding Netherrack Fish
         FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("lava"), createFish("lava"),
-                        SizedIngredient.of(Items.STONE, 64), 100, 0.15, createFish("netherrack"))
+                        SizedIngredient.of(Items.STONE, 64), 100, 0.6, createFish("netherrack"))
                 .unlockedBy("has_item", has(Items.STONE)).save(consumer);
 
         //Breeding Soul Sand Fish
-        FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("netherrack"), createFish("netherrack"),
-                        SizedIngredient.of(Items.SAND, 64), 100, 0.15, createFish("soul_sand"))
+        FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("netherrack"), createFish("sand"),
+                        SizedIngredient.of(Items.SAND, 64), 100, 0.6, createFish("soul_sand"))
                 .unlockedBy("has_item", has(Items.SOUL_SAND)).save(consumer);
+
+        //Breeding Water Fish
+        FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("water"), createFish("water"),
+                        SizedIngredient.of(Items.WATER_BUCKET, 1), 100, 0.75, createFish("water"))
+                .unlockedBy("has_item", has(Items.WATER_BUCKET)).save(consumer);
+
+        //Breeding Lava Fish
+        FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("lava"), createFish("lava"),
+                        SizedIngredient.of(Items.LAVA_BUCKET, 1), 100, 0.75, createFish("lava"))
+                .unlockedBy("has_item", has(Items.LAVA_BUCKET)).save(consumer);
+
+        //Breeding Wood Fish
+        FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("wood"), createFish("wood"),
+                        SizedIngredient.of(ItemTags.LOGS, 64), 100, 0.75, createFish("wood"))
+                .unlockedBy("has_item", has(ItemTags.LOGS)).save(consumer);
+
+        //Breeding Dirt Fish
+        FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("dirt"), createFish("dirt"),
+                        SizedIngredient.of(Items.DIRT, 64), 100, 0.75, createFish("dirt"))
+                .unlockedBy("has_item", has(Items.DIRT)).save(consumer);
+
+        //Breeding Cobblestone Fish
+        FishBreedingRecipeBuilder.createFishBreedingRecipe(createFish("stone"), createFish("stone"),
+                        SizedIngredient.of(Items.COBBLESTONE, 64), 100, 0.75, createFish("cobblestone"))
+                .unlockedBy("has_item", has(Items.COBBLESTONE)).save(consumer);
 
         //Caviar
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("granite"),
@@ -245,6 +288,18 @@ public class ResourceFishRecipes extends RecipeProvider {
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("soul_sand"),
                 List.of(new ChanceResult(new ItemStack(Items.SOUL_SAND), 0.1f)))
                 .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/soul_sand"));
+
+        CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("sand"),
+                List.of(
+                        new ChanceResult(new ItemStack(Items.SAND), 0.2f),
+                        new ChanceResult(new ItemStack(Items.RED_SAND), 0.1f)))
+                .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/sand"));
+
+        CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("gravel"),
+                        List.of(
+                        new ChanceResult(new ItemStack(Items.GRAVEL), 0.2f),
+                        new ChanceResult(new ItemStack(Items.FLINT), 0.05f)))
+                .save(consumer, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/gravel"));
 
         // ***** Crafting Recipes *****
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishBlocks.TANK_CONTROLLER)

@@ -1,6 +1,18 @@
 Resource Fish
 grading machine,
 
+1.0.10
+- Fixed fish despawning when player leaves the area
+- Fixed caviar screen rendering
+- Fixed name tagged fish showing wrong name
+- Resource fish no longer continue to produce items when its tank has been removed
+- Fixed caviar processor not supporting shift clicking nicely
+
+1.0.9
+- Added Sand and Gravel Fish
+- Chance coal fish to use coal not charcoal
+- Fish that spawn in world can now be bred together to create that fish type eg water + water = water fish
+
 1.0.8
 - Improved Syncing and fixed recipe progress
 

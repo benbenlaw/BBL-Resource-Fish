@@ -169,6 +169,26 @@ public class ResourceFishFishes extends ResourceFishBuilder {
         CaviarProcessorRecipeBuilder.caviarProcessorRecipeBuilder(CaviarItem.createCaviarStack("stone"),
                 NonNullList.of(new ChanceResult(new ItemStack(Items.STONE), 0.2f)));
 
+        //Sand Fish
+        this.addFish(ResourceFishBuilder.builder("sand")
+                .mainColor(0xFFF4A460)
+                .patternColor(0xFFDEB887)
+                .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("sand"), 1.0f)))
+                .dropInterval(300)
+                .patterns(List.of(ResourceFishEntity.Pattern.SMALL_4, ResourceFishEntity.Pattern.SMALL_5))
+                .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
+                .build());
+
+        //Gravel Fish
+        this.addFish(ResourceFishBuilder.builder("gravel")
+                .mainColor(0xFF808080)
+                .patternColor(0xFF696969)
+                .dropItems(List.of(new ChanceResult(CaviarItem.createCaviarStack("gravel"), 1.0f)))
+                .dropInterval(300)
+                .patterns(List.of(ResourceFishEntity.Pattern.SMALL_5, ResourceFishEntity.Pattern.SMALL_6))
+                .models(List.of(ResourceFishEntity.Pattern.Base.SMALL))
+                .build());
+
         //Cobblestone Fish
         this.addFish(ResourceFishBuilder.builder("cobblestone")
                 .mainColor(0xFF808080)

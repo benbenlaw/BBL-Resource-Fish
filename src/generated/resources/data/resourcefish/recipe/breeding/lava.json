@@ -1,11 +1,11 @@
 {
   "type": "resourcefish:fish_breeding",
   "breeding_ingredient": {
-    "count": 64,
-    "item": "minecraft:stone"
+    "count": 1,
+    "item": "minecraft:lava_bucket"
   },
-  "chance": 0.6,
-  "created_fish": "resourcefish:netherrack",
+  "chance": 0.75,
+  "created_fish": "resourcefish:lava",
   "duration": 100,
   "parent_a": "resourcefish:lava",
   "parent_b": "resourcefish:lava"

@@ -1,0 +1,27 @@
+{
+  "type": "resourcefish:caviar_processor",
+  "caviar": {
+    "components": {
+      "resourcefish:fish_type": "resourcefish:sand"
+    },
+    "count": 1,
+    "id": "resourcefish:caviar"
+  },
+  "output_fluid": {},
+  "results": [
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "minecraft:sand"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "minecraft:red_sand"
+      }
+    }
+  ]
+}

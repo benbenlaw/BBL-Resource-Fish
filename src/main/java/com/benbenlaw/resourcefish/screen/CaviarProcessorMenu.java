@@ -59,7 +59,7 @@ public class CaviarProcessorMenu extends AbstractContainerMenu {
         int yOffset = 18;
         // Input Slots
         for (int i = 0; i < 8; i++) {
-            this.addSlot(new SlotItemHandler(entity.getItemStackHandler(), i, xStart + (i % 4) * xOffset, yStart + (i / 4) * yOffset));
+            createRecipeSlot(entity, i, xStart + (i % 4) * xOffset, yStart + (i / 4) * yOffset);
             slotPositions.put(i, new Point(xStart + (i % 4) * xOffset, yStart + (i / 4) * yOffset));
         }
         // Upgrade Slots
@@ -90,6 +90,16 @@ public class CaviarProcessorMenu extends AbstractContainerMenu {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(ResourceFishTags.Items.UPGRADES);
+            }
+        });
+    }
+
+    private void createRecipeSlot(CaviarProcessorBlockEntity entity, int slot, int x, int y) {
+        this.addSlot(new SlotItemHandler(entity.getItemStackHandler(), slot, x, y) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                // Reject items that are upgrades
+                return !stack.is(ResourceFishTags.Items.UPGRADES);
             }
         });
     }

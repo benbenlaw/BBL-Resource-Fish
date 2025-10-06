@@ -265,6 +265,9 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
                 if (entity instanceof ResourceFishEntity fish) {
                     fishPool.add(fish);
                     fish.setAllowedToDrop(!toManyFish);
+                    if (fish.getTankHome() != worldPosition) {
+                        fish.setTankHome(worldPosition);
+                    }
                     currentAllowedFish.add(fish.getUUID());
                 }
             }

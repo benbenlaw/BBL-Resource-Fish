@@ -34,6 +34,9 @@ public class CaviarProcessorScreen extends AbstractContainerScreen<CaviarProcess
         int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+
+        renderProgressBars(guiGraphics, x, y);
+
     }
 
     @Override
@@ -43,7 +46,6 @@ public class CaviarProcessorScreen extends AbstractContainerScreen<CaviarProcess
         renderBackground(guiGraphics, mouseX, mouseY, delta);
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
-        renderProgressBars(guiGraphics, x, y);
 
     }
 

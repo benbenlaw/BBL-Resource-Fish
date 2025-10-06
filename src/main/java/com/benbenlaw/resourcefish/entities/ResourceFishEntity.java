@@ -1,13 +1,16 @@
 package com.benbenlaw.resourcefish.entities;
 
+import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
 import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.util.ResourceType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -33,6 +36,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -50,6 +54,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
     private int dropTimer = 0;
     private int ticksPerDrop = Integer.MAX_VALUE;
     private boolean allowedToDrop = false;
+    private BlockPos tankHome = null;
 
     private final Level level;
 
@@ -62,9 +67,21 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
     public void tick() {
         super.tick();
 
-        if (!this.level.isClientSide() && this.allowedToDrop) {
-            dropTimer++;
+        if (!this.level.isClientSide()) {
 
+            if (tankHome == null) {
+                this.allowedToDrop = false;
+                return;
+            }
+
+            if (!level.getBlockState(tankHome).is(ResourceFishBlocks.TANK_CONTROLLER.get())) {
+                this.allowedToDrop = false;
+                tankHome = null;
+                return;
+            }
+
+            if (!this.allowedToDrop) return;
+            dropTimer++;
 
             ResourceType resourceType = getResourceType();
             ticksPerDrop = resourceType.getDropIntervalTicks();
@@ -227,6 +244,13 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         return getResourceType().getColor();
     }
 
+    public void setTankHome(BlockPos pos) {
+        this.tankHome = pos;
+    }
+    public BlockPos getTankHome() {
+        return tankHome;
+    }
+
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
@@ -236,6 +260,10 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         tag.putInt("dropTimer", dropTimer);
         tag.putInt("ticksPerDrop", ticksPerDrop);
         tag.putBoolean("allowedToDrop", allowedToDrop);
+
+        if (tankHome != null) {
+            tag.put("tankHome", NbtUtils.writeBlockPos(tankHome));
+        }
     }
 
     @Override
@@ -253,6 +281,10 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         dropTimer = tag.getInt("dropTimer");
         ticksPerDrop = tag.getInt("ticksPerDrop");
         allowedToDrop = tag.getBoolean("allowedToDrop");
+
+        if (NbtUtils.readBlockPos(tag, "tankHome").isPresent()) {
+            tankHome =  NbtUtils.readBlockPos(tag, "tankHome").get();
+        }
     }
 
     @Override
@@ -333,29 +365,30 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
 
     @Override
     public Component getName() {
-        ResourceType resourceType = getResourceType();
-        String baseName = "entity.resourcefish.resource_fish";
-        if (resourceType != null && resourceType != ResourceType.NONE) {
-
-            String path = resourceType.getId().getPath();
-            String capitalizedPath = path.substring(0, 1).toUpperCase(Locale.ROOT) + path.substring(1).toLowerCase(Locale.ROOT);
-
-            return Component.translatable(baseName, capitalizedPath);
-        }
-        return Component.translatable(baseName);
+        return this.getDisplayName();
     }
 
     @Override
-    public @NotNull Component getDisplayName() {
-        ResourceType resourceType = getResourceType();
-        String baseName = "entity.resourcefish.resource_fish";
-        if (resourceType != null && resourceType != ResourceType.NONE) {
+    public Component getDisplayName() {
 
-            String path = resourceType.getId().getPath();
-            String capitalizedPath = path.substring(0, 1).toUpperCase(Locale.ROOT) + path.substring(1).toLowerCase(Locale.ROOT);
+        if (this.hasCustomName()) {
+            return Objects.requireNonNull(this.getCustomName());
+        } else {
+            ResourceType resourceType = getResourceType();
+            String baseName = "entity.resourcefish.resource_fish";
+            if (resourceType != null && resourceType != ResourceType.NONE) {
 
-            return Component.translatable(baseName, capitalizedPath);
+                String path = resourceType.getId().getPath();
+                String capitalizedPath = path.substring(0, 1).toUpperCase(Locale.ROOT) + path.substring(1).toLowerCase(Locale.ROOT);
+
+                return Component.translatable(baseName, capitalizedPath);
+            }
         }
-        return Component.translatable(baseName);
+        return Component.literal("ERROR");
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double p_27492_) {
+        return false;
     }
 }

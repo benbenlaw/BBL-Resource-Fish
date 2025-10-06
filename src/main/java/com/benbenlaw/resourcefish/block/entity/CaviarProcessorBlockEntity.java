@@ -198,6 +198,15 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
             // otherwise use normal behavior
             return super.insertItem(slot, stack, simulate);
         }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            if (slot >= 8 && slot <= 10) {
+                return 1;
+            }
+            return 64;
+        }
+
     };
 
     private final IItemHandler caviarProcessorItemHandlerSide = new InputOutputItemHandler(itemHandler,

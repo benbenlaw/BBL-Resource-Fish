@@ -4,7 +4,7 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:coal"
+            "items": "minecraft:water_bucket"
           }
         ]
       },
@@ -12,7 +12,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "resourcefish:breeding/coal"
+        "recipe": "resourcefish:breeding/water"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -25,7 +25,7 @@
   ],
   "rewards": {
     "recipes": [
-      "resourcefish:breeding/coal"
+      "resourcefish:breeding/water"
     ]
   },
   "sends_telemetry_event": true

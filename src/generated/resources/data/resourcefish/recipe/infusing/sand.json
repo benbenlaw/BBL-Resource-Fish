@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 1.0,
+  "created_fish": "resourcefish:sand",
+  "duration": 100,
+  "fish": "resourcefish:water",
+  "input_1": {
+    "count": 64,
+    "item": "minecraft:sand"
+  },
+  "input_2": {
+    "count": 64,
+    "item": "minecraft:sand"
+  },
+  "input_3": {
+    "count": 64,
+    "item": "minecraft:sand"
+  }
+}

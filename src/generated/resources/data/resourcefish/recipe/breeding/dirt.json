@@ -1,0 +1,12 @@
+{
+  "type": "resourcefish:fish_breeding",
+  "breeding_ingredient": {
+    "count": 64,
+    "item": "minecraft:dirt"
+  },
+  "chance": 0.75,
+  "created_fish": "resourcefish:dirt",
+  "duration": 100,
+  "parent_a": "resourcefish:dirt",
+  "parent_b": "resourcefish:dirt"
+}

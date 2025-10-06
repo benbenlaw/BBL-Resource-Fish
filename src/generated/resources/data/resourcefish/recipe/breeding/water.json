@@ -1,0 +1,12 @@
+{
+  "type": "resourcefish:fish_breeding",
+  "breeding_ingredient": {
+    "count": 1,
+    "item": "minecraft:water_bucket"
+  },
+  "chance": 0.75,
+  "created_fish": "resourcefish:water",
+  "duration": 100,
+  "parent_a": "resourcefish:water",
+  "parent_b": "resourcefish:water"
+}
