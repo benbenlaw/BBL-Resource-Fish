@@ -6,6 +6,10 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -22,5 +26,17 @@ public class ResourceFishEntities {
                     .clientTrackingRange(8)
                     .updateInterval(3)
                     .build(ResourceFish.MOD_ID + ":resource_fish"));
+
+
+    @SubscribeEvent
+    public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        event.register(
+                ResourceFishEntities.RESOURCE_FISH.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR_WG,
+                ResourceFishEntity::canSpawnHere, // uses LevelAccessor
+                RegisterSpawnPlacementsEvent.Operation.REPLACE
+        );
+    }
 
 }

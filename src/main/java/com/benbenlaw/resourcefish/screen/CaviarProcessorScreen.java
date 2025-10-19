@@ -4,16 +4,19 @@ package com.benbenlaw.resourcefish.screen;
 import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.block.entity.CaviarProcessorBlockEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.Slot;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.util.Arrays;
 
 public class CaviarProcessorScreen extends AbstractContainerScreen<CaviarProcessorMenu> {
     private static final ResourceLocation TEXTURE =
@@ -23,6 +26,28 @@ public class CaviarProcessorScreen extends AbstractContainerScreen<CaviarProcess
         super(pMenu, pPlayerInventory, pTitle);
         this.imageHeight = 165;
         this.imageWidth = 175;
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+        this.clearWidgets();
+
+        addFluidWidgets();
+    }
+
+    private void addFluidWidgets() {
+
+
+        FluidTank fuelTank = new FluidTank(0);
+        if (this.menu.blockEntity instanceof CaviarProcessorBlockEntity tankBlockEntity && this.menu.blockEntity.hasTankUpgrade()) {
+            fuelTank = tankBlockEntity.TANK ;
+        }
+
+        if (fuelTank.getCapacity() != 0 && fuelTank.getFluidAmount() != 0) {
+            addRenderableOnly(new CaviarFluidStackWidget(this, fuelTank, this.menu.blockEntity, this.leftPos + 152, this.topPos + 53, 16, 16));
+        }
+
     }
 
     @Override
@@ -47,6 +72,13 @@ public class CaviarProcessorScreen extends AbstractContainerScreen<CaviarProcess
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
 
+        if (this.menu.blockEntity instanceof CaviarProcessorBlockEntity tankBlockEntity && !tankBlockEntity.hasTankUpgrade() && mouseX >= this.leftPos + 152 && mouseX <= this.leftPos + 168 && mouseY >= this.topPos + 53 && mouseY <= this.topPos + 69) {
+
+            FormattedCharSequence[] tooltipLines = new FormattedCharSequence[1];
+            tooltipLines[0] = Component.literal("No Tank Upgrade").getVisualOrderText();
+            guiGraphics.renderTooltip(Minecraft.getInstance().font, Arrays.asList(tooltipLines), mouseX, mouseY);
+        }
+
     }
 
 
@@ -65,7 +97,7 @@ public class CaviarProcessorScreen extends AbstractContainerScreen<CaviarProcess
                 int fullHeight = 18; // or however tall your progress bar is
                 guiGraphics.blit(
                         TEXTURE,
-                        x + slotPosition.x -1,
+                        x + slotPosition.x - 1,
                         y + slotPosition.y + (fullHeight - progress) - 1, // destination Y
                         176,                         // texture U
                         fullHeight - progress,       // texture V

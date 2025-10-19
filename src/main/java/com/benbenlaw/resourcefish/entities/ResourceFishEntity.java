@@ -287,6 +287,8 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         }
     }
 
+
+
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData groupData) {
         SpawnGroupData data = super.finalizeSpawn(level, difficulty, spawnType, groupData);
@@ -328,8 +330,36 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
     @Override
     public boolean checkSpawnRules(LevelAccessor levelAccessor, MobSpawnType spawnType) {
         BlockPos pos = this.blockPosition();
-        return level.getFluidState(pos).is(FluidTags.WATER) && super.checkSpawnRules(levelAccessor, spawnType);
+        return level.getFluidState(pos).is(FluidTags.WATER);
     }
+
+    public static <T extends ResourceFishEntity> boolean canSpawnHere(
+            EntityType<T> type,
+            LevelAccessor level,
+            MobSpawnType spawnType,
+            BlockPos pos,
+            RandomSource random
+    ) {
+        if (!level.getFluidState(pos).is(FluidTags.WATER)) return false;
+
+        Holder<Biome> biomeHolder = level.getBiome(pos);
+
+        // Find any ResourceType that can spawn here
+        boolean validBiome = ResourceType.REGISTRY.values().stream()
+                .anyMatch(rt -> rt.getBiomes().stream().anyMatch(biomeOrTag -> {
+                    if (biomeOrTag.startsWith("#")) {
+                        TagKey<Biome> tagKey = TagKey.create(Registries.BIOME, ResourceLocation.tryParse(biomeOrTag.substring(1)));
+                        return biomeHolder.is(tagKey);
+                    } else {
+                        ResourceLocation biomeId = Objects.requireNonNull(biomeHolder.getKey()).location();
+                        return biomeId.toString().equals(biomeOrTag);
+                    }
+                }));
+
+        return validBiome;
+    }
+
+
 
     @Override
     public void loadFromBucketTag(CompoundTag tag) {

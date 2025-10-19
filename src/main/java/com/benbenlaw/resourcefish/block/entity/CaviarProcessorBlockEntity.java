@@ -52,7 +52,7 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
 
     public static final int[] INPUT_SLOTS = {0, 1, 2, 3, 4, 5, 6, 7};
     public static final int[] UPGRADE_SLOTS = {8, 9, 10};
-    public static final int[] OUTPUTS_SLOTS = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22};
+    public static final int[] OUTPUTS_SLOTS = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
 
     private int roundRobinIndex = 0;
 
@@ -172,7 +172,7 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
         }
     }
 
-    private final ItemStackHandler itemHandler = new ItemStackHandler(23) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(22) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -346,6 +346,16 @@ public class CaviarProcessorBlockEntity extends SyncableBlockEntity {
         if (!recipe.fluidStack().isEmpty()) {
             fluidHandler.fill(recipe.fluidStack(), IFluidHandler.FluidAction.EXECUTE);
         }
+    }
+
+    public boolean hasTankUpgrade() {
+        Item tankUpgrade = ResourceFishItems.TANK_UPGRADE.get();
+        for (int upgradeSlot : UPGRADE_SLOTS) {
+            if (itemHandler.getStackInSlot(upgradeSlot).is(tankUpgrade)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

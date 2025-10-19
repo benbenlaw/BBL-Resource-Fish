@@ -1,6 +1,13 @@
 Resource Fish
 grading machine,
 
+1.0.12
+- Fixed fish not spawning (maybe)
+
+1.0.11
+- Reduce output of caviar processor by 1 to add tank instead
+- Caviar Processor now shows fluid in the gui and information to add a tank upgrade
+
 1.0.10
 - Fixed fish despawning when player leaves the area
 - Fixed caviar screen rendering

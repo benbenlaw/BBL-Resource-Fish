@@ -22,6 +22,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -58,11 +59,14 @@ public class ResourceFish{
 
         NeoForge.EVENT_BUS.addListener(ResourceFish::onAddReloadListener);
 
+        modEventBus.addListener(ResourceFishEntities::registerSpawnPlacements);
+
         if (FMLEnvironment.dist == Dist.CLIENT) {
             modEventBus.register(new ClientEvents());
         }
 
     }
+
     @SubscribeEvent
     private static void onAddReloadListener(AddReloadListenerEvent event) {
         event.addListener(new ResourceTypeLoader(new Gson(), "fish"));
@@ -73,7 +77,7 @@ public class ResourceFish{
         event.put(ResourceFishEntities.RESOURCE_FISH.get(), ResourceFishEntity.createAttributes().build());
     }
 
-    @EventBusSubscriber(modid = ResourceFish.MOD_ID, bus = EventBusSubscriber.Bus.MOD ,value = Dist.CLIENT)
+    @EventBusSubscriber(modid = ResourceFish.MOD_ID, value = Dist.CLIENT)
     public static class ClientModEvents {
 
         @SubscribeEvent

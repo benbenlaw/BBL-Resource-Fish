@@ -70,13 +70,19 @@ public class CaviarProcessorMenu extends AbstractContainerMenu {
         int xStartOutput = 98;
         int yStartOutput = 17;
         int slotCount = 11;
+        int totalSlots = 3 * 4; // 12
+
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 4; col++) {
+                int currentSlot = row * 4 + col;
+                if (currentSlot == totalSlots - 1) continue; // skip last one
+
                 int xPos = xStartOutput + (col * xOffset);
                 int yPos = yStartOutput + (row * yOffset);
                 this.addSlot(new ResultSlot(entity.getItemStackHandler(), slotCount++, xPos, yPos, 64));
             }
         }
+
 
         addDataSlots(data);
     }
@@ -126,7 +132,7 @@ public class CaviarProcessorMenu extends AbstractContainerMenu {
 
 
 
-    private static final int TE_INVENTORY_SLOT_COUNT = 23;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 22;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
