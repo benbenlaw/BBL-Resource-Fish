@@ -6,7 +6,7 @@
       "item": "minecraft:sugar"
     },
     "B": {
-      "item": "resourcefish:caviar"
+      "tag": "resourcefish:caviar"
     }
   },
   "pattern": [

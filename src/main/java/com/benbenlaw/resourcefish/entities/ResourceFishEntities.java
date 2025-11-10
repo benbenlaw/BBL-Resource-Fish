@@ -25,6 +25,7 @@ public class ResourceFishEntities {
                     .sized(0.5F, 0.3F)
                     .clientTrackingRange(8)
                     .updateInterval(3)
+                    .canSpawnFarFromPlayer()
                     .build(ResourceFish.MOD_ID + ":resource_fish"));
 
 

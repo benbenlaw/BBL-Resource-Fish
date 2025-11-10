@@ -356,6 +356,9 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
                     }
                 }));
 
+        if (validBiome) {
+            System.out.println("Spawning ResourceFishEntity at " + pos + " in biome " + Objects.requireNonNull(biomeHolder.getKey()).location());
+        }
         return validBiome;
     }
 

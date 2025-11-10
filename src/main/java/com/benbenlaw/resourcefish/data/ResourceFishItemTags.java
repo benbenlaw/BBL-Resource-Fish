@@ -37,6 +37,8 @@ public class ResourceFishItemTags extends ItemTagsProvider {
                 .add(ResourceFishItems.ROUND_ROBIN_UPGRADE.get())
                 ;
 
+        //Caviar
+        tag(ResourceFishTags.Items.CAVIAR).add(ResourceFishItems.CAVIAR.get());
 
     }
 

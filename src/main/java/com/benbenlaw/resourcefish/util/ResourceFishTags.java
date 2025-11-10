@@ -9,6 +9,7 @@ public class ResourceFishTags {
 
     public static class Items extends CoreTags.Items {
         public static final TagKey<Item> UPGRADES = tag(ResourceFish.MOD_ID, "upgrades");
+        public static final TagKey<Item> CAVIAR = tag(ResourceFish.MOD_ID, "caviar");
 
     }
 }

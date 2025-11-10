@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "resourcefish:caviar"
+            "items": "#resourcefish:caviar"
           }
         ]
       },

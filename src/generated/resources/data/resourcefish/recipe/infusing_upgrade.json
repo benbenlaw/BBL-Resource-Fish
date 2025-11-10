@@ -9,7 +9,7 @@
       "item": "resourcefish:resource_fish_bucket"
     },
     "C": {
-      "item": "resourcefish:caviar"
+      "tag": "resourcefish:caviar"
     }
   },
   "pattern": [

@@ -6,7 +6,7 @@
       "tag": "c:glass_blocks"
     },
     "B": {
-      "item": "resourcefish:caviar"
+      "tag": "resourcefish:caviar"
     }
   },
   "pattern": [

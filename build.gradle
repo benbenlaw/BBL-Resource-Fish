@@ -67,8 +67,8 @@ dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     //BBL Core
-    compileOnly "curse.maven:bbl-core-1135181:6486837"
-    runtimeOnly "curse.maven:bbl-core-1135181:6486837"
+    compileOnly "curse.maven:bbl-core-1135181:7048684"
+    runtimeOnly "curse.maven:bbl-core-1135181:7048684"
 
     //Mekanism
     compileOnly "curse.maven:mekanism-268560:6327955"
@@ -81,6 +81,10 @@ dependencies {
     //One Probe
     compileOnly "curse.maven:the-one-probe-245211:5836106"
     runtimeOnly "curse.maven:the-one-probe-245211:5836106"
+
+    //One Probe
+    compileOnly "curse.maven:journeymap-32274:6689206"
+    runtimeOnly "curse.maven:journeymap-32274:6689206"
 
 
 }

@@ -4,9 +4,9 @@
   "spawners": [
     {
       "type": "resourcefish:resource_fish",
-      "weight": 300,
-      "minCount": 2,
-      "maxCount": 5
+      "weight": 100,
+      "minCount": 3,
+      "maxCount": 10
     }
   ]
 }
