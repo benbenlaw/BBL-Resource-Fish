@@ -4,6 +4,7 @@ import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
 import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.util.ResourceType;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.Holder;
@@ -12,7 +13,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -169,7 +173,16 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         LARGE_5(10, Base.LARGE),
         LARGE_6(11, Base.LARGE);
 
-        public enum Base { SMALL, LARGE }
+        public enum Base {
+            SMALL, LARGE;
+            public static final Codec<Base> CODEC = Codec.STRING.xmap(s -> Base.valueOf(s.toUpperCase()), Base::name);
+
+            public static final StreamCodec<RegistryFriendlyByteBuf, Base> STREAM_CODEC = StreamCodec.composite(
+                    ByteBufCodecs.STRING_UTF8, Base::name,
+                    Base::valueOf
+            );
+
+        }
 
         private final int id;
         private final Base size;
@@ -193,6 +206,13 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
             }
             return SMALL_1; // default fallback
         }
+
+        public static final Codec<Pattern> CODEC = Codec.INT.xmap(Pattern::byId, Pattern::getId);
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, Pattern> STREAM_CODEC = StreamCodec.composite(
+                ByteBufCodecs.INT, Pattern::getId,
+                Pattern::byId
+        );
     }
 
 

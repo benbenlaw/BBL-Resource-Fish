@@ -3,11 +3,20 @@ package com.benbenlaw.resourcefish.util;
 import com.benbenlaw.core.recipe.ChanceResult;
 import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
+import com.benbenlaw.resourcefish.network.packets.SyncResourceTypesToClient;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ResourceType {
@@ -16,6 +25,10 @@ public class ResourceType {
     private final List<ResourceFishEntity.Pattern> patterns;
     private final List<ResourceFishEntity.Pattern.Base> models;
     private final List<String> biomes;
+
+    public static void clear() {
+        REGISTRY.clear();
+    }
 
     public static final ResourceType NONE = new ResourceType(
             ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "none"),
@@ -112,4 +125,38 @@ public class ResourceType {
     public static Collection<ResourceType> getAll() {
         return REGISTRY.values();
     }
+
+    public static final Codec<ResourceType> CODEC = RecordCodecBuilder.create(resourceTypeInstance -> resourceTypeInstance.group(
+            ResourceLocation.CODEC.fieldOf("id").forGetter(ResourceType::getId),
+            Codec.INT.fieldOf("main_color").forGetter(ResourceType::getColor),
+            Codec.INT.fieldOf("pattern_color").forGetter(ResourceType::getPatternColor),
+            ChanceResult.CODEC.listOf().fieldOf("drop_items").forGetter(ResourceType::getDropItems),
+            Codec.INT.fieldOf("drop_interval_ticks").forGetter(ResourceType::getDropIntervalTicks),
+            ResourceFishEntity.Pattern.CODEC.listOf().fieldOf("patterns").forGetter(ResourceType::getPatterns),
+            ResourceFishEntity.Pattern.Base.CODEC.listOf().fieldOf("models").forGetter(ResourceType::getModels),
+            Codec.STRING.listOf().fieldOf("biomes").forGetter(ResourceType::getBiomes)
+    ).apply(resourceTypeInstance, ResourceType::new));
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, ResourceType> STREAM_CODEC =
+            StreamCodec.composite(
+                    ResourceLocation.STREAM_CODEC, ResourceType::getId,
+                    ByteBufCodecs.INT, ResourceType::getColor,
+                    ByteBufCodecs.INT, ResourceType::getPatternColor,
+                    ChanceResultStreamCodec.STREAM_CODEC.apply(ByteBufCodecs.list()), ResourceType::getDropItems,
+                    ByteBufCodecs.INT, ResourceType::getDropIntervalTicks,
+                    ResourceFishEntity.Pattern.STREAM_CODEC.apply(ByteBufCodecs.list()), ResourceType::getPatterns,
+                    (id, mainColor, patternColor, dropItems, dropIntervalTicks, patterns) ->
+                            new ResourceType(id, mainColor, patternColor, dropItems, dropIntervalTicks, patterns, List.of(), List.of())
+            ).map(
+                    r -> new ResourceType(r.getId(), r.getColor(), r.getPatternColor(), r.getDropItems(), r.getDropIntervalTicks(), r.getPatterns(), r.getModels(), r.getBiomes()),
+                    r -> r // identity for encoding
+                    );
+
+
+    public static void sendResourceTypes(ServerPlayer player) {;
+
+        PacketDistributor.sendToPlayer(player, new SyncResourceTypesToClient(REGISTRY.values().stream().toList()));
+    }
+
+
 }

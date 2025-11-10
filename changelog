@@ -1,5 +1,10 @@
 Resource Fish
 
+1.0.14
+- Fix server not having the fish in JEI and creative
+- Fixed recipes not showing on servers
+- Fixed crashes on server side
+
 1.0.13
 - Tweaked fish spawning rates
 - Changed recipes that use caviar to use a caviar tag, allows for JEI quick crafting with any caviar type

@@ -9,6 +9,7 @@ import com.benbenlaw.resourcefish.event.ClientEvents;
 import com.benbenlaw.resourcefish.item.ResourceFishCreativeTab;
 import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
+import com.benbenlaw.resourcefish.network.ResourceFishNetworking;
 import com.benbenlaw.resourcefish.recipe.ResourceFishRecipes;
 import com.benbenlaw.resourcefish.renderer.ResourceFishRenderer;
 import com.benbenlaw.resourcefish.screen.CaviarProcessorScreen;
@@ -30,6 +31,7 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import org.apache.logging.log4j.LogManager;
 
 @Mod(ResourceFish.MOD_ID)
@@ -59,12 +61,18 @@ public class ResourceFish{
 
         NeoForge.EVENT_BUS.addListener(ResourceFish::onAddReloadListener);
 
+        modEventBus.addListener(this::commonSetup);
+
         modEventBus.addListener(ResourceFishEntities::registerSpawnPlacements);
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             modEventBus.register(new ClientEvents());
         }
 
+    }
+
+    public void commonSetup(RegisterPayloadHandlersEvent event) {
+        ResourceFishNetworking.registerNetworking(event);
     }
 
     @SubscribeEvent
