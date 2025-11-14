@@ -2,9 +2,9 @@
   "type": "resourcefish:fish_breeding",
   "breeding_ingredient": {
     "count": 1,
-    "item": "minecraft:lava_bucket"
+    "item": "resourcefish:basic_fish_food"
   },
-  "chance": 0.75,
+  "chance": 0.15,
   "created_fish": "resourcefish:lava",
   "duration": 100,
   "parent_a": "resourcefish:lava",

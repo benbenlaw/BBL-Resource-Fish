@@ -3,7 +3,7 @@
   "chance": 1.0,
   "created_fish": "resourcefish:sand",
   "duration": 100,
-  "fish": "resourcefish:water",
+  "fish": "resourcefish:dirt",
   "input_1": {
     "count": 64,
     "item": "minecraft:sand"

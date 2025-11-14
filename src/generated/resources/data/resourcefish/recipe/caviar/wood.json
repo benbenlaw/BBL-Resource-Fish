@@ -11,58 +11,65 @@
   "results": [
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:oak_log"
+        "item": "minecraft:stick"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:spruce_log"
+        "item": "minecraft:oak_log"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:birch_log"
+        "item": "minecraft:spruce_log"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:jungle_log"
+        "item": "minecraft:birch_log"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:acacia_log"
+        "item": "minecraft:jungle_log"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:dark_oak_log"
+        "item": "minecraft:acacia_log"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:cherry_log"
+        "item": "minecraft:dark_oak_log"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:mangrove_log"
+        "item": "minecraft:cherry_log"
+      }
+    },
+    {
+      "chance": 0.05,
+      "ingredient": {
+        "count": 1,
+        "item": "minecraft:mangrove_log"
       }
     }
   ]

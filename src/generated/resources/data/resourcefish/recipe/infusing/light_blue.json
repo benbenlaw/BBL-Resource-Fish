@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.5,
+  "created_fish": "resourcefish:light_blue",
+  "duration": 200,
+  "fish": "resourcefish:water",
+  "input_1": {
+    "count": 1,
+    "tag": "c:dyes/light_blue"
+  },
+  "input_2": {
+    "count": 1,
+    "tag": "c:dyes/light_blue"
+  },
+  "input_3": {
+    "count": 1,
+    "tag": "c:dyes/light_blue"
+  }
+}

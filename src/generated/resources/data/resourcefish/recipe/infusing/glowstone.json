@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.5,
+  "created_fish": "resourcefish:glowstone",
+  "duration": 100,
+  "fish": "resourcefish:netherrack",
+  "input_1": {
+    "count": 64,
+    "item": "minecraft:glowstone_dust"
+  },
+  "input_2": {
+    "count": 64,
+    "item": "minecraft:glowstone_dust"
+  },
+  "input_3": {
+    "count": 64,
+    "item": "minecraft:glowstone_dust"
+  }
+}

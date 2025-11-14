@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/iridium"
+      }
+    }
+  ],
+  "drop_interval": 300,
+  "drop_items": [
+    {
+      "item": {
+        "components": {
+          "resourcefish:fish_type": "resourcefish:iridium"
+        },
+        "count": 1,
+        "id": "resourcefish:caviar"
+      }
+    }
+  ],
+  "main_color": "#FF3D3C3A",
+  "models": [
+    "small"
+  ],
+  "pattern_color": "#FF1C1C1C",
+  "patterns": [
+    "small_2",
+    "small_6"
+  ]
+}

@@ -31,6 +31,13 @@ public class ResourceFishItemModelsProvider extends ItemModelProvider {
         simpleItem(ResourceFishItems.INFUSING_UPGRADE);
         simpleItem(ResourceFishItems.BREEDING_UPGRADE);
         simpleItem(ResourceFishItems.TANK_UPGRADE);
+        simpleItem(ResourceFishItems.ROUND_ROBIN_UPGRADE);
+
+        simpleItem(ResourceFishItems.BASIC_FISH_FOOD);
+        simpleItem(ResourceFishItems.METALLIC_FISH_FOOD);
+        simpleItem(ResourceFishItems.CRYSTAL_FISH_FOOD);
+        simpleItem(ResourceFishItems.NETHER_FISH_FOOD);
+        simpleItem(ResourceFishItems.BASIC_MOB_FISH_FOOD);
     }
 
     private void simpleItem(DeferredItem<Item> item) {

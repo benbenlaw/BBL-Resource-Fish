@@ -11,16 +11,16 @@
   "results": [
     {
       "chance": 0.2,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:gunpowder"
+        "item": "minecraft:gunpowder"
       }
     },
     {
       "chance": 0.01,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:creeper_head"
+        "item": "minecraft:creeper_head"
       }
     }
   ]

@@ -1,12 +1,12 @@
 {
   "type": "resourcefish:fish_breeding",
   "breeding_ingredient": {
-    "count": 4,
-    "item": "minecraft:diamond"
+    "count": 1,
+    "item": "resourcefish:crystal_fish_food"
   },
   "chance": 0.15,
   "created_fish": "resourcefish:diamond",
   "duration": 100,
-  "parent_a": "resourcefish:coal",
-  "parent_b": "resourcefish:coal"
+  "parent_a": "resourcefish:lapis",
+  "parent_b": "resourcefish:light_blue"
 }

@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.5,
+  "created_fish": "resourcefish:netherrack",
+  "duration": 100,
+  "fish": "resourcefish:lava",
+  "input_1": {
+    "count": 64,
+    "item": "minecraft:netherrack"
+  },
+  "input_2": {
+    "count": 64,
+    "item": "minecraft:netherrack"
+  },
+  "input_3": {
+    "count": 64,
+    "item": "minecraft:netherrack"
+  }
+}

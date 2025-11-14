@@ -5,6 +5,7 @@ import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.recipe.CaviarProcessorRecipe;
 import com.benbenlaw.resourcefish.recipe.FishBreedingRecipe;
 import com.benbenlaw.resourcefish.screen.CaviarProcessorScreen;
+import com.benbenlaw.resourcefish.util.SizedIngredientChanceResult;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
@@ -29,17 +30,17 @@ public class CaviarProcessorRecipeBuilder implements RecipeBuilder {
 
     protected String group;
     protected ItemStack caviar;
-    protected List<ChanceResult> results;
+    protected List<SizedIngredientChanceResult> results;
     protected FluidStack fluidStack;
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
-    public CaviarProcessorRecipeBuilder(ItemStack caviar, List<ChanceResult> results) {
+    public CaviarProcessorRecipeBuilder(ItemStack caviar, List<SizedIngredientChanceResult> results) {
         this.caviar = caviar;
         this.results = results;
         this.fluidStack = FluidStack.EMPTY;
     }
 
-    public static CaviarProcessorRecipeBuilder caviarProcessorRecipeBuilder(ItemStack caviar, List<ChanceResult> results) {
+    public static CaviarProcessorRecipeBuilder caviarProcessorRecipeBuilder(ItemStack caviar, List<SizedIngredientChanceResult> results) {
         return new CaviarProcessorRecipeBuilder(caviar, results);
     }
 
@@ -66,7 +67,12 @@ public class CaviarProcessorRecipeBuilder implements RecipeBuilder {
     }
 
     public void save(@NotNull RecipeOutput recipeOutput) {
-        this.save(recipeOutput, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "processor/"));
+        this.save(recipeOutput, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/"));
+    }
+
+    @Override
+    public void save(@NotNull RecipeOutput recipeOutput, @NotNull String name) {
+        this.save(recipeOutput, ResourceLocation.fromNamespaceAndPath(ResourceFish.MOD_ID, "caviar/" + name));
     }
 
     @Override
@@ -76,10 +82,10 @@ public class CaviarProcessorRecipeBuilder implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(builder::addCriterion);
-        NonNullList<ChanceResult> emptyNonNullList = NonNullList.create();
+        NonNullList<SizedIngredientChanceResult> emptyNonNullList = NonNullList.create();
         emptyNonNullList.addAll(results);
         CaviarProcessorRecipe caviarProcessorRecipe = new CaviarProcessorRecipe(caviar, emptyNonNullList, fluidStack);
-        recipeOutput.accept(id, caviarProcessorRecipe, builder.build(id.withPrefix("recipes/processor/")));
+        recipeOutput.accept(id, caviarProcessorRecipe, builder.build(id.withPrefix("recipes/caviar/")));
 
     }
 }

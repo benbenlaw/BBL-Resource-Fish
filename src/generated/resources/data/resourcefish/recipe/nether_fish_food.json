@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "resourcefish:crystal_fish_food"
+    },
+    "B": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "count": 6,
+    "id": "resourcefish:nether_fish_food"
+  }
+}

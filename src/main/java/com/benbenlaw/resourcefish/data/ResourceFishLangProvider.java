@@ -43,6 +43,11 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addItemTranslation("breeding_upgrade", "Breeding Upgrade");
         addItemTranslation("infusing_upgrade", "Infusing Upgrade");
         addItemTranslation("round_robin_upgrade", "Round Robin Upgrade");
+        addItemTranslation("basic_fish_food", "Basic Fish Food");
+        addItemTranslation("metallic_fish_food", "Metallic Fish Food");
+        addItemTranslation("crystal_fish_food", "Crystal Fish Food");
+        addItemTranslation("nether_fish_food", "Nether Fish Food");
+        addItemTranslation("basic_mob_fish_food", "Basic Mob Fish Food");
 
 
         //Blocks

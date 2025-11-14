@@ -15,6 +15,7 @@ public class FishIngredientHelper implements IIngredientHelper<FishIngredient> {
         return JEIResourceFishPlugin.FISH_INGREDIENT_TYPE;  // your registered ingredient type
     }
 
+
     @Override
     public String getDisplayName(FishIngredient ingredient) {
         // Return a user-friendly name for your fish (for JEI search and tooltip)

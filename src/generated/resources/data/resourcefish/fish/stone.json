@@ -13,11 +13,11 @@
   ],
   "main_color": "#FFA9A9A9",
   "models": [
-    "small"
+    "large"
   ],
   "pattern_color": "#FF696969",
   "patterns": [
-    "small_3",
-    "small_6"
+    "large_3",
+    "large_6"
   ]
 }

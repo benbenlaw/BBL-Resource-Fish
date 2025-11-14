@@ -40,6 +40,12 @@ public class ResourceFishCreativeTab {
                 output.accept(ResourceFishItems.BREEDING_UPGRADE.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.ROUND_ROBIN_UPGRADE.get().asItem().getDefaultInstance());
 
+                output.accept(ResourceFishItems.BASIC_FISH_FOOD.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.METALLIC_FISH_FOOD.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.CRYSTAL_FISH_FOOD.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.NETHER_FISH_FOOD.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishItems.BASIC_MOB_FISH_FOOD.get().asItem().getDefaultInstance());
+
                 //Fish Bucket
                 for (ResourceType type : ResourceType.getAll()) {
                     ItemStack stack = new ItemStack(ResourceFishItems.RESOURCE_FISH_BUCKET.get());

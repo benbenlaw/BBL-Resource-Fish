@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.5,
+  "created_fish": "resourcefish:spider",
+  "duration": 200,
+  "fish": "resourcefish:wood",
+  "input_1": {
+    "count": 64,
+    "item": "minecraft:string"
+  },
+  "input_2": {
+    "count": 64,
+    "item": "minecraft:string"
+  },
+  "input_3": {
+    "count": 64,
+    "item": "minecraft:string"
+  }
+}

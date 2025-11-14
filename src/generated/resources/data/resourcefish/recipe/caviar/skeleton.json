@@ -11,16 +11,16 @@
   "results": [
     {
       "chance": 0.2,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:bone"
+        "item": "minecraft:bone"
       }
     },
     {
       "chance": 0.01,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:skeleton_skull"
+        "item": "minecraft:skeleton_skull"
       }
     }
   ]

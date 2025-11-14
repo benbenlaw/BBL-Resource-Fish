@@ -15,6 +15,23 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ResourceFishItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ResourceFish.MOD_ID);
 
+    public static final DeferredItem<Item> BASIC_FISH_FOOD = ITEMS.register("basic_fish_food",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> METALLIC_FISH_FOOD = ITEMS.register("metallic_fish_food",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> CRYSTAL_FISH_FOOD = ITEMS.register("crystal_fish_food",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> NETHER_FISH_FOOD = ITEMS.register("nether_fish_food",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> BASIC_MOB_FISH_FOOD = ITEMS.register("basic_mob_fish_food",
+            () -> new Item(new Item.Properties()));
+
+
+
     public static final DeferredItem<Item> DEPTH_UPGRADE_1 = ITEMS.register("depth_upgrade_1",
             () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.depth_upgrade_1"));
 

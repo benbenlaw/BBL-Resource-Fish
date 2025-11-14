@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.5,
+  "created_fish": "resourcefish:green",
+  "duration": 200,
+  "fish": "resourcefish:water",
+  "input_1": {
+    "count": 1,
+    "tag": "c:dyes/green"
+  },
+  "input_2": {
+    "count": 1,
+    "tag": "c:dyes/green"
+  },
+  "input_3": {
+    "count": 1,
+    "tag": "c:dyes/green"
+  }
+}

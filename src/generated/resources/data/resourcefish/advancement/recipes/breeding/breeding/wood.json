@@ -4,7 +4,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#minecraft:logs"
+            "items": "resourcefish:basic_fish_food"
           }
         ]
       },

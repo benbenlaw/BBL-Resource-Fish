@@ -11,9 +11,9 @@
   "results": [
     {
       "chance": 0.4,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:cobblestone"
+        "item": "minecraft:cobblestone"
       }
     }
   ]

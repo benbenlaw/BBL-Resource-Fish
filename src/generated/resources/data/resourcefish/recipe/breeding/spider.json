@@ -1,0 +1,12 @@
+{
+  "type": "resourcefish:fish_breeding",
+  "breeding_ingredient": {
+    "count": 1,
+    "item": "resourcefish:basic_mob_fish_food"
+  },
+  "chance": 0.2,
+  "created_fish": "resourcefish:spider",
+  "duration": 200,
+  "parent_a": "resourcefish:dirt",
+  "parent_b": "resourcefish:black"
+}

@@ -91,7 +91,7 @@ public class CaviarProcessorRecipeCategory implements IRecipeCategory<CaviarProc
 
         for (var result : recipe.getRollResults()) {
             builder.addSlotToWidget(RecipeIngredientRole.OUTPUT, this.scrollGridWidgetFactory)
-                    .addItemStack(result.stack())
+                    .addIngredients(result.output().ingredient())
                     .addRichTooltipCallback((slotView, tooltip) -> {
                         double baseChance = result.chance();
                         int asPercent = Math.round((float) (baseChance * 100));
@@ -102,15 +102,17 @@ public class CaviarProcessorRecipeCategory implements IRecipeCategory<CaviarProc
                     });
         }
 
-        builder.addSlotToWidget(RecipeIngredientRole.OUTPUT, this.scrollGridWidgetFactory)
-                .addFluidStack(recipe.fluidStack().getFluid())
-                .addRichTooltipCallback((slotView, tooltip) -> {
-                    tooltip.add(Component.translatable("jei.resourcefish.fluid_amount")
-                            .append(String.valueOf(recipe.fluidStack().getAmount()))
-                            .append("mB").withStyle(ChatFormatting.GOLD));
-                    tooltip.add(Component.translatable("jei.resourcefish.needs_tank_upgrade")
-                            .withStyle(ChatFormatting.GOLD));
-                });
+        if (recipe.fluidStack() != null && !recipe.fluidStack().isEmpty()) {
+            builder.addSlotToWidget(RecipeIngredientRole.OUTPUT, this.scrollGridWidgetFactory)
+                    .addFluidStack(recipe.fluidStack().getFluid())
+                    .addRichTooltipCallback((slotView, tooltip) -> {
+                        tooltip.add(Component.translatable("jei.resourcefish.fluid_amount")
+                                .append(String.valueOf(recipe.fluidStack().getAmount()))
+                                .append("mB").withStyle(ChatFormatting.GOLD));
+                        tooltip.add(Component.translatable("jei.resourcefish.needs_tank_upgrade")
+                                .withStyle(ChatFormatting.GOLD));
+                    });
+        }
 
     }
 

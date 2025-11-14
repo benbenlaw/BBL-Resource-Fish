@@ -5,15 +5,15 @@
   "duration": 100,
   "fish": "resourcefish:stone",
   "input_1": {
-    "count": 12,
+    "count": 64,
     "item": "minecraft:granite"
   },
   "input_2": {
-    "count": 12,
+    "count": 64,
     "item": "minecraft:granite"
   },
   "input_3": {
-    "count": 12,
+    "count": 64,
     "item": "minecraft:granite"
   }
 }

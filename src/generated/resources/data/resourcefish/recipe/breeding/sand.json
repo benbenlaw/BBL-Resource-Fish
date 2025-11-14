@@ -1,0 +1,12 @@
+{
+  "type": "resourcefish:fish_breeding",
+  "breeding_ingredient": {
+    "count": 1,
+    "item": "resourcefish:basic_fish_food"
+  },
+  "chance": 0.5,
+  "created_fish": "resourcefish:sand",
+  "duration": 100,
+  "parent_a": "resourcefish:dirt",
+  "parent_b": "resourcefish:water"
+}

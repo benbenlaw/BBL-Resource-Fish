@@ -6,6 +6,7 @@ import com.benbenlaw.resourcefish.block.entity.CaviarProcessorBlockEntity;
 import com.benbenlaw.resourcefish.block.entity.TankControllerBlockEntity;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
+import com.benbenlaw.resourcefish.util.SizedIngredientChanceResult;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
@@ -31,7 +32,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public record CaviarProcessorRecipe(ItemStack caviar,
-                                    NonNullList<ChanceResult> results, FluidStack fluidStack) implements Recipe<RecipeInput> {
+                                    NonNullList<SizedIngredientChanceResult> results, FluidStack fluidStack) implements Recipe<RecipeInput> {
 
     @Override
     public boolean matches(RecipeInput container, Level level) {
@@ -77,26 +78,26 @@ public record CaviarProcessorRecipe(ItemStack caviar,
     @Override
     public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider provider) {
         if (!results.isEmpty()) {
-            return results.getFirst().stack();
+            return results.getFirst().output().getItems()[0];
         } else {
             return ItemStack.EMPTY;
         }
     }
 
-    public List<ItemStack> getResults() {
+    public List<SizedIngredient> getResults() {
         return getRollResults().stream()
-                .map(ChanceResult::stack)
-                .collect(Collectors.toList());
+                .map(SizedIngredientChanceResult::output)
+                .collect(Collectors.toList()).reversed();
     }
 
-    public NonNullList<ChanceResult> getRollResults() {
+    public NonNullList<SizedIngredientChanceResult> getRollResults() {
         return this.results;
     }
 
     public List<ItemStack> rollResults(RandomSource rand) {
         List<ItemStack> results = new ArrayList<>();
-        List<ChanceResult> rollResults = getRollResults();
-        for (ChanceResult output : rollResults) {
+        List<SizedIngredientChanceResult> rollResults = getRollResults();
+        for (SizedIngredientChanceResult output : rollResults) {
             ItemStack stack = output.rollOutput(rand);
             if (!stack.isEmpty())
                 results.add(stack);
@@ -109,7 +110,7 @@ public record CaviarProcessorRecipe(ItemStack caviar,
         if (results.isEmpty()) {
             return ItemStack.EMPTY;
         }
-        return results.getFirst().stack().copy();
+        return results.getFirst().output().getItems()[0];
     }
 
     @Override
@@ -141,8 +142,8 @@ public record CaviarProcessorRecipe(ItemStack caviar,
         public final MapCodec<CaviarProcessorRecipe> CODEC = RecordCodecBuilder.mapCodec((instance) ->
                 instance.group(
                         ItemStack.CODEC.fieldOf("caviar").forGetter(CaviarProcessorRecipe::caviar),
-                        Codec.list(ChanceResult.CODEC).fieldOf("results").flatXmap(chanceResults -> {
-                            NonNullList<ChanceResult> nonNullList = NonNullList.create();
+                        Codec.list(SizedIngredientChanceResult.CODEC).fieldOf("results").flatXmap(chanceResults -> {
+                            NonNullList<SizedIngredientChanceResult> nonNullList = NonNullList.create();
                             nonNullList.addAll(chanceResults);
                             return DataResult.success(nonNullList);
                         }, DataResult::success).forGetter(CaviarProcessorRecipe::getRollResults),
@@ -166,17 +167,22 @@ public record CaviarProcessorRecipe(ItemStack caviar,
         private static CaviarProcessorRecipe read(RegistryFriendlyByteBuf buffer) {
             ItemStack caviar = ItemStack.STREAM_CODEC.decode(buffer);
             int size = buffer.readVarInt();
-            NonNullList<ChanceResult> outputs = NonNullList.withSize(size, ChanceResult.EMPTY);
-            outputs.replaceAll(ignored -> ChanceResult.read(buffer));
+
+            NonNullList<SizedIngredientChanceResult> outputs = NonNullList.create(); // start empty
+            for (int i = 0; i < size; i++) {
+                outputs.add(SizedIngredientChanceResult.read(buffer));
+            }
+
             FluidStack fluidStack = FluidStack.OPTIONAL_STREAM_CODEC.decode(buffer);
 
             return new CaviarProcessorRecipe(caviar, outputs, fluidStack);
         }
 
+
         private static CaviarProcessorRecipe write(RegistryFriendlyByteBuf buffer, CaviarProcessorRecipe recipe) {
             ItemStack.STREAM_CODEC.encode(buffer, recipe.caviar);
             buffer.writeVarInt(recipe.results.size());
-            for (ChanceResult output : recipe.results) {
+            for (SizedIngredientChanceResult output : recipe.results) {
                 output.write(buffer);
             }
             FluidStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.fluidStack);

@@ -1,0 +1,12 @@
+{
+  "type": "resourcefish:fish_breeding",
+  "breeding_ingredient": {
+    "count": 1,
+    "item": "resourcefish:basic_fish_food"
+  },
+  "chance": 0.15,
+  "created_fish": "resourcefish:granite",
+  "duration": 100,
+  "parent_a": "resourcefish:stone",
+  "parent_b": "resourcefish:red"
+}

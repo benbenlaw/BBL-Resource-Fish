@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "resourcefish:basic_fish_food"
+    },
+    "B": {
+      "tag": "c:ingots"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "count": 6,
+    "id": "resourcefish:metallic_fish_food"
+  }
+}

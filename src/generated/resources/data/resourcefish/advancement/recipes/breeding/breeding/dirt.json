@@ -4,7 +4,7 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:dirt"
+            "items": "resourcefish:basic_fish_food"
           }
         ]
       },

@@ -4,7 +4,7 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:soul_sand"
+            "items": "resourcefish:nether_fish_food"
           }
         ]
       },

@@ -8,7 +8,7 @@
     "id": "resourcefish:caviar"
   },
   "output_fluid": {
-    "amount": 10,
+    "amount": 25,
     "id": "minecraft:water"
   },
   "results": []

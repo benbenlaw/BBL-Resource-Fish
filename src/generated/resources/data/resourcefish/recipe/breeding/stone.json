@@ -1,10 +1,10 @@
 {
   "type": "resourcefish:fish_breeding",
   "breeding_ingredient": {
-    "count": 64,
-    "item": "minecraft:stone"
+    "count": 1,
+    "item": "resourcefish:basic_fish_food"
   },
-  "chance": 1.0,
+  "chance": 0.1,
   "created_fish": "resourcefish:stone",
   "duration": 100,
   "parent_a": "resourcefish:water",

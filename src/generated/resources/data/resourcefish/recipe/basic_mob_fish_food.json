@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "resourcefish:metallic_fish_food"
+    },
+    "B": {
+      "item": "minecraft:bone_block"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "count": 6,
+    "id": "resourcefish:basic_mob_fish_food"
+  }
+}

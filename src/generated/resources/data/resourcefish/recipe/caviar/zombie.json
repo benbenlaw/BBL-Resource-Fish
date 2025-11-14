@@ -11,30 +11,30 @@
   "results": [
     {
       "chance": 0.2,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:rotten_flesh"
+        "item": "minecraft:rotten_flesh"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:potato"
+        "item": "minecraft:potato"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:carrot"
+        "item": "minecraft:carrot"
       }
     },
     {
       "chance": 0.01,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:zombie_head"
+        "item": "minecraft:zombie_head"
       }
     }
   ]

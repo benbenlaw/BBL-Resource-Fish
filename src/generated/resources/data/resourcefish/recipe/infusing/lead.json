@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/lead"
+      }
+    }
+  ],
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.25,
+  "created_fish": "resourcefish:lead",
+  "duration": 100,
+  "fish": "resourcefish:iron",
+  "input_1": {
+    "count": 64,
+    "tag": "c:ingots/lead"
+  },
+  "input_2": {
+    "count": 64,
+    "tag": "c:ingots/lead"
+  },
+  "input_3": {
+    "count": 64,
+    "tag": "c:ingots/lead"
+  }
+}

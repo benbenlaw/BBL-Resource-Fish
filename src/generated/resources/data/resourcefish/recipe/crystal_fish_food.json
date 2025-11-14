@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "resourcefish:metallic_fish_food"
+    },
+    "B": {
+      "tag": "c:gems"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "count": 6,
+    "id": "resourcefish:crystal_fish_food"
+  }
+}

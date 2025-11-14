@@ -10,17 +10,17 @@
   "output_fluid": {},
   "results": [
     {
-      "chance": 0.2,
-      "item": {
+      "chance": 0.4,
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:gravel"
+        "item": "minecraft:gravel"
       }
     },
     {
       "chance": 0.05,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:flint"
+        "item": "minecraft:flint"
       }
     }
   ]

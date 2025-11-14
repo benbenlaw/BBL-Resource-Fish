@@ -1,0 +1,23 @@
+{
+  "drop_interval": 300,
+  "drop_items": [
+    {
+      "item": {
+        "components": {
+          "resourcefish:fish_type": "resourcefish:glowstone"
+        },
+        "count": 1,
+        "id": "resourcefish:caviar"
+      }
+    }
+  ],
+  "main_color": "#FFFFFACD",
+  "models": [
+    "small"
+  ],
+  "pattern_color": "#FFFFD700",
+  "patterns": [
+    "small_5",
+    "small_6"
+  ]
+}

@@ -1,12 +1,12 @@
 {
   "type": "resourcefish:fish_breeding",
   "breeding_ingredient": {
-    "count": 64,
-    "item": "minecraft:cobblestone"
+    "count": 1,
+    "item": "resourcefish:basic_fish_food"
   },
-  "chance": 0.75,
+  "chance": 0.15,
   "created_fish": "resourcefish:cobblestone",
   "duration": 100,
-  "parent_a": "resourcefish:stone",
-  "parent_b": "resourcefish:stone"
+  "parent_a": "resourcefish:cobblestone",
+  "parent_b": "resourcefish:cobblestone"
 }

@@ -11,9 +11,9 @@
   "results": [
     {
       "chance": 0.2,
-      "item": {
+      "ingredient": {
         "count": 1,
-        "id": "minecraft:gold_ingot"
+        "item": "minecraft:gold_ingot"
       }
     }
   ]

@@ -1,5 +1,26 @@
 Resource Fish
 
+bucket texture use the fish
+
+1.1.0
+- Full recipe overhaul for breeding and infusing, breeding recipes allow you to get from base fish (water, lava, dirt, stone, wood)
+    to every other type of resource fish through a series of breeding steps and new breeding items.
+    Infusion recipes allow you to infuse a fish with a resource to change its type directly.
+    This helps modpack makers control the availability of certain fish types and restrict in ways they see fit.
+- Added Colored Fish for all base colors, produce dyes
+- Added Glowstone, Quartz Fish
+- Added fish should be obtainable through breeding and infusing.
+- Tweaked a lot of caviar processor recipes
+- Added Basic, Metallic, Crystal, Nether and Basic Mob Fish Foods, these are used in breeding recipes
+- Reduced spawning of resource fish in the world
+- Fixed missing round robin
+- Removed some debus logs
+- Fixed spawn eggs not working correctly on water blocks
+- Caviar processor now uses SizedIngredientChanceResult to allow for tag based outputs, this recipe json has changed check the data/recipes/caviar jsons for examples
+- Fixed JEI always showing an empty fluid stack in the caviar processor recipes
+- Added support for most common resource types, only show when detected in the game
+- Fixed conditional loading of resource fish not working correctly
+
 1.0.14
 - Fix server not having the fish in JEI and creative
 - Fixed recipes not showing on servers

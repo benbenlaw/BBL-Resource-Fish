@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.5,
+  "created_fish": "resourcefish:quartz",
+  "duration": 100,
+  "fish": "resourcefish:netherrack",
+  "input_1": {
+    "count": 64,
+    "item": "minecraft:quartz"
+  },
+  "input_2": {
+    "count": 64,
+    "item": "minecraft:quartz"
+  },
+  "input_3": {
+    "count": 64,
+    "item": "minecraft:quartz"
+  }
+}

@@ -104,29 +104,24 @@ public class ResourceFishSpawnEgg extends DeferredSpawnEggItem {
             return InteractionResultHolder.pass(itemStack);
         }
 
-        // Get the resource type from the itemstack (your component system)
         ResourceLocation resourceLocation = itemStack.get(ResourceFishDataComponents.FISH_TYPE.get());
         if (resourceLocation == null) {
             return InteractionResultHolder.pass(itemStack);
         }
 
-        player.sendSystemMessage(Component.translationArg(resourceLocation));
-
-        // Set fish resource type & variant
         ResourceType resourceType = ResourceType.get(resourceLocation);
         fish.setResourceType(resourceType);
 
         ResourceFishEntity.Variant variant = ResourceFishEntity.generateVariant(resourceType, level.getRandom());
         fish.setVariant(variant);
 
-        // Position fish centered in the spawn block
         fish.setPos(spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5);
-
-        // Add entity to world
         level.addFreshEntity(fish);
 
-        // Shrink item, award stats and emit game event
-        itemStack.shrink(1);
+        if (!player.isCreative()) {
+            itemStack.shrink(1);
+        }
+
         player.awardStat(Stats.ITEM_USED.get(this));
         level.gameEvent(player, GameEvent.ENTITY_PLACE, spawnPos);
 
