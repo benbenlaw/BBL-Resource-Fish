@@ -54,7 +54,7 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addBlockTranslation("tank_controller", "Resource Fish Tank");
         addBlockTranslation("caviar_processor", "Caviar Processor");
         addBlockTranslation("tank_controller_range", "Tank Range");
-        addBlockTranslation("nest.json", "Resource Fish Nest");
+        addBlockTranslation("nest", "Resource Fish Nest");
 
         //Recipes
         addRecipeTranslation("caviar_processor", "Caviar Processor");

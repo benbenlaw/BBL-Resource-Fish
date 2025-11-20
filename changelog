@@ -3,6 +3,9 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.2.2
+- Fixed nest not being named correctly
+
 1.2.1
 - Fixed Nest block being disabled
 
