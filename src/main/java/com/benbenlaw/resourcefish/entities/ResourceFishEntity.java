@@ -311,6 +311,13 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData groupData) {
+
+        if (spawnType == MobSpawnType.BUCKET) {
+            return super.finalizeSpawn(level, difficulty, spawnType, groupData);
+        }
+
+
+
         SpawnGroupData data = super.finalizeSpawn(level, difficulty, spawnType, groupData);
 
         Holder<Biome> biomeHolder = level.getBiome(this.blockPosition());
@@ -358,6 +365,12 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
 
     @Override
     public boolean checkSpawnRules(LevelAccessor levelAccessor, MobSpawnType spawnType) {
+
+        if (spawnType == MobSpawnType.BUCKET) {
+            return true;
+        }
+
+
         BlockPos pos = this.blockPosition();
         return level.getFluidState(pos).is(FluidTags.WATER);
     }
@@ -369,6 +382,11 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
             BlockPos pos,
             RandomSource random
     ) {
+
+        if (spawnType == MobSpawnType.BUCKET) {
+            return true;
+        }
+
         if (!level.getFluidState(pos).is(FluidTags.WATER)) return false;
 
         Holder<Biome> biomeHolder = level.getBiome(pos);

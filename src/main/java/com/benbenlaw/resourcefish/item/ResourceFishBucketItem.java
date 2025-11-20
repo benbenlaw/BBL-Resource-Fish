@@ -1,13 +1,24 @@
 package com.benbenlaw.resourcefish.item;
 
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
+import com.benbenlaw.resourcefish.util.ResourceType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.phys.AABB;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ResourceFishBucketItem extends MobBucketItem {
     public ResourceFishBucketItem(EntityType<? extends ResourceFishEntity> fishType, Fluid fluid, SoundEvent sound, Properties properties) {
@@ -35,4 +46,30 @@ public class ResourceFishBucketItem extends MobBucketItem {
 
         return super.getName(stack);
     }
+
+    @Override
+    public void checkExtraContent(@Nullable Player player, Level level, ItemStack stack, BlockPos pos) {
+        super.checkExtraContent(player, level, stack, pos);
+
+        if (!(level instanceof ServerLevel server)) return;
+
+        List<ResourceFishEntity> fishList = server.getEntitiesOfClass(ResourceFishEntity.class,
+                new AABB(pos).inflate(1));
+
+        if (fishList.isEmpty()) return;
+
+        ResourceFishEntity fish = fishList.getFirst();
+
+        CustomData custom = stack.getOrDefault(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY);
+        if (!custom.isEmpty()) {
+            fish.loadFromBucketTag(custom.copyTag());
+        }
+
+        ResourceLocation resourceType = stack.get(ResourceFishDataComponents.FISH_TYPE.get());
+        if (resourceType != null) {
+            fish.setResourceType(ResourceType.REGISTRY.get(resourceType));
+        }
+    }
+
+
 }

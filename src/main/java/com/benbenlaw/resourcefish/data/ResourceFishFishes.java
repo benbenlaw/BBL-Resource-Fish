@@ -250,6 +250,9 @@ public class ResourceFishFishes extends ResourceFishBuilder {
         fishData.add(new FishData("ancient", 0xFF908785, 0xFF958986, List.of(), 300,
                 List.of(large5, large1), largeModels, List.of(), false));
 
+        //Obsidian
+        fishData.add(new FishData("obsidian", 0xFF1C1C1C, 0xFF0B0B0B, List.of(), 300,
+                List.of(large4, large2), largeModels, List.of(), false));
 
 
         for (FishData data : fishData) {

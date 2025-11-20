@@ -353,6 +353,12 @@ public class ResourceFishRecipes extends RecipeProvider {
         caviarSimpleRecipes.add(new CaviarSimple("ancient", false, new SizedIngredientChanceResult(
                 SizedIngredient.of(Items.ANCIENT_DEBRIS, 1), 0.05f)));
 
+        //Obsidian - Crystal Fish Food
+        breedingRecipes.add(new BreedingRecipe("lava", "water", SizedIngredient.of(crystalFishFood, 1), 200, 0.1, "obsidian", false));
+        infusingRecipes.add(new InfusingRecipeSingle("lava", SizedIngredient.of(Items.OBSIDIAN, 64),200, 0.1, "obsidian", false));
+        caviarSimpleRecipes.add(new CaviarSimple("obsidian", false, new SizedIngredientChanceResult(
+                SizedIngredient.of(Items.OBSIDIAN, 1), 0.05f)));
+
 
         for (BreedingRecipe recipe : breedingRecipes) {
             var builder = FishBreedingRecipeBuilder.createFishBreedingRecipe(

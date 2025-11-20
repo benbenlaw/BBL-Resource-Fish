@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-20T10:19:01.1855868	Resource Fish Builder
+// 1.21.1	2025-11-20T17:27:03.9392046	Resource Fish Builder
 0d22b7eb423c7719ae269140fb02096b0f0a7a29 data/resourcefish/fish/aluminum.json
 2ebd73a173a55f4a2505ea50d51c02e9c6bf187c data/resourcefish/fish/amethyst.json
 8d2b7eca3bb9e959abb939439805ea7944975801 data/resourcefish/fish/ancient.json
@@ -33,6 +33,7 @@ a531f50f9ed660406cf119f17ab4f9ef18cb5a9e data/resourcefish/fish/light_blue.json
 d975fd605de66362c05c1613490fcb82762b07f6 data/resourcefish/fish/magenta.json
 8125c4a54bd1b3fdb995e5daaf067d9005e13ba5 data/resourcefish/fish/netherrack.json
 1f956e65518120a9f02ac0d2b68c08962eab319a data/resourcefish/fish/nickel.json
+8004a1ad7810c48891f45e4928db400c9d3223da data/resourcefish/fish/obsidian.json
 f226545bfc230a7c3970646638f61e80d788886a data/resourcefish/fish/orange.json
 c0145edf7bbbbec845a74107a35168736b72482b data/resourcefish/fish/osmium.json
 7a3e37d560bf556f980e9fe0871b941a1adcb07c data/resourcefish/fish/peridot.json

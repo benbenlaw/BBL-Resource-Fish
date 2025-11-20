@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-20T10:15:49.2459151	Recipes
+// 1.21.1	2025-11-20T17:27:03.9422903	Recipes
 ce53d61a3a5b6d4c7d6f9b61cde767ce8d4e5d0a data/resourcefish/advancement/recipes/breeding/breeding/aluminum.json
 d59b542b7080752d724b039fe5e8695f0842519d data/resourcefish/advancement/recipes/breeding/breeding/amethyst.json
 3385be46e013dd4f826b9d2b987543db948879a8 data/resourcefish/advancement/recipes/breeding/breeding/ancient.json
@@ -23,6 +23,7 @@ c6182ce9e6eb782f55eed32d937cf5e3f28c76ae data/resourcefish/advancement/recipes/b
 b52225e5ea1038015e801e20a2660d90cd761b5e data/resourcefish/advancement/recipes/breeding/breeding/lead.json
 8913aba179915760228b8505245f254750d32372 data/resourcefish/advancement/recipes/breeding/breeding/netherrack.json
 bf6ef1de1dc2f078fdffe9ced47528d0366b0d38 data/resourcefish/advancement/recipes/breeding/breeding/nickel.json
+ae06161e7f52b390d69df98202c1c47063384b2a data/resourcefish/advancement/recipes/breeding/breeding/obsidian.json
 2a6b866d0f5da9f9a12bbf1f369fff6bb0739e23 data/resourcefish/advancement/recipes/breeding/breeding/osmium.json
 72eaba0bd17bf6fa0cbb51814aca80c4a884df4e data/resourcefish/advancement/recipes/breeding/breeding/peridot.json
 2fe414181382051f7fe64e05e94e9a1bb0641fef data/resourcefish/advancement/recipes/breeding/breeding/platinum.json
@@ -76,6 +77,7 @@ d8b837e2d4d9a97844de038bb922457257d62ad5 data/resourcefish/advancement/recipes/c
 27833a51b943659889805a9ce550e0f2a1214e92 data/resourcefish/advancement/recipes/caviar/caviar/magenta.json
 edce5ede3e4deec933a0db5abe2cf32fa186f3f9 data/resourcefish/advancement/recipes/caviar/caviar/netherrack.json
 b85c85810733317378ab35b3ba6f0cc9e7fdbd4d data/resourcefish/advancement/recipes/caviar/caviar/nickel.json
+b39344048fced90a33cc63f1af37a6486e886fd8 data/resourcefish/advancement/recipes/caviar/caviar/obsidian.json
 9ec82c4685247081205e76da3a39aed74a1c0c7e data/resourcefish/advancement/recipes/caviar/caviar/orange.json
 a67ea7f8fb59aabee097571a362537799ad9febe data/resourcefish/advancement/recipes/caviar/caviar/osmium.json
 6f69077716761be02e0381fc397f399b83f2588e data/resourcefish/advancement/recipes/caviar/caviar/peridot.json
@@ -132,6 +134,7 @@ d6f6d39287e38c3adede808536f400f02aa50e7e data/resourcefish/advancement/recipes/i
 d5ca81b602c6f427086004bb7c6df9e15564bae4 data/resourcefish/advancement/recipes/infusing/infusing/magenta.json
 d1a31986b056b5b4a5f82354325314290711cd95 data/resourcefish/advancement/recipes/infusing/infusing/netherrack.json
 bbf775cab8552c2b2e253f66ce9dce6b71b44193 data/resourcefish/advancement/recipes/infusing/infusing/nickel.json
+d41f8d161d877dea153eec8a86abf61a11ca4454 data/resourcefish/advancement/recipes/infusing/infusing/obsidian.json
 8259a4e568dabb2705fc5299aa5c812193c41cf3 data/resourcefish/advancement/recipes/infusing/infusing/orange.json
 f7c4a1434c3f7238f7e1586c4890026a6ab0373d data/resourcefish/advancement/recipes/infusing/infusing/osmium.json
 a82b78862d4931a55bb405af20864f1eb3ac4b63 data/resourcefish/advancement/recipes/infusing/infusing/peridot.json
@@ -202,6 +205,7 @@ fecfe0dad1541671d0054f561e35da5338cc7b75 data/resourcefish/recipe/breeding/grani
 7a2ce04cb5fb3740031707268433aa90df7ee898 data/resourcefish/recipe/breeding/lead.json
 6093a7db80aa2dcf1db11665bda22535bdb06cb4 data/resourcefish/recipe/breeding/netherrack.json
 f94fcea8bae6ca78ef5037d67f0e3d18d5ff8c6a data/resourcefish/recipe/breeding/nickel.json
+2a72338babf517527e042ae79a72ec4610d4ef06 data/resourcefish/recipe/breeding/obsidian.json
 00153342cff996822df66d461873ec3cac2d525b data/resourcefish/recipe/breeding/osmium.json
 cf8440fb865a351e18252c6a963a3a8f7c6f3393 data/resourcefish/recipe/breeding/peridot.json
 d8ace88c5da8ad182dcceb67f06ffdcd65ec6aab data/resourcefish/recipe/breeding/platinum.json
@@ -256,6 +260,7 @@ f89f997b464e003ac95317f751904c469db4d875 data/resourcefish/recipe/caviar/light_g
 f9538cc5ca7de7e5a107e9651ece2dd1e93e5635 data/resourcefish/recipe/caviar/magenta.json
 f070361092c78f2cd25da9981bdaabad10ecc646 data/resourcefish/recipe/caviar/netherrack.json
 6128d1ffc3c4725e4b8855e4b18a2456611b626d data/resourcefish/recipe/caviar/nickel.json
+e872e303a3af44fce6342a7f9ccee0c3f3986c2c data/resourcefish/recipe/caviar/obsidian.json
 db1b82d5decf751abbe23cad464ae1c0473b0318 data/resourcefish/recipe/caviar/orange.json
 fdf47c2cfa5c1e0e5abf2ba3f69998cc15576c04 data/resourcefish/recipe/caviar/osmium.json
 fd0b6014bfaeb1b89972cac38c26d50022326328 data/resourcefish/recipe/caviar/peridot.json
@@ -317,6 +322,7 @@ e264693e26c467c3f0692b3a899cc5b5aec637a7 data/resourcefish/recipe/infusing/lead.
 07b1c8de3aa0e8a30fe05c01a3c8b0336abed2af data/resourcefish/recipe/infusing/magenta.json
 a96588927ad7f4e5e68ff131b8f7a59585e24643 data/resourcefish/recipe/infusing/netherrack.json
 ad1f677b16fd62e932d44f8b67652de32d250dea data/resourcefish/recipe/infusing/nickel.json
+3da9deec1eb45b05149324d45c43363767fe1445 data/resourcefish/recipe/infusing/obsidian.json
 4f2cae9a1ff3af08ca1f3c9cb7e82b1558477680 data/resourcefish/recipe/infusing/orange.json
 50f5b2b61d41bbd115c22df92e3f9b03f90ba2c4 data/resourcefish/recipe/infusing/osmium.json
 53ae794435de11a788082bfe0b0ad87ec8846e72 data/resourcefish/recipe/infusing/peridot.json
