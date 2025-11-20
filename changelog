@@ -3,6 +3,9 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.2.1
+- Fixed Nest block being disabled
+
 1.2.0
 - Fixed networking issue causing fish biomes not to be synced preventing fish from spawning in world
 - Tweaked spawning rates of resource fish in world again, now spawn like tropical fish with 8 fish per spawn

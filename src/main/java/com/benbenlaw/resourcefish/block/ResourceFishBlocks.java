@@ -25,7 +25,7 @@ public class ResourceFishBlocks {
             () -> new CaviarProcessorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE)
                     .noOcclusion()));
 
-    public static final DeferredBlock<Block> NEST = registerBlock("nest.json",
+    public static final DeferredBlock<Block> NEST = registerBlock("nest",
             () -> new NestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).sound(SoundType.SAND)
                     .lightLevel(state -> 7)
                     .noOcclusion()));
