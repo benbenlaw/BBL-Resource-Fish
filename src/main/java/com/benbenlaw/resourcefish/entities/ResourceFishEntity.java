@@ -316,8 +316,6 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
             return super.finalizeSpawn(level, difficulty, spawnType, groupData);
         }
 
-
-
         SpawnGroupData data = super.finalizeSpawn(level, difficulty, spawnType, groupData);
 
         Holder<Biome> biomeHolder = level.getBiome(this.blockPosition());
