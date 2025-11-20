@@ -1,6 +1,9 @@
-// 1.21.1	2025-11-13T18:56:35.7025151	Resource Fish Builder
+// 1.21.1	2025-11-20T10:19:01.1855868	Resource Fish Builder
 0d22b7eb423c7719ae269140fb02096b0f0a7a29 data/resourcefish/fish/aluminum.json
+2ebd73a173a55f4a2505ea50d51c02e9c6bf187c data/resourcefish/fish/amethyst.json
+8d2b7eca3bb9e959abb939439805ea7944975801 data/resourcefish/fish/ancient.json
 a7b1f907941f2e259ed7e4ebb50e08a311d10ec5 data/resourcefish/fish/andesite.json
+efc287f4e63d45eac89d3efcf32c149b6d11b148 data/resourcefish/fish/basalt.json
 c867728165dd4f902a83cf83d0fe956b4d968229 data/resourcefish/fish/black.json
 94e7669ab62577e10e59b94872906b76a39e4ed6 data/resourcefish/fish/blue.json
 ca87d925c41f5d8c73e1c5e96493dd26d7dc64e4 data/resourcefish/fish/brown.json
@@ -32,13 +35,16 @@ d975fd605de66362c05c1613490fcb82762b07f6 data/resourcefish/fish/magenta.json
 1f956e65518120a9f02ac0d2b68c08962eab319a data/resourcefish/fish/nickel.json
 f226545bfc230a7c3970646638f61e80d788886a data/resourcefish/fish/orange.json
 c0145edf7bbbbec845a74107a35168736b72482b data/resourcefish/fish/osmium.json
+7a3e37d560bf556f980e9fe0871b941a1adcb07c data/resourcefish/fish/peridot.json
 42ad15f6f2cda2e7f91915f267ae8cae0b26ff3c data/resourcefish/fish/pink.json
 74ee8aa2e93381b195e90d87aca11d21bf5646b3 data/resourcefish/fish/platinum.json
 1f3b5f88bf980d004815295a3ffded92edac51df data/resourcefish/fish/purple.json
 fe02c44f4e7a67097d0a2a78aae51969c9409264 data/resourcefish/fish/quartz.json
 56ec282238e61a8260511f42f0a38de041afd3f0 data/resourcefish/fish/red.json
 dd1cf002b84239cf2876d1b6102c09497d486ed3 data/resourcefish/fish/redstone.json
+c6c5d3ca9e92d7d5a6616368b8cb7e8f1fa85c03 data/resourcefish/fish/ruby.json
 206e5456b0cc6eb83f249cb7bfba9e7400e384d4 data/resourcefish/fish/sand.json
+cc932612bd3caa3071bc69e97ca539fff931d319 data/resourcefish/fish/sapphire.json
 9a68e6906834d65518f5446a15edd3582f381314 data/resourcefish/fish/silver.json
 87cc889fdad991e6b18af1c29ade0a5ee0ba5afc data/resourcefish/fish/skeleton.json
 25a975d8df9bf587294b02a0e741196754f7bff1 data/resourcefish/fish/soul_sand.json

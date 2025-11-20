@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/sapphire"
+      }
+    }
+  ],
+  "drop_interval": 300,
+  "drop_items": [
+    {
+      "item": {
+        "components": {
+          "resourcefish:fish_type": "resourcefish:sapphire"
+        },
+        "count": 1,
+        "id": "resourcefish:caviar"
+      }
+    }
+  ],
+  "main_color": "#FF0F52BA",
+  "models": [
+    "small"
+  ],
+  "pattern_color": "#FF00008B",
+  "patterns": [
+    "small_5",
+    "small_3"
+  ]
+}

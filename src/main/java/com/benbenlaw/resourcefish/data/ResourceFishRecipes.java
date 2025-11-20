@@ -165,7 +165,7 @@ public class ResourceFishRecipes extends RecipeProvider {
         caviarSimpleRecipes.add(new CaviarSimple("copper", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.COPPER_INGOT, 1), 0.2f)));
 
         //Iron - Metallic Fish Food
-        breedingRecipes.add(new BreedingRecipe("copper", "light_gray", SizedIngredient.of(metallicFishFood, 1), 100, 0.15, "iron", false));
+        breedingRecipes.add(new BreedingRecipe("copper", "gray", SizedIngredient.of(metallicFishFood, 1), 100, 0.15, "iron", false));
         infusingRecipes.add(new InfusingRecipeSingle("copper", SizedIngredient.of(Items.IRON_INGOT, 64),100, 0.25, "iron", false));
         caviarSimpleRecipes.add(new CaviarSimple("iron", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.IRON_INGOT, 1), 0.2f)));
 
@@ -294,6 +294,64 @@ public class ResourceFishRecipes extends RecipeProvider {
         infusingRecipes.add(new InfusingRecipeSingle("iron", SizedIngredient.of(CommonTags.getTag("iridium", CommonTags.ResourceType.INGOTS), 64),100, 0.25, "iridium", true));
         caviarSimpleRecipes.add(new CaviarSimple("iridium", true, new SizedIngredientChanceResult(
                 SizedIngredient.of(CommonTags.getTag("iridium", CommonTags.ResourceType.INGOTS), 1), 0.2f)));
+
+
+
+        //Ruby - Enriched Fish Food
+        breedingRecipes.add(new BreedingRecipe("emerald", "red", SizedIngredient.of(crystalFishFood, 1), 100, 0.15, "ruby", true));
+        infusingRecipes.add(new InfusingRecipeSingle("emerald", SizedIngredient.of(CommonTags.getTag("ruby", CommonTags.ResourceType.GEMS), 64),100, 0.25, "ruby", true));
+        caviarSimpleRecipes.add(new CaviarSimple("ruby", true, new SizedIngredientChanceResult(
+                SizedIngredient.of(CommonTags.getTag("ruby", CommonTags.ResourceType.GEMS), 1), 0.2f)));
+
+        //Sapphire - Enriched Fish Food
+        breedingRecipes.add(new BreedingRecipe("emerald", "blue", SizedIngredient.of(crystalFishFood, 1), 100, 0.15, "sapphire", true));
+        infusingRecipes.add(new InfusingRecipeSingle("emerald", SizedIngredient.of(CommonTags.getTag("sapphire", CommonTags.ResourceType.GEMS), 64),100, 0.25, "sapphire", true));
+        caviarSimpleRecipes.add(new CaviarSimple("sapphire", true, new SizedIngredientChanceResult(
+                SizedIngredient.of(CommonTags.getTag("sapphire", CommonTags.ResourceType.GEMS), 1), 0.2f)));
+
+        //Peridot - Enriched Fish Food
+        breedingRecipes.add(new BreedingRecipe("emerald", "green", SizedIngredient.of(crystalFishFood, 1), 100, 0.15, "peridot", true));
+        infusingRecipes.add(new InfusingRecipeSingle("emerald", SizedIngredient.of(CommonTags.getTag("peridot", CommonTags.ResourceType.GEMS), 64),100, 0.25, "peridot", true));
+        caviarSimpleRecipes.add(new CaviarSimple("peridot", true, new SizedIngredientChanceResult(
+                SizedIngredient.of(CommonTags.getTag("peridot", CommonTags.ResourceType.GEMS), 1), 0.2f)));
+
+        //Amethyst - Enriched Fish Food
+        breedingRecipes.add(new BreedingRecipe("lapis", "purple", SizedIngredient.of(crystalFishFood, 1), 100, 0.15, "amethyst", false));
+        infusingRecipes.add(new InfusingRecipeSingle("lapis", SizedIngredient.of(Items.AMETHYST_SHARD, 64),100, 0.25, "amethyst", false));
+        caviarSimpleRecipes.add(new CaviarSimple("amethyst", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.AMETHYST_SHARD, 1), 0.2f)));
+
+        /*
+
+        //Sulfur - Enriched Fish Food
+        breedingRecipes.add(new BreedingRecipe("coal", "yellow", SizedIngredient.of(crystalFishFood, 1), 100, 0.15, "sulfur", true));
+        infusingRecipes.add(new InfusingRecipeSingle("coal", SizedIngredient.of(CommonTags.getTag("sulfur", CommonTags.ResourceType.DUSTS), 64),100, 0.25, "sulfur", true));
+        caviarSimpleRecipes.add(new CaviarSimple("sulfur", true, new SizedIngredientChanceResult(
+                SizedIngredient.of(CommonTags.getTag("sulfur", CommonTags.ResourceType.DUSTS), 1), 0.2f)));
+
+        //Fluorite - Enriched Fish Food
+        breedingRecipes.add(new BreedingRecipe("diamond", "magenta", SizedIngredient.of(crystalFishFood, 1), 100, 0.15, "fluorite", true));
+        infusingRecipes.add(new InfusingRecipeSingle("diamond", SizedIngredient.of(CommonTags.getTag("fluorite", CommonTags.ResourceType.GEMS), 64),100, 0.25, "fluorite", true));
+        caviarSimpleRecipes.add(new CaviarSimple("fluorite", true, new SizedIngredientChanceResult(
+                SizedIngredient.of(CommonTags.getTag("fluorite", CommonTags.ResourceType.GEMS), 1), 0.2f)));
+
+        //Cinnabar - Enriched Fish Food
+        breedingRecipes.add(new BreedingRecipe("redstone", "red", SizedIngredient.of(crystalFishFood, 1), 100, 0.15, "cinnabar", true));
+        infusingRecipes.add(new InfusingRecipeSingle("redstone", SizedIngredient.of(CommonTags.getTag("cinnabar", CommonTags.ResourceType.DUSTS), 64),100, 0.25, "cinnabar", true));
+        caviarSimpleRecipes.add(new CaviarSimple("cinnabar", true, new SizedIngredientChanceResult(
+                SizedIngredient.of(CommonTags.getTag("cinnabar", CommonTags.ResourceType.DUSTS), 1), 0.2f)));
+
+        */
+
+        //Basalt - Nether Fish Food
+        breedingRecipes.add(new BreedingRecipe("lava", "black", SizedIngredient.of(netherFishFood, 1), 100, 0.2, "basalt", false));
+        infusingRecipes.add(new InfusingRecipeSingle("lava", SizedIngredient.of(Items.BASALT, 64),100, 0.5, "basalt", false));
+        caviarSimpleRecipes.add(new CaviarSimple("basalt", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.BASALT, 1), 0.4f)));
+
+        //Ancient Debris - Nether Fish Food
+        breedingRecipes.add(new BreedingRecipe("netherrack", "basalt", SizedIngredient.of(netherFishFood, 1), 200, 0.1, "ancient", false));
+        infusingRecipes.add(new InfusingRecipeSingle("netherrack", SizedIngredient.of(Items.ANCIENT_DEBRIS, 64),200, 0.1, "ancient", false));
+        caviarSimpleRecipes.add(new CaviarSimple("ancient", false, new SizedIngredientChanceResult(
+                SizedIngredient.of(Items.ANCIENT_DEBRIS, 1), 0.05f)));
 
 
         for (BreedingRecipe recipe : breedingRecipes) {

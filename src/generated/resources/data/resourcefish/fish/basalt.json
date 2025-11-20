@@ -1,0 +1,23 @@
+{
+  "drop_interval": 300,
+  "drop_items": [
+    {
+      "item": {
+        "components": {
+          "resourcefish:fish_type": "resourcefish:basalt"
+        },
+        "count": 1,
+        "id": "resourcefish:caviar"
+      }
+    }
+  ],
+  "main_color": "#FF2C2C2C",
+  "models": [
+    "large"
+  ],
+  "pattern_color": "#FF1A1A1A",
+  "patterns": [
+    "large_6",
+    "large_3"
+  ]
+}

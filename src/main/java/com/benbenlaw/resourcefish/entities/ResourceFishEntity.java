@@ -318,6 +318,14 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         this.setResourceType(type);
         this.setVariant(generateVariant(type, level.getRandom()));
         this.allowedToDrop = false;
+
+        if (type == ResourceType.NONE) {
+            System.out.println("No naturally spawning ResourceType found for biome " + Objects.requireNonNull(biomeHolder.getKey()).location() + ". Removing entity.");
+            this.discard();
+            return null;
+        }
+
+
         return data;
     }
 
@@ -335,8 +343,8 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
 
     private ResourceType generateRandomResource(RandomSource random, Holder<Biome> biomeHolder) {
         List<ResourceType> values = ResourceType.REGISTRY.values().stream()
-                .filter(type -> !type.getBiomes().isEmpty() ||
-                        type.getBiomes().stream().anyMatch(biomeOrTag -> matchesBiomeOrTag(biomeHolder, String.valueOf(biomeOrTag)))
+                .filter(type -> !type.getBiomes().isEmpty() &&
+                        type.getBiomes().stream().anyMatch(biomeOrTag -> matchesBiomeOrTag(biomeHolder, biomeOrTag))
                 )
                 .toList();
 
@@ -345,6 +353,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         }
         return values.get(random.nextInt(values.size()));
     }
+
 
 
     @Override
@@ -437,7 +446,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
                 return Component.translatable(baseName, capitalizedPath);
             }
         }
-        return Component.literal("ERROR");
+        return Component.literal("This should not happen check logs its probably a missing resource type for the biome!");
     }
 
     @Override

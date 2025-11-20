@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "resourcefish:block/nest"
+      },
+      {
+        "model": "resourcefish:block/nest",
+        "y": 90
+      },
+      {
+        "model": "resourcefish:block/nest",
+        "y": 180
+      },
+      {
+        "model": "resourcefish:block/nest",
+        "y": 270
+      }
+    ]
+  }
+}

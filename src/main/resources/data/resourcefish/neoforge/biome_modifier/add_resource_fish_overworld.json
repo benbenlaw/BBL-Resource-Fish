@@ -1,12 +1,12 @@
 {
   "type": "neoforge:add_spawns",
-  "biomes": "#c:is_ocean",
+  "biomes": "#c:is_overworld",
   "spawners": [
     {
       "type": "resourcefish:resource_fish",
-      "weight": 7,
-      "minCount": 3,
-      "maxCount": 10
+      "maxCount": 8,
+      "minCount": 8,
+      "weight": 25
     }
   ]
 }

@@ -1,6 +1,22 @@
 Resource Fish
 
 bucket texture use the fish
+Sulfur, Fluorite, Cinnabar missing at the moment will add later
+
+1.2.0
+- Fixed networking issue causing fish biomes not to be synced preventing fish from spawning in world
+- Tweaked spawning rates of resource fish in world again, now spawn like tropical fish with 8 fish per spawn
+- Fish types that have natural spawning my show in JEI
+- Improved debug logging
+- Empty resource fish should no longer be able to spawn in any conditions
+- /summon resourcefish:resource_fish will now summon valid fish for that biome from generation
+- Setting non ocean biomes in the fish json will now spawn the fish correct eg before setting river biome would not spawn the fish in rivers now this will work
+    support is added for all overworld tagged biomes, nether tagged biomes and end tagged biomes biomes. Fish still require water to naturally spawn
+- Added Nest Blocks, these spawn at the bottom of oceans, when broken will spawn a valid resource fish for that biome
+- Updated Fish Food texture thanks @Yuki
+Fish Tweaks;
+- Iron fish now uses gray fish not light gray in it recipe
+- Added Ruby, Sapphite, Peridot, Amethyst, Basalt, Ancient
 
 1.1.0
 - Full recipe overhaul for breeding and infusing, breeding recipes allow you to get from base fish (water, lava, dirt, stone, wood)

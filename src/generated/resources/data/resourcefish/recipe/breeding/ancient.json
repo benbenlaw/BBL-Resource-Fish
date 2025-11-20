@@ -1,0 +1,12 @@
+{
+  "type": "resourcefish:fish_breeding",
+  "breeding_ingredient": {
+    "count": 1,
+    "item": "resourcefish:nether_fish_food"
+  },
+  "chance": 0.1,
+  "created_fish": "resourcefish:ancient",
+  "duration": 200,
+  "parent_a": "resourcefish:netherrack",
+  "parent_b": "resourcefish:basalt"
+}

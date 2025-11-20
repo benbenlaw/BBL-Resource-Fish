@@ -1,0 +1,23 @@
+{
+  "drop_interval": 300,
+  "drop_items": [
+    {
+      "item": {
+        "components": {
+          "resourcefish:fish_type": "resourcefish:amethyst"
+        },
+        "count": 1,
+        "id": "resourcefish:caviar"
+      }
+    }
+  ],
+  "main_color": "#FF9966CC",
+  "models": [
+    "small"
+  ],
+  "pattern_color": "#FF4B0082",
+  "patterns": [
+    "small_4",
+    "small_1"
+  ]
+}

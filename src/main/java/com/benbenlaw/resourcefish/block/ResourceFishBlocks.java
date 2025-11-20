@@ -25,6 +25,11 @@ public class ResourceFishBlocks {
             () -> new CaviarProcessorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).sound(SoundType.STONE)
                     .noOcclusion()));
 
+    public static final DeferredBlock<Block> NEST = registerBlock("nest.json",
+            () -> new NestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).sound(SoundType.SAND)
+                    .lightLevel(state -> 7)
+                    .noOcclusion()));
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = (DeferredBlock<T>) BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

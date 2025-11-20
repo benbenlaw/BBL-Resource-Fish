@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/peridot"
+      }
+    }
+  ],
+  "drop_interval": 300,
+  "drop_items": [
+    {
+      "item": {
+        "components": {
+          "resourcefish:fish_type": "resourcefish:peridot"
+        },
+        "count": 1,
+        "id": "resourcefish:caviar"
+      }
+    }
+  ],
+  "main_color": "#FFB4C424",
+  "models": [
+    "small"
+  ],
+  "pattern_color": "#FF6E8B3D",
+  "patterns": [
+    "small_6",
+    "small_2"
+  ]
+}

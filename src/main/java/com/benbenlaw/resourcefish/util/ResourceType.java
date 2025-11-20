@@ -3,6 +3,7 @@ package com.benbenlaw.resourcefish.util;
 import com.benbenlaw.core.recipe.ChanceResult;
 import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
+import com.benbenlaw.resourcefish.network.BiggerStreamCodec;
 import com.benbenlaw.resourcefish.network.packets.SyncResourceTypesToClient;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -138,19 +139,17 @@ public class ResourceType {
     ).apply(resourceTypeInstance, ResourceType::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ResourceType> STREAM_CODEC =
-            StreamCodec.composite(
+            BiggerStreamCodec.composite(
                     ResourceLocation.STREAM_CODEC, ResourceType::getId,
                     ByteBufCodecs.INT, ResourceType::getColor,
                     ByteBufCodecs.INT, ResourceType::getPatternColor,
                     ChanceResultStreamCodec.STREAM_CODEC.apply(ByteBufCodecs.list()), ResourceType::getDropItems,
                     ByteBufCodecs.INT, ResourceType::getDropIntervalTicks,
                     ResourceFishEntity.Pattern.STREAM_CODEC.apply(ByteBufCodecs.list()), ResourceType::getPatterns,
-                    (id, mainColor, patternColor, dropItems, dropIntervalTicks, patterns) ->
-                            new ResourceType(id, mainColor, patternColor, dropItems, dropIntervalTicks, patterns, List.of(), List.of())
-            ).map(
-                    r -> new ResourceType(r.getId(), r.getColor(), r.getPatternColor(), r.getDropItems(), r.getDropIntervalTicks(), r.getPatterns(), r.getModels(), r.getBiomes()),
-                    r -> r // identity for encoding
-                    );
+                    ResourceFishEntity.Pattern.Base.STREAM_CODEC.apply(ByteBufCodecs.list()), ResourceType::getModels,
+                    ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list()), ResourceType::getBiomes,
+                    ResourceType::new);
+
 
 
     public static void sendResourceTypes(ServerPlayer player) {;

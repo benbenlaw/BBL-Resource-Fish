@@ -86,7 +86,9 @@ dependencies {
     compileOnly "curse.maven:journeymap-32274:6689206"
     runtimeOnly "curse.maven:journeymap-32274:6689206"
 
-
+    //All The Ores
+    //compileOnly "curse.maven:ato-405593:6118610"
+    //runtimeOnly "curse.maven:ato-405593:6118610"
 }
 
 tasks.withType(ProcessResources).configureEach {

@@ -209,6 +209,49 @@ public class ResourceFishFishes extends ResourceFishBuilder {
                 List.of(small2, small6), smallModels, List.of(), true));
 
 
+
+        //Ruby
+        fishData.add(new FishData("ruby", 0xFFAA0114, 0xFF7B0000, List.of(), 300,
+                List.of(small1, small4), smallModels, List.of(), true));
+
+        //Sapphire
+        fishData.add(new FishData("sapphire", 0xFF0F52BA, 0xFF00008B, List.of(), 300,
+                List.of(small5, small3), smallModels, List.of(), true));
+
+        //Peridot
+        fishData.add(new FishData("peridot", 0xFFB4C424, 0xFF6E8B3D, List.of(), 300,
+                List.of(small6, small2), smallModels, List.of(), true));
+
+        //Amethyst
+        fishData.add(new FishData("amethyst", 0xFF9966CC, 0xFF4B0082, List.of(), 300,
+                List.of(small4, small1), smallModels, List.of(), false));
+
+        /*
+
+        //Sulfur
+        fishData.add(new FishData("sulfur", 0xFFFFF700, 0xFFB5A900, List.of(), 300,
+                List.of(small3, small5), smallModels, List.of(), false));
+
+        //Fluorite
+        fishData.add(new FishData("fluorite", 0xFF7FFFD4, 0xFF008B8B, List.of(), 300,
+                List.of(small2, small6), smallModels, List.of(), true));
+
+        //Cinnabar
+        fishData.add(new FishData("cinnabar", 0xFFB22222, 0xFF8B0000, List.of(), 300,
+                List.of(small1, small4), smallModels, List.of(), true));
+
+        */
+
+        //Basalt
+        fishData.add(new FishData("basalt", 0xFF2C2C2C, 0xFF1A1A1A, List.of(), 300,
+                List.of(large6, large3), largeModels, List.of(), false));
+
+        //Ancient
+        fishData.add(new FishData("ancient", 0xFF908785, 0xFF958986, List.of(), 300,
+                List.of(large5, large1), largeModels, List.of(), false));
+
+
+
         for (FishData data : fishData) {
 
             ChanceResult addCaviarStack = new ChanceResult(CaviarItem.createCaviarStack(data.name), 1.0f);
