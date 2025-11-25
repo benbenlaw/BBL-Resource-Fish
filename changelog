@@ -3,6 +3,9 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.2.5
+- Tweaked name of resource fish in world
+
 1.2.4
 - Removed custom integration for buckets, we do not need to it!
 - Fixed Creative mod buckets not spawning the fish correctly

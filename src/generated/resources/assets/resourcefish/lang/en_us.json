@@ -3,7 +3,7 @@
   "block.resourcefish.nest": "Resource Fish Nest",
   "block.resourcefish.tank_controller": "Resource Fish Tank",
   "block.resourcefish.tank_controller_range": "Tank Range",
-  "entity.resourcefish.resource_fish": "Resource Fish (%s)",
+  "entity.resourcefish.resource_fish": "%s Resource Fish",
   "item.resourcefish.basic_fish_food": "Basic Fish Food",
   "item.resourcefish.basic_mob_fish_food": "Basic Mob Fish Food",
   "item.resourcefish.breeding_upgrade": "Breeding Upgrade",

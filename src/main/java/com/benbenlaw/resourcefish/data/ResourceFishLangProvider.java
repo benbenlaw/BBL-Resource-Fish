@@ -78,7 +78,7 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addTooltipTranslation("round_robin_upgrade", "Items inserted into the Caviar Processor will be distributed evenly across all input slots");
 
         //Entity
-        add("entity.resourcefish.resource_fish", "Resource Fish (%s)");
+        add("entity.resourcefish.resource_fish", "%s Resource Fish");
 
         //Screen
         add("screen.resourcefish.tank_controller.overfilled", "Tank is overfilled! Drops Disabled.");
