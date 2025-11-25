@@ -50,26 +50,9 @@ public class ResourceFishBucketItem extends MobBucketItem {
     @Override
     public void checkExtraContent(@Nullable Player player, Level level, ItemStack stack, BlockPos pos) {
         super.checkExtraContent(player, level, stack, pos);
-
-        if (!(level instanceof ServerLevel server)) return;
-
-        List<ResourceFishEntity> fishList = server.getEntitiesOfClass(ResourceFishEntity.class,
-                new AABB(pos).inflate(1));
-
-        if (fishList.isEmpty()) return;
-
-        ResourceFishEntity fish = fishList.getFirst();
-
-        CustomData custom = stack.getOrDefault(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY);
-        if (!custom.isEmpty()) {
-            fish.loadFromBucketTag(custom.copyTag());
-        }
-
-        ResourceLocation resourceType = stack.get(ResourceFishDataComponents.FISH_TYPE.get());
-        if (resourceType != null) {
-            fish.setResourceType(ResourceType.REGISTRY.get(resourceType));
-        }
     }
+
+
 
 
 }

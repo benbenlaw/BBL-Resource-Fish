@@ -2,12 +2,16 @@ package com.benbenlaw.resourcefish.item;
 
 import com.benbenlaw.resourcefish.ResourceFish;
 import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
+import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
 import com.benbenlaw.resourcefish.util.ResourceType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -51,7 +55,17 @@ public class ResourceFishCreativeTab {
                 //Fish Bucket
                 for (ResourceType type : ResourceType.getAll()) {
                     ItemStack stack = new ItemStack(ResourceFishItems.RESOURCE_FISH_BUCKET.get());
+
                     stack.set(ResourceFishDataComponents.FISH_TYPE, type.getId());
+
+                    CompoundTag tag = new CompoundTag();
+                    tag.putString("id", type.getId().toString());
+                    tag.putString("BucketResourceType", type.getId().toString());
+                    tag.putInt("BucketPattern", 0); // or pick defaults
+                    tag.putInt("BucketModel", 0);
+                    tag.putBoolean("allowedToDrop", true);
+
+                    stack.set(DataComponents.BUCKET_ENTITY_DATA, CustomData.of(tag));
 
                     output.accept(stack);
                 }

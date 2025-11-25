@@ -307,8 +307,6 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         }
     }
 
-
-
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData groupData) {
 

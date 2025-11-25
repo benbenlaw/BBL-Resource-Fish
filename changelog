@@ -3,6 +3,12 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.2.4
+- Removed custom integration for buckets, we do not need to it!
+- Fixed Creative mod buckets not spawning the fish correctly
+- Fixed fish caught in buckets, when placed near other fish causing the fish to transform
+- Added a custom tooltip event to hopefully override other mods names that contain a resource fish eg ceramic buckets
+
 1.2.3
 - Fixed buckets not spawning the fish when used
 - Added Obsidian Fish

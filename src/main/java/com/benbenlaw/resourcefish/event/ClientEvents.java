@@ -7,14 +7,23 @@ import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.item.ResourceFishSpawnEgg;
 import com.benbenlaw.resourcefish.util.ResourceType;
+import com.mojang.datafixers.util.Either;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import org.checkerframework.checker.signature.qual.SignatureBottom;
 
 import java.util.List;
 import java.util.Map;
@@ -59,4 +68,5 @@ public class ClientEvents {
                 ResourceFishItems.RESOURCE_FISH_SPAWN_EGG.get()
         );
     }
+
 }
