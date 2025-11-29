@@ -457,7 +457,7 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
                 String path = resourceType.getId().getPath();
                 String capitalizedPath = path.substring(0, 1).toUpperCase(Locale.ROOT) + path.substring(1).toLowerCase(Locale.ROOT);
 
-                return Component.translatable(capitalizedPath, baseName);
+                return Component.translatable(baseName, capitalizedPath);
             }
         }
         return Component.literal("This should not happen check logs its probably a missing resource type for the biome!");
