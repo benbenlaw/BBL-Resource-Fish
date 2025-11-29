@@ -1,6 +1,7 @@
 package com.benbenlaw.resourcefish.entities;
 
 import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
+import com.benbenlaw.resourcefish.block.entity.TankControllerBlockEntity;
 import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.util.ResourceType;
@@ -41,6 +42,8 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -97,7 +100,21 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
 
                 for (ItemStack stack : dropStack) {
                     if (!stack.isEmpty()) {
-                        this.spawnAtLocation(stack);
+
+                        BlockEntity be = level.getBlockEntity(tankHome);
+                        if (be instanceof TankControllerBlockEntity tankControllerBlockEntity) {
+
+                            ItemStackHandler handler = tankControllerBlockEntity.getItemStackHandler();
+                            int[] slots = new int[handler.getSlots()];
+                            for (int i = 0; i < 12; i++) {
+                                slots[i] = i;
+                            }
+
+                            tankControllerBlockEntity.insertStackIntoSlots(handler, stack, slots);
+                        }
+
+
+                        //this.spawnAtLocation(stack);
                     }
                 }
             }

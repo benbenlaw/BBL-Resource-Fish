@@ -4,7 +4,6 @@ import com.benbenlaw.core.block.entity.SyncableBlockEntity;
 import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
-import com.benbenlaw.resourcefish.item.CaviarItem;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.recipe.ActiveRecipeType;
 import com.benbenlaw.resourcefish.recipe.FishBreedingRecipe;
@@ -20,7 +19,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
@@ -31,7 +29,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -297,23 +294,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
             previouslyAllowedFish.clear();
             previouslyAllowedFish.addAll(currentAllowedFish);
 
-            // Collect dropped items
-            int maxSlots = 12;
-            int[] inputSlots = new int[maxSlots];
-            for (int i = 0; i < maxSlots; i++) inputSlots[i] = i;
 
-            for (Entity entity : entityList) {
-                if (entity instanceof ItemEntity itemEntity) {
-                    ItemStack stack = itemEntity.getItem().copy();
-                    int leftoverCount = insertStackIntoSlots(itemHandler, stack, inputSlots);
-
-                    if (leftoverCount == 0) {
-                        itemEntity.discard();
-                    } else {
-                        itemEntity.setItem(stack.split(leftoverCount));
-                    }
-                }
-            }
         }
     }
 
@@ -578,7 +559,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         }
     }
 
-    private int insertStackIntoSlots(ItemStackHandler itemHandler, ItemStack stack, int[] slots) {
+    public void insertStackIntoSlots(ItemStackHandler itemHandler, ItemStack stack, int[] slots) {
         // Try to merge into existing stacks first
         for (int slot : slots) {
             ItemStack slotStack = itemHandler.getStackInSlot(slot);
@@ -589,7 +570,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
                     int toAdd = Math.min(spaceLeft, stack.getCount());
                     slotStack.grow(toAdd);
                     stack.shrink(toAdd);
-                    if (stack.isEmpty()) return 0; // fully inserted
+                    if (stack.isEmpty()) return; // fully inserted
                 }
             }
         }
@@ -600,10 +581,9 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
                 int toAdd = Math.min(stack.getMaxStackSize(), stack.getCount());
                 itemHandler.setStackInSlot(slot, stack.copyWithCount(toAdd));
                 stack.shrink(toAdd);
-                if (stack.isEmpty()) return 0; // fully inserted
+                if (stack.isEmpty()) return; // fully inserted
             }
         }
-        return stack.getCount(); // return leftover count if any
     }
 
     public void drops() {
