@@ -36,10 +36,10 @@ public class ResourceFishItems {
             () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.depth_upgrade_1"));
 
     public static final DeferredItem<Item> DEPTH_UPGRADE_2 = ITEMS.register("depth_upgrade_2",
-            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.depth_upgrade_3"));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.depth_upgrade_2"));
 
     public static final DeferredItem<Item> DEPTH_UPGRADE_3 = ITEMS.register("depth_upgrade_3",
-            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.depth_upgrade_4"));
+            () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.depth_upgrade_3"));
 
     public static final DeferredItem<Item> WIDTH_UPGRADE_1 = ITEMS.register("width_upgrade_1",
             () -> new UpgradeItem(new Item.Properties(), "tooltip.resourcefish.width_upgrade_1"));
