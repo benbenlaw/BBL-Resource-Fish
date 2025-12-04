@@ -204,6 +204,8 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
             return;
         }
 
+
+
         // --- RECIPE CHECKING ---
         // Only check recipes if the inventory changed since last time
         if (inventoryChanged) {
@@ -256,22 +258,29 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
 
             fishPool.clear();
             Set<UUID> currentAllowedFish = new HashSet<>();
-            boolean toManyFish = fishCount > maxFishCount;
+
+            boolean tooManyFish = fishCount > maxFishCount;
+            boolean breedingBlocked = hasBreedingUpgrade(); // ✅ FIX
 
             for (Entity entity : entityList) {
                 if (entity instanceof ResourceFishEntity fish) {
                     fishPool.add(fish);
-                    fish.setAllowedToDrop(!toManyFish);
+
+                    // ✅ FINAL authoritative drop control
+                    boolean canDrop = !tooManyFish && !breedingBlocked;
+                    fish.setAllowedToDrop(canDrop);
+
                     if (fish.getTankHome() != worldPosition) {
                         fish.setTankHome(worldPosition);
                     }
-                    currentAllowedFish.add(fish.getUUID());
+
+                    if (canDrop) {
+                        currentAllowedFish.add(fish.getUUID());
+                    }
                 }
             }
 
-
-
-            // --- NEW: update counts / names / max capacity ---
+            // --- UPDATE COUNTS ---
             fishCount = fishPool.size();
             maxFishCount = getMaxFish(box);
 
@@ -280,6 +289,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
                 String name = fish.getDisplayName().getString();
                 fishCountMap.put(name, fishCountMap.getOrDefault(name, 0) + 1);
             }
+
             fishNames.clear();
             for (Map.Entry<String, Integer> entry : fishCountMap.entrySet()) {
                 int count = entry.getValue();
@@ -287,17 +297,25 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
                 fishNames.add(display);
             }
 
-            // Save & sync to clients (important)
             setChanged();
             sync();
 
             previouslyAllowedFish.clear();
             previouslyAllowedFish.addAll(currentAllowedFish);
-
-
         }
     }
 
+    private boolean hasBreedingUpgrade() {
+        return itemHandler.getStackInSlot(UPGRADE_SLOT_1).is(ResourceFishItems.BREEDING_UPGRADE)
+                || itemHandler.getStackInSlot(UPGRADE_SLOT_2).is(ResourceFishItems.BREEDING_UPGRADE)
+                || itemHandler.getStackInSlot(UPGRADE_SLOT_3).is(ResourceFishItems.BREEDING_UPGRADE)
+                || itemHandler.getStackInSlot(UPGRADE_SLOT_4).is(ResourceFishItems.BREEDING_UPGRADE)
+                || itemHandler.getStackInSlot(UPGRADE_SLOT_1).is(ResourceFishItems.INFUSING_UPGRADE)
+                || itemHandler.getStackInSlot(UPGRADE_SLOT_2).is(ResourceFishItems.INFUSING_UPGRADE)
+                || itemHandler.getStackInSlot(UPGRADE_SLOT_3).is(ResourceFishItems.INFUSING_UPGRADE)
+                || itemHandler.getStackInSlot(UPGRADE_SLOT_4).is(ResourceFishItems.INFUSING_UPGRADE)
+                ;
+    }
 
     private AABB calculateBox(BlockPos centerPos, Direction direction) {
 

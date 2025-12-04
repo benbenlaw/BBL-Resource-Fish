@@ -359,6 +359,12 @@ public class ResourceFishRecipes extends RecipeProvider {
         caviarSimpleRecipes.add(new CaviarSimple("obsidian", false, new SizedIngredientChanceResult(
                 SizedIngredient.of(Items.OBSIDIAN, 1), 0.05f)));
 
+        //Blaze - Mob Fish Food
+        breedingRecipes.add(new BreedingRecipe("lava", "netherrack", SizedIngredient.of(basicMobFishFood, 1), 300, 0.1, "blaze", false));
+        infusingRecipes.add(new InfusingRecipeSingle("lava", SizedIngredient.of(Items.BLAZE_ROD, 64),300, 0.1, "blaze", false));
+        caviarSimpleRecipes.add(new CaviarSimple("blaze", false,
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.BLAZE_ROD, 1), 0.1f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.BLAZE_POWDER, 1), 0.2f)));
 
         for (BreedingRecipe recipe : breedingRecipes) {
             var builder = FishBreedingRecipeBuilder.createFishBreedingRecipe(

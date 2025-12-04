@@ -1,10 +1,11 @@
-// 1.21.1	2025-11-20T17:27:03.9392046	Resource Fish Builder
+// 1.21.1	2025-12-04T11:32:44.8252422	Resource Fish Builder
 0d22b7eb423c7719ae269140fb02096b0f0a7a29 data/resourcefish/fish/aluminum.json
 2ebd73a173a55f4a2505ea50d51c02e9c6bf187c data/resourcefish/fish/amethyst.json
 8d2b7eca3bb9e959abb939439805ea7944975801 data/resourcefish/fish/ancient.json
 a7b1f907941f2e259ed7e4ebb50e08a311d10ec5 data/resourcefish/fish/andesite.json
 efc287f4e63d45eac89d3efcf32c149b6d11b148 data/resourcefish/fish/basalt.json
 c867728165dd4f902a83cf83d0fe956b4d968229 data/resourcefish/fish/black.json
+0ffbd76dbf41ea18735fede1d173b7b40dca8ac6 data/resourcefish/fish/blaze.json
 94e7669ab62577e10e59b94872906b76a39e4ed6 data/resourcefish/fish/blue.json
 ca87d925c41f5d8c73e1c5e96493dd26d7dc64e4 data/resourcefish/fish/brown.json
 8bab17ed634ea258ee9015b6deb77d8f41d41761 data/resourcefish/fish/coal.json

@@ -3,6 +3,11 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.2.7
+- Fixed upgrade tooltips not showing correctly
+- Tank no longer produces items when either Breeding or Infusion upgrades are installed
+- Added Blaze Fish
+
 1.2.6
 - Fish no longer spawn items in world
 - Tank no longer collects item in world

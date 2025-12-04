@@ -254,6 +254,10 @@ public class ResourceFishFishes extends ResourceFishBuilder {
         fishData.add(new FishData("obsidian", 0xFF1C1C1C, 0xFF0B0B0B, List.of(), 300,
                 List.of(large4, large2), largeModels, List.of(), false));
 
+        //Blaze Fish
+        fishData.add(new FishData("blaze", 0x80FF8C00, 0x80FF4500, List.of(), 300,
+                List.of(small5, small6), smallModels, List.of(), false));
+
 
         for (FishData data : fishData) {
 
