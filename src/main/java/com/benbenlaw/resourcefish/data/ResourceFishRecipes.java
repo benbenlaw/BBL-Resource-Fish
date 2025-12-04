@@ -165,7 +165,7 @@ public class ResourceFishRecipes extends RecipeProvider {
         caviarSimpleRecipes.add(new CaviarSimple("copper", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.COPPER_INGOT, 1), 0.2f)));
 
         //Iron - Metallic Fish Food
-        breedingRecipes.add(new BreedingRecipe("copper", "gray", SizedIngredient.of(metallicFishFood, 1), 100, 0.15, "iron", false));
+        breedingRecipes.add(new BreedingRecipe("copper", "white", SizedIngredient.of(metallicFishFood, 1), 100, 0.15, "iron", false));
         infusingRecipes.add(new InfusingRecipeSingle("copper", SizedIngredient.of(Items.IRON_INGOT, 64),100, 0.25, "iron", false));
         caviarSimpleRecipes.add(new CaviarSimple("iron", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.IRON_INGOT, 1), 0.2f)));
 

@@ -8,5 +8,5 @@
   "created_fish": "resourcefish:iron",
   "duration": 100,
   "parent_a": "resourcefish:copper",
-  "parent_b": "resourcefish:gray"
+  "parent_b": "resourcefish:white"
 }

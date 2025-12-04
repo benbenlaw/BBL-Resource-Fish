@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-04T11:32:44.8276512	Recipes
+// 1.21.1	2025-12-04T16:41:17.6203532	Recipes
 ce53d61a3a5b6d4c7d6f9b61cde767ce8d4e5d0a data/resourcefish/advancement/recipes/breeding/breeding/aluminum.json
 d59b542b7080752d724b039fe5e8695f0842519d data/resourcefish/advancement/recipes/breeding/breeding/amethyst.json
 3385be46e013dd4f826b9d2b987543db948879a8 data/resourcefish/advancement/recipes/breeding/breeding/ancient.json
@@ -203,7 +203,7 @@ fe9f4c504a23f8ed6cbb70f6cc9dd66e728299fa data/resourcefish/recipe/breeding/glows
 fecfe0dad1541671d0054f561e35da5338cc7b75 data/resourcefish/recipe/breeding/granite.json
 50b50e71215d0a0ebf31cea25a6bff02db37d587 data/resourcefish/recipe/breeding/gravel.json
 5db2705728ba250c82c6caeddee53625aab46b60 data/resourcefish/recipe/breeding/iridium.json
-4f2f5ed339754e3df3f8a95ae5e0c27ca9290c78 data/resourcefish/recipe/breeding/iron.json
+daa127c44b99a7e4f7fcd37bad51642f4916dbeb data/resourcefish/recipe/breeding/iron.json
 69aaa77b9ac47ec83bbd65a8e35be9800b66f59a data/resourcefish/recipe/breeding/lapis.json
 23e7c9139297737ef058e972d7fb87dc414ae42c data/resourcefish/recipe/breeding/lava.json
 7a2ce04cb5fb3740031707268433aa90df7ee898 data/resourcefish/recipe/breeding/lead.json
