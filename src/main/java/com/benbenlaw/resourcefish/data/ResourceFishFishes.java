@@ -258,6 +258,14 @@ public class ResourceFishFishes extends ResourceFishBuilder {
         fishData.add(new FishData("blaze", 0x80FF8C00, 0x80FF4500, List.of(), 300,
                 List.of(small5, small6), smallModels, List.of(), false));
 
+        //End Stone Fish
+        fishData.add(new FishData("end_stone", 0xFFEEDC82, 0xFFBDB76B, List.of(), 300,
+                List.of(small1, small2), smallModels, List.of(), false));
+
+        //Enderman Fish
+        fishData.add(new FishData("enderman", 0x80202020, 0x80000000, List.of(), 300,
+                List.of(small3, small4), smallModels, List.of(), false));
+
 
         for (FishData data : fishData) {
 

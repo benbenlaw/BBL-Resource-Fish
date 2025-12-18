@@ -108,7 +108,6 @@ public class JEIResourceFishPlugin implements IModPlugin {
        registration.registerSubtypeInterpreter(ResourceFishItems.RESOURCE_FISH_SPAWN_EGG.asItem(), new ItemSubtypeInterpreter());
        registration.registerSubtypeInterpreter(ResourceFishItems.CAVIAR.asItem(), new ItemSubtypeInterpreter());
        registration.registerSubtypeInterpreter(ResourceFishItems.RESOURCE_FISH_BUCKET.asItem(), new ItemSubtypeInterpreter());
-
     }
 
     @Override

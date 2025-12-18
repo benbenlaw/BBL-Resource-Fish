@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-04T11:32:44.8252422	Resource Fish Builder
+// 1.21.1	2025-12-18T10:32:39.3654942	Resource Fish Builder
 0d22b7eb423c7719ae269140fb02096b0f0a7a29 data/resourcefish/fish/aluminum.json
 2ebd73a173a55f4a2505ea50d51c02e9c6bf187c data/resourcefish/fish/amethyst.json
 8d2b7eca3bb9e959abb939439805ea7944975801 data/resourcefish/fish/ancient.json
@@ -17,6 +17,8 @@ a31686452a46495acfef0654438b3cf1ec11162b data/resourcefish/fish/diamond.json
 f7bfe66920f644104760f748291a5a0578bb9d02 data/resourcefish/fish/diorite.json
 2548e6dc82ebe88ce9d7e519cb9e0c626347ea0a data/resourcefish/fish/dirt.json
 535abcc0976bc5b4986163a01dcfefa6f4ecb041 data/resourcefish/fish/emerald.json
+650ab9a1c147fd15cd95a097b9c3ce9a585c4e86 data/resourcefish/fish/enderman.json
+348314de7425d768f1301acfe5ec5761847e12fb data/resourcefish/fish/end_stone.json
 fd931859021cfd2842d0c16efc861e396a578558 data/resourcefish/fish/glowstone.json
 95e71a911ddea152e7cc189d39a41b1b75135524 data/resourcefish/fish/gold.json
 937e22079b65cde1162ed31fa56643414566362f data/resourcefish/fish/granite.json

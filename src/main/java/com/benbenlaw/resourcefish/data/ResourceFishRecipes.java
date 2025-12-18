@@ -58,6 +58,7 @@ public class ResourceFishRecipes extends RecipeProvider {
         Item metallicFishFood = ResourceFishItems.METALLIC_FISH_FOOD.get();
         Item crystalFishFood = ResourceFishItems.CRYSTAL_FISH_FOOD.get();
         Item netherFishFood = ResourceFishItems.NETHER_FISH_FOOD.get();
+        Item enderFishFood = ResourceFishItems.ENDER_FISH_FOOD.get();
         Item basicMobFishFood = ResourceFishItems.BASIC_MOB_FISH_FOOD.get();
 
 
@@ -366,6 +367,17 @@ public class ResourceFishRecipes extends RecipeProvider {
                 new SizedIngredientChanceResult(SizedIngredient.of(Items.BLAZE_ROD, 1), 0.1f),
                 new SizedIngredientChanceResult(SizedIngredient.of(Items.BLAZE_POWDER, 1), 0.2f)));
 
+        //End Stone - Ender Fish Food
+        breedingRecipes.add(new BreedingRecipe("stone", "yellow", SizedIngredient.of(enderFishFood, 1), 300, 0.1, "end_stone", false));
+        infusingRecipes.add(new InfusingRecipeSingle("stone", SizedIngredient.of(Items.END_STONE, 64),300, 0.1, "end_stone", false));
+        caviarSimpleRecipes.add(new CaviarSimple("end_stone", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.END_STONE, 1), 0.2f)));
+
+        //Enderman Fish
+        breedingRecipes.add(new BreedingRecipe("end_stone", "black", SizedIngredient.of(enderFishFood, 1), 300, 0.1, "enderman", false));
+        infusingRecipes.add(new InfusingRecipeSingle("end_stone", SizedIngredient.of(Items.END_STONE, 64),300, 0.1, "enderman", false));
+        caviarSimpleRecipes.add(new CaviarSimple("enderman", false,
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.ENDER_PEARL, 1), 0.2f)));
+
         for (BreedingRecipe recipe : breedingRecipes) {
             var builder = FishBreedingRecipeBuilder.createFishBreedingRecipe(
                     createFish(recipe.parent1),
@@ -461,6 +473,15 @@ public class ResourceFishRecipes extends RecipeProvider {
                 .unlockedBy("has_item", has(ResourceFishItems.CRYSTAL_FISH_FOOD))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.ENDER_FISH_FOOD, 6)
+                .pattern(" A ")
+                .pattern("ABA")
+                .pattern(" A ")
+                .define('A', ResourceFishItems.NETHER_FISH_FOOD)
+                .define('B', Items.END_STONE)
+                .unlockedBy("has_item", has(ResourceFishItems.NETHER_FISH_FOOD))
+                .save(consumer);
+
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishBlocks.TANK_CONTROLLER)
                 .pattern("AAA")
@@ -476,7 +497,7 @@ public class ResourceFishRecipes extends RecipeProvider {
                 .pattern("ABA")
                 .pattern("AAA")
                 .define('A', Items.IRON_INGOT)
-                .define('B', ResourceFishTags.Items.CAVIAR)
+                .define('B', CaviarItem.createCaviarStack("lava").getItem())
                 .unlockedBy("has_item", has(ResourceFishTags.Items.CAVIAR))
                 .save(consumer);
 

@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-04T16:41:17.6203532	Recipes
+// 1.21.1	2025-12-18T10:32:39.3689007	Recipes
 ce53d61a3a5b6d4c7d6f9b61cde767ce8d4e5d0a data/resourcefish/advancement/recipes/breeding/breeding/aluminum.json
 d59b542b7080752d724b039fe5e8695f0842519d data/resourcefish/advancement/recipes/breeding/breeding/amethyst.json
 3385be46e013dd4f826b9d2b987543db948879a8 data/resourcefish/advancement/recipes/breeding/breeding/ancient.json
@@ -13,6 +13,8 @@ ad49e0b4de98f42f8cfaf339eecd2ba02f3ee2ad data/resourcefish/advancement/recipes/b
 5907ca1ae6259cb231f739a37e2d9ddd317c5275 data/resourcefish/advancement/recipes/breeding/breeding/diorite.json
 01de6e271f28e5172756d1471c5521b53eb1c102 data/resourcefish/advancement/recipes/breeding/breeding/dirt.json
 42230a48cdcfaa028042a3fc9a2213869a4d503b data/resourcefish/advancement/recipes/breeding/breeding/emerald.json
+119974e19fde5a6bddaa5a10f19820a9adece483 data/resourcefish/advancement/recipes/breeding/breeding/enderman.json
+3029e747be7d81dae8cc9009ee77578e58bf75c2 data/resourcefish/advancement/recipes/breeding/breeding/end_stone.json
 81dcc4463e978ea2a82f9ebaca0b5bd1e653fffd data/resourcefish/advancement/recipes/breeding/breeding/glowstone.json
 4b203a4ec8f4474fb74c07945a1226abbc7f8a45 data/resourcefish/advancement/recipes/breeding/breeding/gold.json
 c6182ce9e6eb782f55eed32d937cf5e3f28c76ae data/resourcefish/advancement/recipes/breeding/breeding/granite.json
@@ -62,6 +64,8 @@ d4aade179392a163554b3e9959858e0d2936a7f5 data/resourcefish/advancement/recipes/c
 d40b2750555a41e424dee3fcdb9152d016ceb3ef data/resourcefish/advancement/recipes/caviar/caviar/diorite.json
 1b3f3a0322e20a2504d0299391cc08193e62c9a7 data/resourcefish/advancement/recipes/caviar/caviar/dirt.json
 20a380ae00dc8cd60990ef5ce75c51580825d1e9 data/resourcefish/advancement/recipes/caviar/caviar/emerald.json
+7e55dbff276fd20faae00f07ca973d05afa1b356 data/resourcefish/advancement/recipes/caviar/caviar/enderman.json
+f5b17fb62f1487e3a55e7f8bb704d8545c4650b4 data/resourcefish/advancement/recipes/caviar/caviar/end_stone.json
 7d155b9dd0e1b8bec238d9e478e13150486b1cb8 data/resourcefish/advancement/recipes/caviar/caviar/glowstone.json
 cc2d470dc7c49110e224ec92dbc27098f61c4373 data/resourcefish/advancement/recipes/caviar/caviar/gold.json
 68ab9c2c2c8a394cf501e13f31b6e1659c65d924 data/resourcefish/advancement/recipes/caviar/caviar/granite.json
@@ -121,6 +125,8 @@ de181a600b8118f3241fb9c7ccfd484eff0972d7 data/resourcefish/advancement/recipes/i
 2993d708ac6a179beba36d6f8aebdb3a5006cf91 data/resourcefish/advancement/recipes/infusing/infusing/diamond.json
 3ce19ca99e314157e4b5e9895c5339e2d131caa1 data/resourcefish/advancement/recipes/infusing/infusing/diorite.json
 fe34a24a69517639d95d572181d8c74e1a4d643a data/resourcefish/advancement/recipes/infusing/infusing/emerald.json
+d77110db74b1cb720fac6c4a1dd7e0e0e6fdafe8 data/resourcefish/advancement/recipes/infusing/infusing/enderman.json
+9056203cc14daf507cf01ce0dc35adc3953e7be0 data/resourcefish/advancement/recipes/infusing/infusing/end_stone.json
 752578660752cc04e4f62b217bcc27348b6591eb data/resourcefish/advancement/recipes/infusing/infusing/glowstone.json
 4ed7e7a818f642624f307983cc5eedbc85527176 data/resourcefish/advancement/recipes/infusing/infusing/gold.json
 80b29a7ac7376aac31c69fe8e96c70e33f9ce78b data/resourcefish/advancement/recipes/infusing/infusing/granite.json
@@ -170,6 +176,7 @@ bae16a4497dcc284be4ead6b4b60c44fa51ab0cf data/resourcefish/advancement/recipes/i
 fa0d80fb1a3288e5eb95df829b0dce48a6d57633 data/resourcefish/advancement/recipes/misc/depth_upgrade_1.json
 d3425aef90af819fd0cb9d6596b7c5bb7285bf7f data/resourcefish/advancement/recipes/misc/depth_upgrade_2.json
 034a60fbc5c7b5c92c5916394491bd6f47ebe73c data/resourcefish/advancement/recipes/misc/depth_upgrade_3.json
+9a69f9e9dd6201e4500f21dda040dc7895124b96 data/resourcefish/advancement/recipes/misc/ender_fish_food.json
 b0dc839bd11f37ed552b12a51a40a1186ce70833 data/resourcefish/advancement/recipes/misc/infusing_upgrade.json
 bc2cea33651cc52a546b8b3870fe3e119ffa8d0f data/resourcefish/advancement/recipes/misc/metallic_fish_food.json
 f9291d7b837a295a944513c7bfb8944b9caf0bd2 data/resourcefish/advancement/recipes/misc/nether_fish_food.json
@@ -198,6 +205,8 @@ c7512a46e0e4d3de6f4152b6440f75839bc2bdaf data/resourcefish/recipe/breeding/creep
 d9d3ed3b0d48ed9994c4603c39637d431de8edc5 data/resourcefish/recipe/breeding/diorite.json
 921249a50006cc6ca72d5de5c47299ffcc851220 data/resourcefish/recipe/breeding/dirt.json
 d5b6c174d0601fe4a4414758a5ea19e23b1b3b25 data/resourcefish/recipe/breeding/emerald.json
+a56ba012b713bc1ff335cc48af801f75abdb78ae data/resourcefish/recipe/breeding/enderman.json
+b088ca9e20610d9f751f9174f96e16963d92229e data/resourcefish/recipe/breeding/end_stone.json
 fe9f4c504a23f8ed6cbb70f6cc9dd66e728299fa data/resourcefish/recipe/breeding/glowstone.json
 76f3e71e7b6d4db82832ac8fc88187cdf3a6500b data/resourcefish/recipe/breeding/gold.json
 fecfe0dad1541671d0054f561e35da5338cc7b75 data/resourcefish/recipe/breeding/granite.json
@@ -248,6 +257,8 @@ dfb85f50092715d21052a1c76ba2e6dcd0f9a7c6 data/resourcefish/recipe/caviar/cyan.js
 041d060f7a5220724233d9a6a508c936833adb43 data/resourcefish/recipe/caviar/diorite.json
 4e06c4f3c9e4e78c602da98f4ba17cd6251b8fae data/resourcefish/recipe/caviar/dirt.json
 29027eb04be3e40d8c4095ba4353a446874828a7 data/resourcefish/recipe/caviar/emerald.json
+1c77dc8735250262aea2d85dacec9077debd78d7 data/resourcefish/recipe/caviar/enderman.json
+798a830e799a8875cd70f3b0a58529b93f76dfcd data/resourcefish/recipe/caviar/end_stone.json
 71ce4b37b4089c7726631e581865949c82cb21f6 data/resourcefish/recipe/caviar/glowstone.json
 215782711b6ef47dc791702cb3c372149eea811a data/resourcefish/recipe/caviar/gold.json
 d280dc7b848e6f5b457ad7721135fbaf87bb0043 data/resourcefish/recipe/caviar/granite.json
@@ -291,11 +302,12 @@ f64e949622f6ab7dc55526d31eb91834134c37e1 data/resourcefish/recipe/caviar/white.j
 2ad9ecb7bfa6b60151a7a49bd684a674a1277b68 data/resourcefish/recipe/caviar/yellow.json
 dfa4a9d654b7aaff10d3d9087aa62857d337be88 data/resourcefish/recipe/caviar/zinc.json
 4f2d4107b7879f673f700e858ebd831d5533950e data/resourcefish/recipe/caviar/zombie.json
-6c37f956bb5552a1a2e070d881e65e35ff94a21c data/resourcefish/recipe/caviar_processor.json
+0d973d5ab0cc33cfa97c6ccd588fd5e3611c8437 data/resourcefish/recipe/caviar_processor.json
 ceb61400ccab21f38eef36e1038a958ca6e7245a data/resourcefish/recipe/crystal_fish_food.json
 4fea5a16e9fc51e47df6dbbab3a072a42af55492 data/resourcefish/recipe/depth_upgrade_1.json
 34f4e4d7ef77b69893efa141682d4cd295447164 data/resourcefish/recipe/depth_upgrade_2.json
 5a3d25fccd14da7f72151a0f4096084a443cba38 data/resourcefish/recipe/depth_upgrade_3.json
+ae9ea4aa5b036f963ff02bfb3c85aa426f09accc data/resourcefish/recipe/ender_fish_food.json
 1fcc8264f5871090f86b3a6afc6aeaafda5be195 data/resourcefish/recipe/infusing/aluminum.json
 11d194c97d9652b66ed5971cc3fcce1c8a8a4936 data/resourcefish/recipe/infusing/amethyst.json
 31ca370bdc6c45ede20fe38c140739c8970ce41f data/resourcefish/recipe/infusing/ancient.json
@@ -312,6 +324,8 @@ efe61d56ff8121330ad46b85ffafe54710d7d936 data/resourcefish/recipe/infusing/cyan.
 e844b78e045cdd2622a33015e341d1556ceba45e data/resourcefish/recipe/infusing/diamond.json
 b52d91ede6bec893367b10302ef29bbf5abf191a data/resourcefish/recipe/infusing/diorite.json
 d90b6c0b10a8789fbe9c6292086bf2a262b20cc6 data/resourcefish/recipe/infusing/emerald.json
+99e9293d54d2d0c923abf1734b6e839aa446388a data/resourcefish/recipe/infusing/enderman.json
+34c5f5eb4c921baa82aa8b449935d67d4bae9328 data/resourcefish/recipe/infusing/end_stone.json
 92c4efc340c2f9666a14b4166c3a716d57a63943 data/resourcefish/recipe/infusing/glowstone.json
 f24c62cd12ba9cc1dc22ca4831da1a163be621e7 data/resourcefish/recipe/infusing/gold.json
 334b77086f4ef5b4c697e72cc73e4b40ad7553a1 data/resourcefish/recipe/infusing/granite.json

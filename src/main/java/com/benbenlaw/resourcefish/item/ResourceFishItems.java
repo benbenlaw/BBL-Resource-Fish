@@ -27,6 +27,9 @@ public class ResourceFishItems {
     public static final DeferredItem<Item> NETHER_FISH_FOOD = ITEMS.register("nether_fish_food",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> ENDER_FISH_FOOD = ITEMS.register("ender_fish_food",
+            () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> BASIC_MOB_FISH_FOOD = ITEMS.register("basic_mob_fish_food",
             () -> new Item(new Item.Properties()));
 

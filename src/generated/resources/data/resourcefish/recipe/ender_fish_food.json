@@ -3,19 +3,19 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:iron_ingot"
+      "item": "resourcefish:nether_fish_food"
     },
     "B": {
-      "item": "resourcefish:caviar"
+      "item": "minecraft:end_stone"
     }
   },
   "pattern": [
-    "AAA",
+    " A ",
     "ABA",
-    "AAA"
+    " A "
   ],
   "result": {
-    "count": 1,
-    "id": "resourcefish:caviar_processor"
+    "count": 6,
+    "id": "resourcefish:ender_fish_food"
   }
 }

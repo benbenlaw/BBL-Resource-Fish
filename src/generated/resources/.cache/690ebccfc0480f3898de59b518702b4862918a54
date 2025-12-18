@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-13T16:59:19.8935015	resourcefish Item Models
+// 1.21.1	2025-12-18T10:37:40.5761414	resourcefish Item Models
 27e0b4ea04a169b8aa8a533ad80c1c8f64ab5123 assets/resourcefish/models/item/basic_fish_food.json
 fd348b6a9d2eec72d8fdfa9c1580a15a071d82ff assets/resourcefish/models/item/basic_mob_fish_food.json
 90976376b4f935aa43b201a9745a06ef4c2104c1 assets/resourcefish/models/item/breeding_upgrade.json
@@ -6,6 +6,7 @@ de685c984eb670b702d9254e6d26e61d4f9c7443 assets/resourcefish/models/item/crystal
 1abe65707456d4a71e64548ed9183765d4bf007d assets/resourcefish/models/item/depth_upgrade_1.json
 480132c2a3cfca70dd690f66df72a5e5a327d193 assets/resourcefish/models/item/depth_upgrade_2.json
 14eee662d88c21b5785f42c94f0ed539cb8dcd3e assets/resourcefish/models/item/depth_upgrade_3.json
+a73d8bfbb2b3a89cf9948c1212707cdb97fc62be assets/resourcefish/models/item/ender_fish_food.json
 aa8105467ba180738cb14fea964e998dcec61336 assets/resourcefish/models/item/infusing_upgrade.json
 4e793d0aed2d8d796ed50061d2970d38da2827cf assets/resourcefish/models/item/metallic_fish_food.json
 3cadd0f647cdb6e9fea36d2003b20e6139e13c8d assets/resourcefish/models/item/nether_fish_food.json

@@ -19,4 +19,6 @@ public class ItemSubtypeInterpreter implements ISubtypeInterpreter<ItemStack> {
     public String getLegacyStringSubtypeInfo(ItemStack stack, UidContext uidContext) {
         return stack.getOrDefault(ResourceFishDataComponents.FISH_TYPE, ResourceType.NONE).toString();
     }
+
+
 }

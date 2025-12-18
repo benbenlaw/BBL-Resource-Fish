@@ -48,7 +48,7 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addItemTranslation("crystal_fish_food", "Crystal Fish Food");
         addItemTranslation("nether_fish_food", "Nether Fish Food");
         addItemTranslation("basic_mob_fish_food", "Basic Mob Fish Food");
-
+        addItemTranslation("ender_fish_food", "Ender Fish Food");
 
         //Blocks
         addBlockTranslation("tank_controller", "Resource Fish Tank");
