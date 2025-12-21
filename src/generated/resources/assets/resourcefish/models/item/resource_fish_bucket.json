@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "resourcefish:item/resource_fish_bucket"
-  }
-}

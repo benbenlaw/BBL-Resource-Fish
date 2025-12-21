@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "resourcefish:item/resource_fish_bucket",
+    "layer1": "resourcefish:item/resource_fish_bucket_fish",
+    "layer2": "resourcefish:item/resource_fish_bucket_fish_2"
+  }
+}

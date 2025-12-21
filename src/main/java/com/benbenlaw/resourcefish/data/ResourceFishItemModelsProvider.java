@@ -18,7 +18,7 @@ public class ResourceFishItemModelsProvider extends ItemModelProvider {
     protected void registerModels() {
 
         //Misc Items
-        simpleItem(ResourceFishItems.RESOURCE_FISH_BUCKET);
+        //simpleItem(ResourceFishItems.RESOURCE_FISH_BUCKET);
         simpleItem(ResourceFishItems.DEPTH_UPGRADE_1);
         simpleItem(ResourceFishItems.DEPTH_UPGRADE_2);
         simpleItem(ResourceFishItems.DEPTH_UPGRADE_3);

@@ -8,6 +8,7 @@ import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.item.ResourceFishSpawnEgg;
 import com.benbenlaw.resourcefish.util.ResourceType;
 import com.mojang.datafixers.util.Either;
+import de.cech12.ceramicbucket.CeramicBucketMod;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -66,6 +67,43 @@ public class ClientEvents {
 
                 ResourceFishItems.CAVIAR.get(),
                 ResourceFishItems.RESOURCE_FISH_SPAWN_EGG.get()
+        );
+        event.register(
+                (stack, tintIndex) -> {
+                    int fallback = 0xAAAAAA;
+
+                    ResourceLocation typeId = stack.get(ResourceFishDataComponents.FISH_TYPE);
+                    int mainColor = fallback;
+                    int patternColor = fallback;
+
+                    if (typeId != null) {
+                        ResourceType type = ResourceType.get(typeId);
+                        if (type != null) {
+                            mainColor = type.getColor();
+                            patternColor = type.getPatternColor();
+                        }
+                    }
+
+                    // Base
+                    if (tintIndex == 0) {
+                        return 0xFFFFFFFF;
+                    }
+
+                    // Fish Part
+                    if (tintIndex == 1) {
+                        return (0xFF << 24) | (patternColor & 0xFFFFFF);
+                    }
+
+                    // Fish Part 2
+                    if (tintIndex == 2) {
+                        return (0xFF << 24) | (mainColor & 0xFFFFFF);
+                    }
+
+                    return 0xFFFFFFFF;
+                },
+
+                ResourceFishItems.RESOURCE_FISH_BUCKET.get(),
+                CeramicBucketMod.CERAMIC_BUCKET.asItem()
         );
     }
 

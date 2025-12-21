@@ -86,6 +86,14 @@ dependencies {
     compileOnly "curse.maven:journeymap-32274:6689206"
     runtimeOnly "curse.maven:journeymap-32274:6689206"
 
+    //Ceramic Bucket
+    compileOnly "curse.maven:ceramic-bucket-363799:5676627"
+    runtimeOnly "curse.maven:ceramic-bucket-363799:5676627"
+
+    //Ceramic Bucket
+    compileOnly "curse.maven:bucketlib-560156:7211879"
+    runtimeOnly "curse.maven:bucketlib-560156:7211879"
+
     //All The Ores
     //compileOnly "curse.maven:ato-405593:6118610"
     //runtimeOnly "curse.maven:ato-405593:6118610"
