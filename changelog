@@ -3,6 +3,11 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.3.2
+- Added Wither Skeleton, Pig, Cow, Sheep, and Chicken Fish
+- Added Clay, Snow and Ice Fish
+- Added Ghast, Slime and Magma Cube Fish
+
 1.3.1
 - Added correct textures for fish buckets, these now show the correct fish in the bucket
 

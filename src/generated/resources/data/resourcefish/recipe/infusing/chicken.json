@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.25,
+  "created_fish": "resourcefish:chicken",
+  "duration": 200,
+  "fish": "resourcefish:white",
+  "input_1": {
+    "count": 12,
+    "item": "minecraft:chicken"
+  },
+  "input_2": {
+    "count": 12,
+    "item": "minecraft:chicken"
+  },
+  "input_3": {
+    "count": 12,
+    "item": "minecraft:chicken"
+  }
+}

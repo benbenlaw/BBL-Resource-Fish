@@ -266,6 +266,50 @@ public class ResourceFishFishes extends ResourceFishBuilder {
         fishData.add(new FishData("enderman", 0x80202020, 0x80000000, List.of(), 300,
                 List.of(small3, small4), smallModels, List.of(), false));
 
+        //Wither Skeleton Fish
+        fishData.add(new FishData("wither_skeleton", 0xFF969696, 0xFF363636, List.of(), 300,
+                List.of(small5, small1), smallModels, List.of(), false));
+
+        //Ghast Fish
+        fishData.add(new FishData("ghast", 0xFFFFF8F8, 0xFFB22222, List.of(), 300,
+                List.of(small4, small2), smallModels, List.of(), false));
+
+        //Slime Fish
+        fishData.add(new FishData("slime", 0x8000FF00, 0x80008000, List.of(), 300,
+                List.of(small6, small3), smallModels, List.of(), false));
+
+        //Magma Cube Fish
+        fishData.add(new FishData("magma_cube", 0x80FF4500, 0x808B0000, List.of(), 300,
+                List.of(small1, small5), smallModels, List.of(), false));
+
+        //Cow Fish
+        fishData.add(new FishData("cow", 0xFFA9A9A9, 0xFF8B4513, List.of(), 300,
+                List.of(small6, small2), smallModels, List.of(), false));
+
+        //Pig Fish
+        fishData.add(new FishData("pig", 0xFFA9A9A9, 0xFFFFC0CB, List.of(), 300,
+                List.of(small4, small3), smallModels, List.of(), false));
+
+        //Sheep Fish
+        fishData.add(new FishData("sheep", 0xFFA9A9A9, 0xFFFFFFFF, List.of(), 300,
+                List.of(small2, small5), smallModels, List.of(), false));
+
+        //Chicken Fish
+        fishData.add(new FishData("chicken", 0xFFA9A9A9, 0xFFFFF8DC, List.of(), 300,
+                List.of(small1, small6), smallModels, List.of(), false));
+
+        //Clay
+        fishData.add(new FishData("clay", 0xFFB0C4DE, 0xFF708090, List.of(), 300,
+                List.of(large1, large4), largeModels, List.of(), false));
+
+        //Snow
+        fishData.add(new FishData("snow", 0xFFFFFFFF, 0xFFB0E0E6, List.of(), 300,
+                List.of(large2, large5), largeModels, List.of(), false));
+
+        //Ice
+        fishData.add(new FishData("ice", 0xFFADD8E6, 0xFF87CEEB, List.of(), 300,
+                List.of(large3, large6), largeModels, List.of(), false));
+
 
         for (FishData data : fishData) {
 

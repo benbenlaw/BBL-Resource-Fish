@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.5,
+  "created_fish": "resourcefish:clay",
+  "duration": 100,
+  "fish": "resourcefish:dirt",
+  "input_1": {
+    "count": 64,
+    "item": "minecraft:clay_ball"
+  },
+  "input_2": {
+    "count": 64,
+    "item": "minecraft:clay_ball"
+  },
+  "input_3": {
+    "count": 64,
+    "item": "minecraft:clay_ball"
+  }
+}

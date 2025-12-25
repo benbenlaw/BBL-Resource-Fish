@@ -378,6 +378,91 @@ public class ResourceFishRecipes extends RecipeProvider {
         caviarSimpleRecipes.add(new CaviarSimple("enderman", false,
                 new SizedIngredientChanceResult(SizedIngredient.of(Items.ENDER_PEARL, 1), 0.2f)));
 
+        //Wither Skeleton Fish
+        breedingRecipes.add(new BreedingRecipe("skeleton", "coal", SizedIngredient.of(netherFishFood, 1), 300, 0.05, "wither_skeleton", false));
+        infusingRecipes.add(new InfusingRecipeSingle("skeleton", SizedIngredient.of(Items.WITHER_SKELETON_SKULL, 3),300, 0.05, "wither_skeleton", false));
+        caviarSimpleRecipes.add(new CaviarSimple("wither_skeleton", false,
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.WITHER_SKELETON_SKULL, 1), 0.02f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.COAL, 1), 0.1f)));
+
+        //Ghast Fish
+        breedingRecipes.add(new BreedingRecipe("skeleton", "white", SizedIngredient.of(netherFishFood, 1), 300, 0.05, "ghast", false));
+        infusingRecipes.add(new InfusingRecipeSingle("skeleton", SizedIngredient.of(Items.GHAST_TEAR, 3),300, 0.05, "ghast", false));
+        caviarSimpleRecipes.add(new CaviarSimple("ghast", false,
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.GHAST_TEAR, 1), 0.02f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.GUNPOWDER, 1), 0.1f)));
+
+        //Slime Fish
+        breedingRecipes.add(new BreedingRecipe("green", "dirt", SizedIngredient.of(basicMobFishFood, 1), 200, 0.2, "slime", false));
+        infusingRecipes.add(new InfusingRecipeSingle("green", SizedIngredient.of(Items.SLIME_BALL, 12),200, 0.25, "slime", false));
+        caviarSimpleRecipes.add(new CaviarSimple("slime", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.SLIME_BALL, 1), 0.2f)));
+
+        //Magma Cube Fish
+        breedingRecipes.add(new BreedingRecipe("lava", "orange", SizedIngredient.of(netherFishFood, 1), 200, 0.2, "magma_cube", false));
+        infusingRecipes.add(new InfusingRecipeSingle("lava", SizedIngredient.of(Items.MAGMA_CREAM, 12),200, 0.25, "magma_cube", false));
+        caviarSimpleRecipes.add(new CaviarSimple("magma_cube", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.MAGMA_CREAM, 1), 0.2f)));
+
+        //Cow Fish
+        breedingRecipes.add(new BreedingRecipe("black", "white", SizedIngredient.of(basicMobFishFood, 1), 200, 0.2, "cow", false));
+        infusingRecipes.add(new InfusingRecipeSingle("black", SizedIngredient.of(Items.LEATHER, 12),200, 0.25, "cow", false));
+        caviarSimpleRecipes.add(new CaviarSimple("cow", false,
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.LEATHER, 1), 0.2f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.BEEF, 1), 0.2f)));
+
+        //Pig Fish
+        breedingRecipes.add(new BreedingRecipe("pink", "pink", SizedIngredient.of(basicMobFishFood, 1), 200, 0.2, "pig", false));
+        infusingRecipes.add(new InfusingRecipeSingle("pink", SizedIngredient.of(Items.PORKCHOP, 12),200, 0.25, "pig", false));
+        caviarSimpleRecipes.add(new CaviarSimple("pig", false,
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.PORKCHOP, 1), 0.2f)));
+
+        //Sheep Fish
+        breedingRecipes.add(new BreedingRecipe("white", "white", SizedIngredient.of(basicMobFishFood, 1), 200, 0.2, "sheep", false));
+        infusingRecipes.add(new InfusingRecipeSingle("white", SizedIngredient.of(ItemTags.WOOL, 12),200, 0.25, "sheep", false));
+        caviarSimpleRecipes.add(new CaviarSimple("sheep", false,
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.WHITE_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.BLACK_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.BLUE_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.BROWN_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.CYAN_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.GRAY_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.LIGHT_BLUE_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.LIGHT_GRAY_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.PINK_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.MAGENTA_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.ORANGE_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.RED_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.GREEN_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.LIME_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.YELLOW_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.PURPLE_WOOL, 1), 0.025f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.MUTTON, 1), 0.2f)));
+
+        //Chicken Fish
+        breedingRecipes.add(new BreedingRecipe("white", "yellow", SizedIngredient.of(basicMobFishFood, 1), 200, 0.2, "chicken", false));
+        infusingRecipes.add(new InfusingRecipeSingle("white", SizedIngredient.of(Items.CHICKEN, 12),200, 0.25, "chicken", false));
+        caviarSimpleRecipes.add(new CaviarSimple("chicken", false,
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.CHICKEN, 1), 0.2f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.EGG, 1), 0.1f)));
+
+        //Clay
+        breedingRecipes.add(new BreedingRecipe("dirt", "water", SizedIngredient.of(basicFishFood, 1), 100, 0.2, "clay", false));
+        infusingRecipes.add(new InfusingRecipeSingle("dirt", SizedIngredient.of(Items.CLAY_BALL, 64),100, 0.5, "clay", false));
+        caviarSimpleRecipes.add(new CaviarSimple("clay", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.CLAY_BALL, 1), 0.4f)));
+
+        //Snow
+        breedingRecipes.add(new BreedingRecipe("water", "white", SizedIngredient.of(basicFishFood, 1), 100, 0.2, "snow", false));
+        infusingRecipes.add(new InfusingRecipeSingle("water", SizedIngredient.of(Items.SNOWBALL, 64),100, 0.5, "snow", false));
+        caviarSimpleRecipes.add(new CaviarSimple("snow", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.SNOWBALL, 1), 0.4f)));
+
+        //Ice
+        breedingRecipes.add(new BreedingRecipe("snow", "blue", SizedIngredient.of(basicFishFood, 1), 100, 0.2, "ice", false));
+        infusingRecipes.add(new InfusingRecipeSingle("snow", SizedIngredient.of(Items.ICE, 64),100, 0.5, "ice", false));
+        caviarSimpleRecipes.add(new CaviarSimple("ice", false,
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.ICE, 1), 0.4f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.PACKED_ICE, 1), 0.1f),
+                new SizedIngredientChanceResult(SizedIngredient.of(Items.BLUE_ICE, 1), 0.05f)));
+
+
         for (BreedingRecipe recipe : breedingRecipes) {
             var builder = FishBreedingRecipeBuilder.createFishBreedingRecipe(
                     createFish(recipe.parent1),

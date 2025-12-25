@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.05,
+  "created_fish": "resourcefish:ghast",
+  "duration": 300,
+  "fish": "resourcefish:skeleton",
+  "input_1": {
+    "count": 3,
+    "item": "minecraft:ghast_tear"
+  },
+  "input_2": {
+    "count": 3,
+    "item": "minecraft:ghast_tear"
+  },
+  "input_3": {
+    "count": 3,
+    "item": "minecraft:ghast_tear"
+  }
+}

@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-18T10:37:40.5761414	resourcefish Item Models
+// 1.21.1	2025-12-25T09:40:00.8710764	resourcefish Item Models
 27e0b4ea04a169b8aa8a533ad80c1c8f64ab5123 assets/resourcefish/models/item/basic_fish_food.json
 fd348b6a9d2eec72d8fdfa9c1580a15a071d82ff assets/resourcefish/models/item/basic_mob_fish_food.json
 90976376b4f935aa43b201a9745a06ef4c2104c1 assets/resourcefish/models/item/breeding_upgrade.json
@@ -10,7 +10,6 @@ a73d8bfbb2b3a89cf9948c1212707cdb97fc62be assets/resourcefish/models/item/ender_f
 aa8105467ba180738cb14fea964e998dcec61336 assets/resourcefish/models/item/infusing_upgrade.json
 4e793d0aed2d8d796ed50061d2970d38da2827cf assets/resourcefish/models/item/metallic_fish_food.json
 3cadd0f647cdb6e9fea36d2003b20e6139e13c8d assets/resourcefish/models/item/nether_fish_food.json
-55a5a8368c4cbf4bc8844f4aae4842307c3206a4 assets/resourcefish/models/item/resource_fish_bucket.json
 9ae22a723b063afe84d588094be6729dc4551cb9 assets/resourcefish/models/item/round_robin_upgrade.json
 cd0ce6c043c992a31b0e04b3f1dd95c9c85ebb6c assets/resourcefish/models/item/speed_upgrade_1.json
 46477bbfd9f880df45a8ef0d4a040ade6fc5db2d assets/resourcefish/models/item/speed_upgrade_2.json

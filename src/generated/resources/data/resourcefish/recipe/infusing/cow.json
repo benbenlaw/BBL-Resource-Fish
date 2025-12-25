@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.25,
+  "created_fish": "resourcefish:cow",
+  "duration": 200,
+  "fish": "resourcefish:black",
+  "input_1": {
+    "count": 12,
+    "item": "minecraft:leather"
+  },
+  "input_2": {
+    "count": 12,
+    "item": "minecraft:leather"
+  },
+  "input_3": {
+    "count": 12,
+    "item": "minecraft:leather"
+  }
+}

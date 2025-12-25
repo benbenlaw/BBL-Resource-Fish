@@ -1,0 +1,19 @@
+{
+  "type": "resourcefish:fish_infusing",
+  "chance": 0.25,
+  "created_fish": "resourcefish:sheep",
+  "duration": 200,
+  "fish": "resourcefish:white",
+  "input_1": {
+    "count": 12,
+    "tag": "minecraft:wool"
+  },
+  "input_2": {
+    "count": 12,
+    "tag": "minecraft:wool"
+  },
+  "input_3": {
+    "count": 12,
+    "tag": "minecraft:wool"
+  }
+}
