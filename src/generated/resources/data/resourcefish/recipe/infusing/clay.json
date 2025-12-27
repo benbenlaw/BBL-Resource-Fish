@@ -3,7 +3,7 @@
   "chance": 0.5,
   "created_fish": "resourcefish:clay",
   "duration": 100,
-  "fish": "resourcefish:dirt",
+  "fish": "resourcefish:sand",
   "input_1": {
     "count": 64,
     "item": "minecraft:clay_ball"

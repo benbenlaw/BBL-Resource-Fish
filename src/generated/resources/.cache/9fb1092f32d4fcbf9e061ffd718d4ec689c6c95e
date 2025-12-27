@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-25T10:08:58.6942753	Recipes
+// 1.21.1	2025-12-27T11:31:30.2891423	Recipes
 ce53d61a3a5b6d4c7d6f9b61cde767ce8d4e5d0a data/resourcefish/advancement/recipes/breeding/breeding/aluminum.json
 d59b542b7080752d724b039fe5e8695f0842519d data/resourcefish/advancement/recipes/breeding/breeding/amethyst.json
 3385be46e013dd4f826b9d2b987543db948879a8 data/resourcefish/advancement/recipes/breeding/breeding/ancient.json
@@ -231,7 +231,7 @@ eace9a8888dc3ecccb3a63bdf309f22c73770a59 data/resourcefish/recipe/breeding/ameth
 c57833212e8a8fd623253c3a49579d8042a50191 data/resourcefish/recipe/breeding/basalt.json
 60f6dc14ac74ab26c879958a98a63b47bd288510 data/resourcefish/recipe/breeding/blaze.json
 0d29d282fe2e0961bab69947a0f0c90c049bc5dd data/resourcefish/recipe/breeding/chicken.json
-08fecdfc0a7994f88b7ac8a9061ab3e770eff4a7 data/resourcefish/recipe/breeding/clay.json
+74b00b31f8a11fdd4a1885f0e6318fa679d18fc7 data/resourcefish/recipe/breeding/clay.json
 fcde53cf800db94ae9a90442ef8881f7a98e5723 data/resourcefish/recipe/breeding/coal.json
 a69f6eceeae82aa31eb80ac2c1364ae430d35e13 data/resourcefish/recipe/breeding/cobblestone.json
 85fd133f10e479d30154bccaf62be9b2df3fdabc data/resourcefish/recipe/breeding/copper.json
@@ -373,7 +373,7 @@ f4862e6d41094068f6da92a70495e2d5935dd5c2 data/resourcefish/recipe/infusing/andes
 b5d1789680068c1d8174650f8d6e214f6f45f033 data/resourcefish/recipe/infusing/blue.json
 418ba03ca76499cdd1aca93d539023b47e5d7620 data/resourcefish/recipe/infusing/brown.json
 1daf1e4bcbede178b5723b7a67fd3e6ad616a1a9 data/resourcefish/recipe/infusing/chicken.json
-93c338b33b3099854522cf3176b04f894f6deb0f data/resourcefish/recipe/infusing/clay.json
+6276c2b16c9e182937926993a1236c6cb56b5985 data/resourcefish/recipe/infusing/clay.json
 573267a5808a22dead194f0815d296bb4a79fb5f data/resourcefish/recipe/infusing/coal.json
 02f2aa6dd4e207ced6abe35ff6350ea4993247e2 data/resourcefish/recipe/infusing/copper.json
 555f880f7f99d7c92c2bfbf5de6209f464e8e54a data/resourcefish/recipe/infusing/cow.json

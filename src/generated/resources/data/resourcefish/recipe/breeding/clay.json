@@ -7,6 +7,6 @@
   "chance": 0.2,
   "created_fish": "resourcefish:clay",
   "duration": 100,
-  "parent_a": "resourcefish:dirt",
+  "parent_a": "resourcefish:sand",
   "parent_b": "resourcefish:water"
 }

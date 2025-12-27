@@ -445,8 +445,8 @@ public class ResourceFishRecipes extends RecipeProvider {
                 new SizedIngredientChanceResult(SizedIngredient.of(Items.EGG, 1), 0.1f)));
 
         //Clay
-        breedingRecipes.add(new BreedingRecipe("dirt", "water", SizedIngredient.of(basicFishFood, 1), 100, 0.2, "clay", false));
-        infusingRecipes.add(new InfusingRecipeSingle("dirt", SizedIngredient.of(Items.CLAY_BALL, 64),100, 0.5, "clay", false));
+        breedingRecipes.add(new BreedingRecipe("sand", "water", SizedIngredient.of(basicFishFood, 1), 100, 0.2, "clay", false));
+        infusingRecipes.add(new InfusingRecipeSingle("sand", SizedIngredient.of(Items.CLAY_BALL, 64),100, 0.5, "clay", false));
         caviarSimpleRecipes.add(new CaviarSimple("clay", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.CLAY_BALL, 1), 0.4f)));
 
         //Snow
