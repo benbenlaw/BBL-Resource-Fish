@@ -102,8 +102,7 @@ public class ClientEvents {
                     return 0xFFFFFFFF;
                 },
 
-                ResourceFishItems.RESOURCE_FISH_BUCKET.get(),
-                CeramicBucketMod.CERAMIC_BUCKET.asItem()
+                ResourceFishItems.RESOURCE_FISH_BUCKET.get()
         );
     }
 
