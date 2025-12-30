@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:andesite",
   "duration": 100,
   "fish": "resourcefish:stone",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:andesite"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:andesite"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:andesite"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:andesite"
+    }
+  ]
 }

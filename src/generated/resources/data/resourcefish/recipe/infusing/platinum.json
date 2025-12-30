@@ -13,16 +13,10 @@
   "created_fish": "resourcefish:platinum",
   "duration": 100,
   "fish": "resourcefish:gold",
-  "input_1": {
-    "count": 64,
-    "tag": "c:ingots/platinum"
-  },
-  "input_2": {
-    "count": 64,
-    "tag": "c:ingots/platinum"
-  },
-  "input_3": {
-    "count": 64,
-    "tag": "c:ingots/platinum"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "tag": "c:ingots/platinum"
+    }
+  ]
 }

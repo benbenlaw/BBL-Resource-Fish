@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:purple",
   "duration": 200,
   "fish": "resourcefish:water",
-  "input_1": {
-    "count": 1,
-    "tag": "c:dyes/purple"
-  },
-  "input_2": {
-    "count": 1,
-    "tag": "c:dyes/purple"
-  },
-  "input_3": {
-    "count": 1,
-    "tag": "c:dyes/purple"
-  }
+  "inputs": [
+    {
+      "count": 1,
+      "tag": "c:dyes/purple"
+    }
+  ]
 }

@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:magma_cube",
   "duration": 200,
   "fish": "resourcefish:lava",
-  "input_1": {
-    "count": 12,
-    "item": "minecraft:magma_cream"
-  },
-  "input_2": {
-    "count": 12,
-    "item": "minecraft:magma_cream"
-  },
-  "input_3": {
-    "count": 12,
-    "item": "minecraft:magma_cream"
-  }
+  "inputs": [
+    {
+      "count": 12,
+      "item": "minecraft:magma_cream"
+    }
+  ]
 }

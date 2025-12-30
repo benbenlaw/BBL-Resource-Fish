@@ -13,16 +13,10 @@
   "created_fish": "resourcefish:ruby",
   "duration": 100,
   "fish": "resourcefish:emerald",
-  "input_1": {
-    "count": 64,
-    "tag": "c:gems/ruby"
-  },
-  "input_2": {
-    "count": 64,
-    "tag": "c:gems/ruby"
-  },
-  "input_3": {
-    "count": 64,
-    "tag": "c:gems/ruby"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "tag": "c:gems/ruby"
+    }
+  ]
 }

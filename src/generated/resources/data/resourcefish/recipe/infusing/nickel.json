@@ -13,16 +13,10 @@
   "created_fish": "resourcefish:nickel",
   "duration": 100,
   "fish": "resourcefish:iron",
-  "input_1": {
-    "count": 64,
-    "tag": "c:ingots/nickel"
-  },
-  "input_2": {
-    "count": 64,
-    "tag": "c:ingots/nickel"
-  },
-  "input_3": {
-    "count": 64,
-    "tag": "c:ingots/nickel"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "tag": "c:ingots/nickel"
+    }
+  ]
 }

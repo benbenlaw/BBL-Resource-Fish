@@ -13,16 +13,10 @@
   "created_fish": "resourcefish:uranium",
   "duration": 100,
   "fish": "resourcefish:gold",
-  "input_1": {
-    "count": 64,
-    "tag": "c:ingots/uranium"
-  },
-  "input_2": {
-    "count": 64,
-    "tag": "c:ingots/uranium"
-  },
-  "input_3": {
-    "count": 64,
-    "tag": "c:ingots/uranium"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "tag": "c:ingots/uranium"
+    }
+  ]
 }

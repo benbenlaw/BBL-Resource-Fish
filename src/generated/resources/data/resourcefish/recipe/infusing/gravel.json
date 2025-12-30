@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:gravel",
   "duration": 100,
   "fish": "resourcefish:stone",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:gravel"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:gravel"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:gravel"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:gravel"
+    }
+  ]
 }

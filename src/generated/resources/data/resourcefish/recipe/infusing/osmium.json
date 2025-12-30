@@ -13,16 +13,10 @@
   "created_fish": "resourcefish:osmium",
   "duration": 100,
   "fish": "resourcefish:gold",
-  "input_1": {
-    "count": 64,
-    "tag": "c:ingots/osmium"
-  },
-  "input_2": {
-    "count": 64,
-    "tag": "c:ingots/osmium"
-  },
-  "input_3": {
-    "count": 64,
-    "tag": "c:ingots/osmium"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "tag": "c:ingots/osmium"
+    }
+  ]
 }

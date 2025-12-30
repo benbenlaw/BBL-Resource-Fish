@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:skeleton",
   "duration": 200,
   "fish": "resourcefish:stone",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:bone"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:bone"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:bone"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:bone"
+    }
+  ]
 }

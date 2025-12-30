@@ -73,8 +73,8 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addTooltipTranslation("speed_upgrade_2", "Reduces time to process in the Caviar Processor by 40 ticks");
         addTooltipTranslation("speed_upgrade_3", "Reduces time to process in the Caviar Processor by 60 ticks");
         addTooltipTranslation("tank_upgrade", "Allows the Caviar Processor to produce fluids");
-        addTooltipTranslation("breeding_upgrade", "Allows the Tank to breed fish");
-        addTooltipTranslation("infusing_upgrade", "Allows the Tank to infuse fish");
+        addTooltipTranslation("breeding_upgrade", "Allows the Tank to breed fish. When installed fish will not produce caviar");
+        addTooltipTranslation("infusing_upgrade", "Allows the Tank to infuse fish. When installed fish will not produce caviar");
         addTooltipTranslation("round_robin_upgrade", "Items inserted into the Caviar Processor will be distributed evenly across all input slots");
 
         //Entity

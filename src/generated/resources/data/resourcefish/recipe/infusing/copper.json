@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:copper",
   "duration": 100,
   "fish": "resourcefish:stone",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:copper_ingot"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:copper_ingot"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:copper_ingot"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:copper_ingot"
+    }
+  ]
 }

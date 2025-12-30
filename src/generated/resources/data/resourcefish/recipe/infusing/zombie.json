@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:zombie",
   "duration": 200,
   "fish": "resourcefish:dirt",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:rotten_flesh"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:rotten_flesh"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:rotten_flesh"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:rotten_flesh"
+    }
+  ]
 }

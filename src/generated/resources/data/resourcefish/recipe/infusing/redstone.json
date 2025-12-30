@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:redstone",
   "duration": 100,
   "fish": "resourcefish:lapis",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:redstone"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:redstone"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:redstone"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:redstone"
+    }
+  ]
 }

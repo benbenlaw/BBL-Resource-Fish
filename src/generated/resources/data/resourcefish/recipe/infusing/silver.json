@@ -13,16 +13,10 @@
   "created_fish": "resourcefish:silver",
   "duration": 100,
   "fish": "resourcefish:iron",
-  "input_1": {
-    "count": 64,
-    "tag": "c:ingots/silver"
-  },
-  "input_2": {
-    "count": 64,
-    "tag": "c:ingots/silver"
-  },
-  "input_3": {
-    "count": 64,
-    "tag": "c:ingots/silver"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "tag": "c:ingots/silver"
+    }
+  ]
 }

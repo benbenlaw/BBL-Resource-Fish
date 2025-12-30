@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:stone",
   "duration": 100,
   "fish": "resourcefish:water",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:stone"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:stone"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:stone"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:stone"
+    }
+  ]
 }

@@ -13,16 +13,10 @@
   "created_fish": "resourcefish:zinc",
   "duration": 100,
   "fish": "resourcefish:copper",
-  "input_1": {
-    "count": 64,
-    "tag": "c:ingots/zinc"
-  },
-  "input_2": {
-    "count": 64,
-    "tag": "c:ingots/zinc"
-  },
-  "input_3": {
-    "count": 64,
-    "tag": "c:ingots/zinc"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "tag": "c:ingots/zinc"
+    }
+  ]
 }

@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:amethyst",
   "duration": 100,
   "fish": "resourcefish:lapis",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:amethyst_shard"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:amethyst_shard"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:amethyst_shard"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:amethyst_shard"
+    }
+  ]
 }

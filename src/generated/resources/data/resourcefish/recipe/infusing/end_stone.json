@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:end_stone",
   "duration": 300,
   "fish": "resourcefish:stone",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:end_stone"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:end_stone"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:end_stone"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:end_stone"
+    }
+  ]
 }

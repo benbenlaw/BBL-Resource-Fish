@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:coal",
   "duration": 100,
   "fish": "resourcefish:wood",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:coal"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:coal"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:coal"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:coal"
+    }
+  ]
 }

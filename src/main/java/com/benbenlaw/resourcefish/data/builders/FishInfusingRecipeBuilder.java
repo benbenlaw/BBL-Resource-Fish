@@ -8,11 +8,13 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
@@ -21,34 +23,30 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class FishInfusingRecipeBuilder implements RecipeBuilder {
 
     protected String group;
     protected ResourceLocation fish;
-    protected SizedIngredient input1;
-    protected SizedIngredient input2;
-    protected SizedIngredient input3;
+    protected NonNullList<SizedIngredient> inputs;
     protected int duration;
     protected double chance;
     protected ResourceLocation createdFish;
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
-    public FishInfusingRecipeBuilder(ResourceLocation fish, SizedIngredient input1, SizedIngredient input2, SizedIngredient input3,
-                                     int duration, double chance, ResourceLocation createdFish) {
+    public FishInfusingRecipeBuilder(ResourceLocation fish, NonNullList<SizedIngredient> inputs, int duration, double chance, ResourceLocation createdFish) {
         this.fish = fish;
-        this.input1 = input1;
-        this.input2 = input2;
-        this.input3 = input3;
+        this.inputs = NonNullList.create();
+        this.inputs.addAll(inputs);
         this.duration = duration;
         this.chance = chance;
         this.createdFish = createdFish;
     }
 
-    public static FishInfusingRecipeBuilder createFishInfusingRecipe(ResourceLocation fish, SizedIngredient input1, SizedIngredient input2,
-                                                                      SizedIngredient input3, int duration,
+    public static FishInfusingRecipeBuilder createFishInfusingRecipe(ResourceLocation fish, NonNullList<SizedIngredient> inputs, int duration,
                                                                       double chance, ResourceLocation createdFish) {
-        return new FishInfusingRecipeBuilder(fish, input1, input2, input3, duration, chance, createdFish);
+        return new FishInfusingRecipeBuilder(fish, inputs, duration, chance, createdFish);
     }
 
     @Override
@@ -80,8 +78,7 @@ public class FishInfusingRecipeBuilder implements RecipeBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(id))
                 .requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(builder::addCriterion);
-        FishInfusingRecipe fishInfusingRecipe = new FishInfusingRecipe(
-                fish, input1, input2, input3, duration, chance, createdFish);
+        FishInfusingRecipe fishInfusingRecipe = new FishInfusingRecipe(fish, inputs, duration, chance, createdFish);
         recipeOutput.accept(id, fishInfusingRecipe, builder.build(id.withPrefix("recipes/infusing/")));
 
     }

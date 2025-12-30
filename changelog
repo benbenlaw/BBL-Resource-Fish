@@ -3,6 +3,12 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.4.0
+- Tweaked infusion recipes to use a NonNullList<SizedIngredient> instead of a single ingredient per slot, allows more flexibility in recipes
+- Infusion recipes prices dramatically reduced for most recipes
+- There may still be tweaks to the values of recipes but no major change to the recipe system
+- Added tooltips warning about infusion and breeding upgrade preventing fish drops when installed
+
 1.3.4
 - Changed Clay Fish recipe uses sand and water now
 

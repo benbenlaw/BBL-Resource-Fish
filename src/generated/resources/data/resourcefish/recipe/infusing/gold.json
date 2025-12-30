@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:gold",
   "duration": 100,
   "fish": "resourcefish:iron",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:gold_ingot"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:gold_ingot"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:gold_ingot"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:gold_ingot"
+    }
+  ]
 }

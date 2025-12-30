@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:lapis",
   "duration": 100,
   "fish": "resourcefish:coal",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:lapis_lazuli"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:lapis_lazuli"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:lapis_lazuli"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:lapis_lazuli"
+    }
+  ]
 }

@@ -88,9 +88,12 @@ public class FishInfusingRecipeCategory implements IRecipeCategory<FishInfusingR
 
         builder.addSlot(RecipeIngredientRole.INPUT,7, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  requireFishIngredient);
 
-        addSizedIngredient(builder, RecipeIngredientRole.INPUT, 45, 17, recipe.input1());
-        addSizedIngredient(builder, RecipeIngredientRole.INPUT, 63, 17, recipe.input2());
-        addSizedIngredient(builder, RecipeIngredientRole.INPUT, 81, 17, recipe.input3());
+        for (int i = 0; i < recipe.inputs().size(); i++) {
+
+            addSizedIngredient(builder, RecipeIngredientRole.INPUT, 45 + (i * 18), 17, recipe.inputs().get(i));
+            //addSizedIngredient(builder, RecipeIngredientRole.INPUT, 63, 17, recipe.input2());
+            //addSizedIngredient(builder, RecipeIngredientRole.INPUT, 81, 17, recipe.input3());
+        }
 
         builder.addSlot(RecipeIngredientRole.OUTPUT,118, 17).addIngredient(JEIResourceFishPlugin.FISH_INGREDIENT_TYPE,  createdFishIngredient)
                 .addRichTooltipCallback(((iRecipeSlotView, iTooltipBuilder) ->

@@ -13,16 +13,10 @@
   "created_fish": "resourcefish:lead",
   "duration": 100,
   "fish": "resourcefish:iron",
-  "input_1": {
-    "count": 64,
-    "tag": "c:ingots/lead"
-  },
-  "input_2": {
-    "count": 64,
-    "tag": "c:ingots/lead"
-  },
-  "input_3": {
-    "count": 64,
-    "tag": "c:ingots/lead"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "tag": "c:ingots/lead"
+    }
+  ]
 }

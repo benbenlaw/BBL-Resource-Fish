@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:ancient",
   "duration": 200,
   "fish": "resourcefish:netherrack",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:ancient_debris"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:ancient_debris"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:ancient_debris"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:ancient_debris"
+    }
+  ]
 }

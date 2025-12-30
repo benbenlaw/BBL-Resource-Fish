@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:creeper",
   "duration": 200,
   "fish": "resourcefish:stone",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:gunpowder"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:gunpowder"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:gunpowder"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:gunpowder"
+    }
+  ]
 }

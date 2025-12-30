@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:ice",
   "duration": 100,
   "fish": "resourcefish:snow",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:ice"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:ice"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:ice"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:ice"
+    }
+  ]
 }

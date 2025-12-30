@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:blaze",
   "duration": 300,
   "fish": "resourcefish:lava",
-  "input_1": {
-    "count": 64,
-    "item": "minecraft:blaze_rod"
-  },
-  "input_2": {
-    "count": 64,
-    "item": "minecraft:blaze_rod"
-  },
-  "input_3": {
-    "count": 64,
-    "item": "minecraft:blaze_rod"
-  }
+  "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:blaze_rod"
+    }
+  ]
 }

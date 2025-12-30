@@ -28,12 +28,14 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -423,6 +425,7 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
 
 
     private void infusingRecipe(Optional<RecipeHolder<FishInfusingRecipe>> match, BlockPos centerPos, ItemStackHandler itemHandler, Level level) {
+
         if (match.isEmpty()) {
             activeRecipe = ActiveRecipeType.NONE;
             currentInfusingMatch = Optional.empty();
@@ -432,56 +435,81 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         }
 
         RecipeHolder<FishInfusingRecipe> recipeHolder = match.get();
-        maxProgress = recipeHolder.value().duration();
+        FishInfusingRecipe recipe = recipeHolder.value();
+
+        maxProgress = recipe.duration();
         progress++;
 
-        if (progress >= maxProgress) {
-            // Ensure inputs exist before we shrink them
-            ItemStack s1 = itemHandler.getStackInSlot(RECIPE_SLOT_1);
-            ItemStack s2 = itemHandler.getStackInSlot(RECIPE_SLOT_2);
-            ItemStack s3 = itemHandler.getStackInSlot(RECIPE_SLOT_3);
+        if (progress < maxProgress) return;
 
-            if (s1.getCount() < recipeHolder.value().input1().count()
-                    || s2.getCount() < recipeHolder.value().input2().count()
-                    || s3.getCount() < recipeHolder.value().input3().count()) {
-                // Not enough ingredients: stop the recipe and clear cached state
+        List<SizedIngredient> ingredients = recipe.inputs();
+
+        boolean[] usedSlots = new boolean[3];
+
+        for (SizedIngredient ingredient : ingredients) {
+            if (ingredient.ingredient() == Ingredient.EMPTY) continue;
+
+            boolean found = false;
+            for (int slot = 0; slot < 3; slot++) {
+                if (usedSlots[slot]) continue;
+
+                ItemStack stack = itemHandler.getStackInSlot(RECIPE_SLOT_1 + slot);
+                if (ingredient.test(stack) && stack.getCount() >= ingredient.count()) {
+                    usedSlots[slot] = true;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                // Required ingredient not found → reset recipe
                 progress = 0;
                 maxProgress = Integer.MAX_VALUE;
                 activeRecipe = ActiveRecipeType.NONE;
                 currentInfusingMatch = Optional.empty();
                 return;
             }
-
-            // Consume inputs and mark inventory changed so the recipe cache is recomputed next tick
-            s1.shrink(recipeHolder.value().input1().count());
-            s2.shrink(recipeHolder.value().input2().count());
-            s3.shrink(recipeHolder.value().input3().count());
-            inventoryChanged = true;
-
-            boolean chanceSuccess = level.random.nextDouble() < recipeHolder.value().chance();
-            if (chanceSuccess) {
-                for (ResourceFishEntity fish : this.fishPool) {
-                    if (fish.getResourceType().getId().equals(recipeHolder.value().fish())) {
-                        fish.setResourceType(ResourceType.get(recipeHolder.value().createdFish()));
-                        break;
-                    }
-                }
-            } else {
-                ItemEntity bones = new ItemEntity(level,
-                        centerPos.getX() + 0.5, centerPos.getY() + 1, centerPos.getZ() + 0.5,
-                        new ItemStack(Items.BONE));
-                level.addFreshEntity(bones);
-            }
-
-            // Reset and clear active recipe so we don't keep running
-            progress = 0;
-            maxProgress = Integer.MAX_VALUE;
-            activeRecipe = ActiveRecipeType.NONE;
-            currentInfusingMatch = Optional.empty();
         }
+
+        for (int i = 0; i < ingredients.size(); i++) {
+            SizedIngredient ingredient = ingredients.get(i);
+            if (ingredient.ingredient() == Ingredient.EMPTY) continue;
+
+            for (int slot = 0; slot < 3; slot++) {
+                ItemStack stack = itemHandler.getStackInSlot(RECIPE_SLOT_1 + slot);
+                if (ingredient.test(stack) && stack.getCount() >= ingredient.count()) {
+                    stack.shrink(ingredient.count());
+                    usedSlots[slot] = true;
+                    break;
+                }
+            }
+        }
+
+        inventoryChanged = true;
+
+        if (level.random.nextDouble() < recipe.chance()) {
+            for (ResourceFishEntity fish : this.fishPool) {
+                if (recipe.fish().equals(fish.getResourceType().getId())) {
+                    fish.setResourceType(ResourceType.get(recipe.createdFish()));
+                    break;
+                }
+            }
+        } else {
+            ItemEntity bones = new ItemEntity(
+                    level,
+                    centerPos.getX() + 0.5,
+                    centerPos.getY() + 1,
+                    centerPos.getZ() + 0.5,
+                    new ItemStack(Items.BONE)
+            );
+            level.addFreshEntity(bones);
+        }
+
+        progress = 0;
+        maxProgress = Integer.MAX_VALUE;
+        activeRecipe = ActiveRecipeType.NONE;
+        currentInfusingMatch = Optional.empty();
     }
-
-
 
     @Override
     protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {

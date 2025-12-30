@@ -4,16 +4,10 @@
   "created_fish": "resourcefish:slime",
   "duration": 200,
   "fish": "resourcefish:green",
-  "input_1": {
-    "count": 12,
-    "item": "minecraft:slime_ball"
-  },
-  "input_2": {
-    "count": 12,
-    "item": "minecraft:slime_ball"
-  },
-  "input_3": {
-    "count": 12,
-    "item": "minecraft:slime_ball"
-  }
+  "inputs": [
+    {
+      "count": 12,
+      "item": "minecraft:slime_ball"
+    }
+  ]
 }
