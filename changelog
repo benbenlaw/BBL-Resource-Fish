@@ -3,6 +3,9 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.4.1
+- Added Ender Fish Food to creative tab
+
 1.4.0
 - Tweaked infusion recipes to use a NonNullList<SizedIngredient> instead of a single ingredient per slot, allows more flexibility in recipes
 - Infusion recipes prices dramatically reduced for most recipes
