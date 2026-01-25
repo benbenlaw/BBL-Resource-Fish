@@ -1,10 +1,18 @@
 {
   "type": "resourcefish:fish_infusing",
-  "chance": 0.1,
+  "chance": 1.0,
   "created_fish": "resourcefish:ancient",
   "duration": 200,
   "fish": "resourcefish:netherrack",
   "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:ancient_debris"
+    },
+    {
+      "count": 64,
+      "item": "minecraft:stone"
+    },
     {
       "count": 64,
       "item": "minecraft:ancient_debris"

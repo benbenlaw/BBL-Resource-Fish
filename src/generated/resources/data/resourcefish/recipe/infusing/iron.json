@@ -1,10 +1,18 @@
 {
   "type": "resourcefish:fish_infusing",
-  "chance": 0.25,
+  "chance": 2.0,
   "created_fish": "resourcefish:iron",
   "duration": 100,
   "fish": "resourcefish:copper",
   "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "count": 64,
+      "item": "minecraft:stone"
+    },
     {
       "count": 64,
       "item": "minecraft:iron_ingot"

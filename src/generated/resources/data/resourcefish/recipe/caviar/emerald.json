@@ -13,7 +13,7 @@
       "chance": 0.2,
       "ingredient": {
         "count": 1,
-        "item": "minecraft:emerald"
+        "tag": "c:ores/emerald"
       }
     }
   ]

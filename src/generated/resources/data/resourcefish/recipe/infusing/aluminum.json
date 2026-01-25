@@ -9,11 +9,19 @@
     }
   ],
   "type": "resourcefish:fish_infusing",
-  "chance": 0.25,
+  "chance": 1.0,
   "created_fish": "resourcefish:aluminum",
   "duration": 100,
   "fish": "resourcefish:copper",
   "inputs": [
+    {
+      "count": 64,
+      "tag": "c:ingots/aluminum"
+    },
+    {
+      "count": 64,
+      "item": "minecraft:stone"
+    },
     {
       "count": 64,
       "tag": "c:ingots/aluminum"

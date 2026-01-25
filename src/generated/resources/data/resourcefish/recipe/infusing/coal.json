@@ -1,10 +1,18 @@
 {
   "type": "resourcefish:fish_infusing",
-  "chance": 0.25,
+  "chance": 1.0,
   "created_fish": "resourcefish:coal",
   "duration": 100,
   "fish": "resourcefish:wood",
   "inputs": [
+    {
+      "count": 64,
+      "item": "minecraft:coal"
+    },
+    {
+      "count": 64,
+      "item": "minecraft:stone"
+    },
     {
       "count": 64,
       "item": "minecraft:coal"

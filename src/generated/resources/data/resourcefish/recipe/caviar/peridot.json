@@ -22,7 +22,7 @@
       "chance": 0.2,
       "ingredient": {
         "count": 1,
-        "tag": "c:gems/peridot"
+        "tag": "c:ores/peridot"
       }
     }
   ]

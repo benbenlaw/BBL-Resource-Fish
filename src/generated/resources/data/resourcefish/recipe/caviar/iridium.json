@@ -22,7 +22,7 @@
       "chance": 0.2,
       "ingredient": {
         "count": 1,
-        "tag": "c:ingots/iridium"
+        "tag": "c:ores/iridium"
       }
     }
   ]
