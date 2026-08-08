@@ -29,6 +29,10 @@ public class ResourceFishBlocks {
             () -> new NestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).sound(SoundType.SAND)
                     .lightLevel(state -> 7)
                     .noOcclusion()));
+    
+    public static final DeferredBlock<Block> AQUARIUM = registerBlock("aquarium", 
+            () -> new AquariumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
+                    .noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = (DeferredBlock<T>) BLOCKS.register(name, block);
