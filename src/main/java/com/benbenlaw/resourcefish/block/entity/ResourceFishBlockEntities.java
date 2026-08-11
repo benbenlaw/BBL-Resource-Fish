@@ -26,6 +26,9 @@ public class ResourceFishBlockEntities {
             register("caviar_processor_block_entity", () ->
                     BlockEntityType.Builder.of(CaviarProcessorBlockEntity::new, ResourceFishBlocks.CAVIAR_PROCESSOR.get()));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AquariumBlockEntity>> AQUARIUM_BLOCK_ENTITY = 
+            register("aquarium_block_entity", () -> 
+                    BlockEntityType.Builder.of(AquariumBlockEntity::new, ResourceFishBlocks.AQUARIUM.get()));
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
@@ -35,6 +38,9 @@ public class ResourceFishBlockEntities {
                 ResourceFishBlockEntities.CAVIAR_PROCESSOR_BLOCK_ENTITY.get(), CaviarProcessorBlockEntity::getCaviarProcessorItemHandlerSide);
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK,
                 ResourceFishBlockEntities.CAVIAR_PROCESSOR_BLOCK_ENTITY.get(), CaviarProcessorBlockEntity::getFluidHandlerCapability);
+
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
+                ResourceFishBlockEntities.AQUARIUM_BLOCK_ENTITY.get(), AquariumBlockEntity::getItemHandlerCapability);
     }
 
 

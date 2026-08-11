@@ -11,6 +11,7 @@ import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.network.ResourceFishNetworking;
 import com.benbenlaw.resourcefish.recipe.ResourceFishRecipes;
+import com.benbenlaw.resourcefish.renderer.AquariumRenderer;
 import com.benbenlaw.resourcefish.renderer.ResourceFishRenderer;
 import com.benbenlaw.resourcefish.screen.CaviarProcessorScreen;
 import com.benbenlaw.resourcefish.screen.ResourceFishMenuTypes;
@@ -91,6 +92,7 @@ public class ResourceFish{
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(ResourceFishEntities.RESOURCE_FISH.get(), ResourceFishRenderer::new);
+            event.registerBlockEntityRenderer(ResourceFishBlockEntities.AQUARIUM_BLOCK_ENTITY.get(), AquariumRenderer::new);
         }
 
         @SubscribeEvent
