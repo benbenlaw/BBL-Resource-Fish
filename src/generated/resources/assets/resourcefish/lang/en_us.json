@@ -1,4 +1,5 @@
 {
+  "block.resourcefish.aquarium": "Aquarium",
   "block.resourcefish.caviar_processor": "Caviar Processor",
   "block.resourcefish.nest": "Resource Fish Nest",
   "block.resourcefish.tank_controller": "Resource Fish Tank",
@@ -40,6 +41,7 @@
   "recipe.resourcefish.fish_infusing": "Fish Infusing",
   "screen.resourcefish.tank_controller.fish_types": "Fish Types in Tank:",
   "screen.resourcefish.tank_controller.overfilled": "Tank is overfilled! Drops Disabled.",
+  "tooltip.resourcefish.aquarium": "Use a Bucket with a Resource Fish inside to store and produce Caviar",
   "tooltip.resourcefish.breeding_upgrade": "Allows the Tank to breed fish. When installed fish will not produce caviar",
   "tooltip.resourcefish.depth_upgrade_1": "Increases tank depth by 1 (above and below)",
   "tooltip.resourcefish.depth_upgrade_2": "Increases tank depth by 2 (above and below)",

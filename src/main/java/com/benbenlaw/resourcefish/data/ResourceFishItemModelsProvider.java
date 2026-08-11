@@ -1,6 +1,7 @@
 package com.benbenlaw.resourcefish.data;
 
 import com.benbenlaw.resourcefish.ResourceFish;
+import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;

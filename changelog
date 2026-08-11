@@ -3,6 +3,12 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.5.0
+- Merged https://github.com/benbenlaw/BBL-Resource-Fish/pull/1 thanks @PrincessStellar
+- Merged https://github.com/benbenlaw/BBL-Resource-Fish/pull/4 thanks @rglKali
+- Added translations for aquarium
+- Added tooltip for aquarium
+
 1.4.2
 - RECIPE TWEAKS
 - Infusion recipes that create fish like Iron, Diamond ect now require 2 stacks of the resource instead of 1 and a stack of stone

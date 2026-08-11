@@ -55,6 +55,7 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addBlockTranslation("caviar_processor", "Caviar Processor");
         addBlockTranslation("tank_controller_range", "Tank Range");
         addBlockTranslation("nest", "Resource Fish Nest");
+        addBlockTranslation("aquarium", "Aquarium");
 
         //Recipes
         addRecipeTranslation("caviar_processor", "Caviar Processor");
@@ -76,6 +77,7 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addTooltipTranslation("breeding_upgrade", "Allows the Tank to breed fish. When installed fish will not produce caviar");
         addTooltipTranslation("infusing_upgrade", "Allows the Tank to infuse fish. When installed fish will not produce caviar");
         addTooltipTranslation("round_robin_upgrade", "Items inserted into the Caviar Processor will be distributed evenly across all input slots");
+        addTooltipTranslation("aquarium", "Use a Bucket with a Resource Fish inside to store and produce Caviar");
 
         //Entity
         add("entity.resourcefish.resource_fish", "%s Resource Fish");

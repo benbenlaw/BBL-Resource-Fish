@@ -1,9 +1,12 @@
 package com.benbenlaw.resourcefish.event;
 
 import com.benbenlaw.resourcefish.ResourceFish;
+import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
 import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.mojang.datafixers.util.Either;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -22,6 +25,14 @@ public class TooltipEvent {
     @SubscribeEvent
     public static void onTooltipEvent(RenderTooltipEvent.GatherComponents event) {
         ItemStack stack = event.getItemStack();
+
+        if (stack.is(ResourceFishBlocks.AQUARIUM.get().asItem())) {
+            if (Screen.hasShiftDown()) {
+                event.getTooltipElements().set(1, Either.left(Component.translatable("tooltip.resourcefish.aquarium").withStyle(ChatFormatting.YELLOW)));
+            } else {
+                event.getTooltipElements().set(1, Either.left(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW)));
+            }
+        }
 
         if (stack.is(ResourceFishItems.RESOURCE_FISH_SPAWN_EGG) ||
                 stack.is(ResourceFishItems.CAVIAR)||
