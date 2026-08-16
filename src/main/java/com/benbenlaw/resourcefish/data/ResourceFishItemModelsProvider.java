@@ -40,6 +40,8 @@ public class ResourceFishItemModelsProvider extends ItemModelProvider {
         simpleItem(ResourceFishItems.NETHER_FISH_FOOD);
         simpleItem(ResourceFishItems.BASIC_MOB_FISH_FOOD);
         simpleItem(ResourceFishItems.ENDER_FISH_FOOD);
+
+        simpleBlockItem(ResourceFishBlocks.AQUARIUM.get());
     }
 
     private void simpleItem(DeferredItem<Item> item) {

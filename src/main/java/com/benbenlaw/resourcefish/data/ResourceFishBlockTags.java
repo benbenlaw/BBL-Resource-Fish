@@ -23,6 +23,7 @@ public class ResourceFishBlockTags extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ResourceFishBlocks.TANK_CONTROLLER.get())
                 .add(ResourceFishBlocks.CAVIAR_PROCESSOR.get())
+                .add(ResourceFishBlocks.AQUARIUM.get())
         ;
 
 

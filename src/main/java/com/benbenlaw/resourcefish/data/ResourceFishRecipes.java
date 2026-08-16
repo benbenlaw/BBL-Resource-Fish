@@ -68,6 +68,8 @@ public class ResourceFishRecipes extends RecipeProvider {
         List<InfusingRecipeSingle> infusingRecipes = new ArrayList<>();
         List<CaviarSimple> caviarSimpleRecipes = new ArrayList<>();
 
+
+
         //Dirt
         breedingRecipes.add(new BreedingRecipe("dirt", "dirt", SizedIngredient.of(basicFishFood, 1), 100, 0.15, "dirt", false));
         caviarSimpleRecipes.add(new CaviarSimple("dirt", false, new SizedIngredientChanceResult(SizedIngredient.of(Items.DIRT, 1), 0.4f)));
@@ -523,7 +525,16 @@ public class ResourceFishRecipes extends RecipeProvider {
 
 
         // ***** Crafting Recipes *****
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.BASIC_FISH_FOOD, 6)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishBlocks.AQUARIUM, 1)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', Tags.Items.GLASS_BLOCKS)
+                .define('B', ResourceFishBlocks.TANK_CONTROLLER)
+                .unlockedBy("has_item", has(ResourceFishBlocks.TANK_CONTROLLER))
+                .save(consumer);
+
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.BASIC_FISH_FOOD, 6)
                 .pattern(" A ")
                 .pattern("A A")
                 .pattern(" A ")

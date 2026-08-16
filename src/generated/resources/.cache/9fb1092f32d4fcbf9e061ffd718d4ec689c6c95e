@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-25T11:36:28.2968815	Recipes
+// 1.21.1	2026-08-16T08:43:02.3207476	Recipes
 ce53d61a3a5b6d4c7d6f9b61cde767ce8d4e5d0a data/resourcefish/advancement/recipes/breeding/breeding/aluminum.json
 d59b542b7080752d724b039fe5e8695f0842519d data/resourcefish/advancement/recipes/breeding/breeding/amethyst.json
 3385be46e013dd4f826b9d2b987543db948879a8 data/resourcefish/advancement/recipes/breeding/breeding/ancient.json
@@ -201,6 +201,7 @@ eae7609e2e0f329bd9e79a207ff31d183f0cdb45 data/resourcefish/advancement/recipes/i
 50d05e57bbe253ee87bc6af3132d5c5bea32456c data/resourcefish/advancement/recipes/infusing/infusing/yellow.json
 c961e6799dd3708e840215adfebc1368ffd68474 data/resourcefish/advancement/recipes/infusing/infusing/zinc.json
 bae16a4497dcc284be4ead6b4b60c44fa51ab0cf data/resourcefish/advancement/recipes/infusing/infusing/zombie.json
+30955bb42f348e1b4e8f3f2d5d0d8f0c85980a1c data/resourcefish/advancement/recipes/misc/aquarium.json
 271902ad1856c291a8fec878aaafd65f72ff9b04 data/resourcefish/advancement/recipes/misc/basic_fish_food.json
 55f6a812d2be6e023067ef82cfe3fc8b4b4796ee data/resourcefish/advancement/recipes/misc/basic_mob_fish_food.json
 72c04e0eca38106d7d82c0e9eabd87b9d005b4ce data/resourcefish/advancement/recipes/misc/breeding_upgrade.json
@@ -222,6 +223,7 @@ e5756de59d5097244975469cbaea0642db2147a9 data/resourcefish/advancement/recipes/m
 949bd68aec1899025ba4df76938a5d144df0ebe1 data/resourcefish/advancement/recipes/misc/width_upgrade_1.json
 255baf1e53189424e6999d46f5b91dd43f545e2e data/resourcefish/advancement/recipes/misc/width_upgrade_2.json
 2f60623fc5c5f21f67c6b344183bde01ac2cc331 data/resourcefish/advancement/recipes/misc/width_upgrade_3.json
+c0eabb5eec60332b6fcd39ff4e3ee65c616ad23d data/resourcefish/recipe/aquarium.json
 9cd9624321322d30f90cf0bb2cd5d844c22f323e data/resourcefish/recipe/basic_fish_food.json
 9e7f98f0f6ef457984133ca2b48849f972ae0dcd data/resourcefish/recipe/basic_mob_fish_food.json
 2f9a371d2735b6749b0af1b0b4bd396488b8bad7 data/resourcefish/recipe/breeding/aluminum.json

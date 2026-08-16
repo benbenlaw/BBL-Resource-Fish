@@ -3,6 +3,11 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.5.1
+- Added recipe for aquarium
+- Fixed item model for aquarium
+- Added tags and loot table for aquarium
+
 1.5.0
 - Merged https://github.com/benbenlaw/BBL-Resource-Fish/pull/1 thanks @PrincessStellar
 - Merged https://github.com/benbenlaw/BBL-Resource-Fish/pull/4 thanks @rglKali
